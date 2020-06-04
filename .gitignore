@@ -1,0 +1,14 @@
+# Django
+*/migrations/*
+*.sqlite3
+*.pyc
+__pycache__
+__init__.py
+
+# VScode
+.vscode
+env
+env.py
+
+# MEDIA
+media
