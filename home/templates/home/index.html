@@ -1,1 +1,127 @@
-HELLO WORLD!!
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!--Home-->
+<section id="home">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-7 col-sm-12 mt-3 p-3">
+        <h1 class="custom-title d-none d-sm-block">Silkscreenservice.com</h1>
+        <h2 class="text-lg-left text-center font-weight-bold mt-5 pb-2">Your design studio</h2>
+        <p class="text-lg-left text-center">
+          At Silkscreenservice we are happy to help you. From the first
+          contact to the delivery of your order, your order has our full
+          attention. We check your files, provide you with a print preview
+          and, if desired, we help you to adjust your design.
+        </p>
+        <div class="row justify-content-center">
+          <div class="col-lg-6 col-sm-8 px-3">
+            <button type="button" class="btn btn-black" onclick="window.location.href = '';">
+              <h4>Let us help you!</h4>
+              {% if user.is_authenticated %}
+                <span>Enter your personal space</span>
+              {% else %}
+                <span>Create an account</span>
+              {% endif %}
+            </button>
+          </div>
+          <div class="col-lg-6 col-sm-8 px-3">
+            <button type="button" class="btn btn-black-outline" onclick="window.location.href = '';">
+              <h4>Request a service</h4>
+              <span>We are ready for it!</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5 col-sm-12 p-5">
+        <img src="{% static 'svg/designer-tools.svg' %}" class="img-fluid float-right " alt="designer-tools">
+      </div>
+    </div>
+  </div>
+</section>
+<!--Home end-->
+
+<!--Additonal-->
+<section id="additional">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6 col-sm-12 my-5 d-none d-md-block">
+        <img src="{% static 'svg/designer-girl.svg' %}" class="img-fluid float-left pl-4" alt="designer-girl">
+      </div>
+      <div class="col-lg-6 col-sm-12 px-4 mt-5">
+        <h2 class="text-lg-left text-center font-weight-bold pb-2">Your wish is our inspiration!</h2>
+        <p class="text-lg-left text-center">
+          Imagine you have a catchy idea or a specific wish, but can’t make it
+          visual, no worries! Our design employees have extensive experience in
+          the fashion and graphic industry. We often only need half a word to
+          convert your concept into a suitable product. Your wish is
+          our inspiration!<br>
+          <br>
+          <span class="d-none d-sm-block">
+            With our studio we offer you optimal support for your assignment at all
+            times and are always ready to share our expertise with you. Whether it
+            concerns technical aspects, delivery specifications, printing
+            instructions or design. We are happy to think along with you in finding
+            creative solutions for all your printing!
+          </span>
+        </p>
+      </div>
+      <div class="col-lg-6 col-sm-12 d-block d-sm-none">
+        <img src="{% static 'svg/designer-girl.svg' %}" class="img-fluid float-left pl-4" alt="designer-girl">
+      </div>
+    </div>
+  </div>
+</section>
+<!--Additional end-->
+
+<!--Services-->
+<section id="services">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <h2 class="text-center font-weight-bold my-5">Frequently used services</h2>
+        <div class="row">
+
+          {% for item in items %}
+            <div class="col">
+              <div class="card w-100 service-card">
+                <img class="card-img-top" src="{{ item.image.url }}" alt="{{ item.name }}">
+                <div class="card-body d-flex flex-column">
+                  <h4 class="card-title text-center">{{ item.name|upper }}</h4>
+                  <p class="card-text text-center">
+                    {{ item.description }}
+                  </p>
+                  <h4 class="card-text text-center mt-auto">
+                    <i class="fas fa-euro-sign"></i> {{ item.price }}
+                  </h4>
+
+                  <form method="POST" action="">
+                    {% csrf_token %}
+                    <button class="btn btn-black-outline-sm mt-3" type="submit">Add to cart</button>
+                  </form>
+
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-4 col-sm-12 pb-5">
+        <button type="button" class="btn btn-black" onclick="window.location.href = '';">
+          <h4>View all services</h4>
+          <span>We have more</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+<!--Services end-->
+
+{% endblock content %}
