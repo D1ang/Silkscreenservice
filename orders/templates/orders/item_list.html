@@ -1,12 +1,43 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block content %}
-List of items
 
-{% for item in items %}
+<!--Products-->
+<section id="products">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <h2 class="text-center font-weight-bold my-5">Available services</h2>
+        <div class="row">
 
-    {{ item }}
+          {% for item in items %}
+            <div class="col col-lg-3 col-md-6 col-sm-12 col-xs-12 mb-4">
+              <div class="card w-100 service-card">
+                <img class="card-img-top" src="{{ item.image.url }}" alt="{{ item.name }}">
+                <div class="card-body d-flex flex-column">
+                  <h4 class="card-title text-center">{{ item.name|upper }}</h4>
+                  <p class="card-text text-center">
+                    {{ item.description }}
+                  </p>
+                  <h4 class="card-text text-center mt-auto">
+                    <i class="fas fa-euro-sign"></i> {{ item.price }}
+                  </h4>
 
-{% endfor %}
+                  <form method="POST" action="">
+                    {% csrf_token %}
+                    <button class="btn btn-black-outline-sm mt-3" type="submit">Add to cart</button>
+                  </form>
+
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--Products end-->
 
 {% endblock content %}

@@ -4,8 +4,8 @@ from .models import Item
 
 def item_list(request):
     """
-    A view that lists all the
-    available items/services
+    A view that displays all the products
+    on the services page.
     """
     context = {'items': Item.objects.all()}
 
