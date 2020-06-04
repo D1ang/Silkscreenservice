@@ -21,7 +21,7 @@
                   </p>
                   <h4 class="card-text text-center mt-auto">
                     <i class="fas fa-euro-sign"></i> {{ item.price }}
-                    <span class="badge badge-pill badge-info service-badge">{{ item.tags }}</span>
+                    <span class="badge badge-pill badge-{{ item.tag.colour }} service-badge">{{ item.tag }}</span>
                   </h4>
 
                   <form method="POST" action="">

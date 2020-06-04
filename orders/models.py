@@ -2,8 +2,23 @@ from django.conf import settings
 from django.db import models
 
 
+STATUS = (
+    ('requested', 'Requested'),
+    ('pending', 'Pending'),
+    ('finished', 'Finished'),
+)
+
+TAG_COLOURS = (
+    ('danger', 'Red'),
+    ('success', 'Green'),
+    ('info', 'Blue'),
+)
+
+
 class ItemTag(models.Model):
     name = models.CharField(max_length=10)
+    colour = models.CharField(choices=TAG_COLOURS,
+                              max_length=10, default='Red')
 
     def __str__(self):
         return self.name
@@ -15,7 +30,8 @@ class Item(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2)
     image = models.ImageField(upload_to='images', null=True, blank=True)
     clicks = models.IntegerField(default=0)
-    tags = models.ForeignKey(ItemTag, null=True, blank=True, on_delete=models.SET_NULL)
+    tag = models.ForeignKey(
+        ItemTag, null=True, blank=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.name
@@ -30,17 +46,13 @@ class OrderItem(models.Model):
 
 
 class Order(models.Model):
-    STATUS = (
-        ('requested', 'Requested'),
-        ('pending', 'Pending'),
-        ('finished', 'Finished'),
-    )
-
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    status = models.CharField(
+        choices=STATUS, default='requested', max_length=10)
     ordered = models.BooleanField(default=False)
     items = models.ManyToManyField(OrderItem)
     date = models.DateField(auto_now_add=True)
-    status = models.CharField(choices=STATUS, default='requested', max_length=10)
 
     def __str__(self):
         return self.user.username
