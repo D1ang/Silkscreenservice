@@ -1,21 +1,16 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import DetailView
+from django.shortcuts import redirect, get_object_or_404
+from django.views.generic import ListView, DetailView
 from .models import Item, OrderItem, Order
+
+
+class ItemListView(ListView):
+    model = Item
+    template_name = 'product_list.html'
 
 
 class ItemDetailView(DetailView):
     model = Item
     template_name = 'product.html'
-
-
-def item_list(request):
-    """
-    A view that displays all the products
-    on the services page.
-    """
-    context = {'items': Item.objects.all()}
-
-    return render(request, 'item_list.html', context)
 
 
 def add_to_cart(request, slug):
