@@ -1,14 +1,14 @@
-# Django
+# Exclude Django created local def folders
 */migrations/*
 *.sqlite3
 *.pyc
 __pycache__
 __init__.py
 
-# VScode
+# Exclude VScode created def folders
 .vscode
-env
 env.py
+env
 
-# MEDIA
+# Exclude media folder
 media

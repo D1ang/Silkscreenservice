@@ -43,15 +43,15 @@ html {
 }
 
 .service-card {
-  height: 100%;
-  font-size: 17px;
+	height: 100%;
+	font-size: 17px;
 }
 
 .service-badge {
-  font-size: 14px;
-  font-weight: 400;
-  vertical-align: 4px;
-  margin-left: 5px;
+	font-size: 14px;
+	font-weight: 400;
+	vertical-align: 4px;
+	margin-left: 5px;
 }
 
 /*--------------------Custom navbar styling--------------------*/
