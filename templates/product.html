@@ -1,3 +1,9 @@
-HELLO PRODUCT
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
 
 <a href="{{ object.get_add_to_cart_url }}" class="btn btn-primary">Add to cart</a>
+<a href="{{ object.get_remove_from_cart_url }}" class="btn btn-primary">Remove from cart</a>
+
+{% endblock content %}
