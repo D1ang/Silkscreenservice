@@ -24,10 +24,9 @@
                     <span class="badge badge-pill badge-{{ item.tag.colour }} service-badge">{{ item.tag }}</span>
                   </h4>
 
-                  <form method="POST" action="">
-                    {% csrf_token %}
-                    <button class="btn btn-black-outline-sm mt-3" type="submit">Add to cart</button>
-                  </form>
+                  
+
+                  <a href="{{ object.get_add_to_cart_url }}" class="btn btn-primary">Add to cart</a>
 
                 </div>
               </div>

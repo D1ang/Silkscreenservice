@@ -11,4 +11,4 @@ def index(request):
 
     context = {'items': items}
 
-    return render(request, 'home/index.html', context)
+    return render(request, 'index.html', context)

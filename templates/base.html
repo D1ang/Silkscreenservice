@@ -21,13 +21,13 @@
 
   <!--Navigation bar-->
   <nav class="navbar navbar-expand-md navbar-dark custom-navbar">
-    <a class="navbar-brand custom-navbarLogo" href="{% url 'home' %}">Silkscreenservice.com</a>
+    <a class="navbar-brand custom-navbarLogo" href="">Silkscreenservice.com</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarToggler">
       <ul class="navbar-nav ml-auto text-uppercase">
-        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">home</a></li>
+        <li class="nav-item"><a class="nav-link" href="">home</a></li>
         <li class="nav-item"><a class="nav-link" href="">services</a></li>
 
         {% if user.is_authenticated %}
