@@ -1,4 +1,5 @@
 {% load static %}
+{% load cart_template_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -45,11 +46,16 @@
           <li class="nav-item"><a class="nav-link" href="{% url 'account_signup' %}">sign up</a></li>
         {% endif %}
 
-        {% if grand_total %}
-          <li class="nav-item"><a class="nav-link" href="{% url 'cart' %}">cart
-              <span class="badge badge-pill badge-light">{{ product_count }}</span></a>
+        {% if request.user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="">
+              <span class="badge badge-pill badge-light">
+                {{ request.user|cart_item_count }} <i class="fas fa-shopping-cart"></i>
+              </span>
+            </a>  
           </li>
         {% endif %}
+        
       </ul>
     </div>
   </nav>
