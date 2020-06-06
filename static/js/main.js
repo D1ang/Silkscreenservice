@@ -4,7 +4,7 @@ $(document).ready(function() {
      & adds proper Bootstrap class styling
      code is based on the following: https://stackoverflow.com/a/41909370 */
 
-	$('#signupForm').find(':input').each(function(index, element) {
+	$('#auth-form').find(':input').each(function(index, element) {
 		$(element).addClass('form-control');
 	});
 });

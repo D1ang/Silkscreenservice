@@ -93,7 +93,18 @@ html {
 	color: #830000;
 }
 
-/*--------------------Custom login styling---------------------*/
+/*---------------------Custom Auth styling---------------------*/
+
+#auth-bg {
+	background-image: url(/static/svg/designer-shop.svg);
+	background-repeat: no-repeat;
+	background-position: right bottom;
+	background-size: 100%;
+  background-color: #06b3be;
+  overflow: visible;
+  min-height: 650px;
+  margin-bottom: 8px;
+}
 
 .auth-custom-card {
   background-color: rgba(0, 0, 0, 0.2);
@@ -101,13 +112,18 @@ html {
   padding: 5px;
 }
 
-.login-subtext {
+.auth-subtext {
 	font-size: 17px;
 	line-height: 20px;
 }
 
-.login-subtext a:link {
-	font-weight: bold;
+.auth-subtext a:link, a:visited {
+  font-weight: bold;
+  color: #fff;
+}
+
+.auth-subtext a:hover, a:active {
+  color: #000;
 }
 
 .errorlist {
