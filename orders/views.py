@@ -1,5 +1,8 @@
-from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import ObjectDoesNotExist
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import View, ListView, DetailView
 from .models import Item, OrderItem, Order
 
@@ -14,11 +17,19 @@ class ItemDetailView(DetailView):
     template_name = 'service_details.html'
 
 
-class OrderSummaryView(View):
+class OrderSummaryView(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
-        return render(self.request, 'cart.html')
+
+        try:
+            order = Order.objects.get(user=self.request.user, ordered=False)
+            context = {'object': order}
+            return render(self.request, 'cart.html', context)
+        except ObjectDoesNotExist:
+            messages.error(self.request, 'You do not have an active order')
+            return redirect('/')
 
 
+@login_required
 def add_to_cart(request, slug):
     """
     Adds an item to cart and creates an order
@@ -50,6 +61,7 @@ def add_to_cart(request, slug):
         return redirect('orders:service', slug=slug)
 
 
+@login_required
 def remove_from_cart(request, slug):
     """
     Removes an item from cart.
