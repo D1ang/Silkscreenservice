@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!--Cart-->
+<section id="cart">
+  <div class="container">
+    <div class="cart-container mt-5">
+      <table id="dataTable" class="nowrap table table-sm height-fix">
+        <thead>
+          <tr>
+            <th>Services</th>
+            <th class="cart-align-right">Price</th>
+            <th class="cart-align-right">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in cart_items %}
+            <tr>
+              <td>{{ item.product.name }}</td>
+              <td class="cart-align-right">{{ item.product.price }}€</td>
+              <td class="cart-align-right"><form method="POST" action="{% url 'remove_from_cart' item.id %}">{% csrf_token %}<button type="submit" class="btn-delete-cart"><i class="fas fa-trash"></i></button></form></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="cart-container my-4">
+      <table id="dataTable" class="nowrap table table-sm height-fix">
+        <thead>
+          <tr>
+            <th>Additional costs</th>
+            <th>-</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tax 21 %</td>
+            <td class="cart-td-align-right">{{ tax|floatformat:2 }}€</td>
+          </tr>
+          <tr>
+            <td><strong>Total</strong></td>
+            <td class="cart-td-align-right"><strong>{{ grand_total|floatformat:2 }}€</strong></td>
+          </tr>
+          <tr>
+            <td class="pt-5"><a href="" class="btn btn-black-sm" role="button">Add more services</a></td>
+            <td class="pt-5"><a href="" class="btn btn-black-sm" role="button">Checkout</a></td>
+          <tr>
+        </tbody>
+      </table>
+      
+    </div>
+  </div>
+  </div>
+</section>
+<!--Cart end-->
+
+{% endblock content %}

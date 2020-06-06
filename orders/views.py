@@ -1,6 +1,6 @@
-from django.shortcuts import redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from django.views.generic import ListView, DetailView
+from django.views.generic import View, ListView, DetailView
 from .models import Item, OrderItem, Order
 
 
@@ -12,6 +12,11 @@ class ItemListView(ListView):
 class ItemDetailView(DetailView):
     model = Item
     template_name = 'service_details.html'
+
+
+class OrderSummaryView(View):
+    def get(self, *args, **kwargs):
+        return render(self.request, 'cart.html')
 
 
 def add_to_cart(request, slug):
