@@ -14,7 +14,7 @@
 
   <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon.png' %}">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/v/bs4/dt-1.10.21/r-2.2.4/datatables.min.css"/>
+  <link rel="stylesheet" href="https://cdn.datatables.net/v/bs4/dt-1.10.21/r-2.2.4/datatables.min.css" />
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <script src="https://js.stripe.com/v3/"></script>
 </head>
@@ -35,18 +35,20 @@
         {% if request.user.is_authenticated %}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">Account</a>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="">Dashboard</a>
-                <a class="dropdown-item" href="">Profile</a>
-                <a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a>
-              </div>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="">Dashboard</a>
+              <a class="dropdown-item" href="">Profile</a>
+              <a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a>
+            </div>
           </li>
         {% else %}
           <li class="nav-item"><a class="nav-link" href="{% url 'account_signup' %}">sign up</a></li>
         {% endif %}
 
         {% if grand_total %}
-          <li class="nav-item"><a class="nav-link" href="{% url 'cart' %}">cart <span class="badge badge-pill badge-light">{{ product_count }}</span></a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'cart' %}">cart
+              <span class="badge badge-pill badge-light">{{ product_count }}</span></a>
+          </li>
         {% endif %}
       </ul>
     </div>

@@ -1,21 +1,87 @@
-{% extends "account/base.html" %}
-
+{% extends 'base.html' %}
+{% load static %}
 {% load i18n %}
-
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block content %}
-<h1>{% trans "Sign Up" %}</h1>
 
-<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+<section id="auth">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 col-lg-6 p-3 mt-3">
+        <div class="auth-custom-card">
+          <div class="card-body">
+            <h5 class="card-title text-center text-uppercase">account sign up</h5>
 
-<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <button type="submit">{% trans "Sign Up" %} &raquo;</button>
-</form>
+            <form id="signupForm" method="POST" action="{% url 'account_signup' %}" class="my-4">
+              {% csrf_token %}
+
+              {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+              {% endif %}
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fas fa-user"></i></div>
+                </div>
+                {{ form.username }}
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fas fa-at"></i></div>
+                </div>
+                {{ form.email }}
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fas fa-at"></i></div>
+                </div>
+                {{ form.email2 }}
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fas fa-key"></i></div>
+                </div>
+                {{ form.password1 }}
+              </div>
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fas fa-key"></i></div>
+                </div>
+                {{ form.password2 }}
+              </div>
+                {{ form.errors }}
+              <div class="justify-content-center btn-login-padding my-4">
+                <input class="btn btn-black-sm" type="submit" value="Sign me up!">
+              </div>
+            </form>
+
+            <div class="row">
+              <div class="col-12 text-center">
+                <p class="login-subtext">Already have an account?</p>
+              </div>
+              <div class="col-12 text-center">
+                <p class="login-subtext"><a href="{{ login_url }}">Login here</a></p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-sm-12 p-2">
+        <img src="{% static 'svg/designer-shop.svg' %}" class="img-fluid" alt="Responsive image">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
 
 {% endblock %}

@@ -93,7 +93,42 @@ html {
 	color: #830000;
 }
 
-/*---------------------------Buttons-------------------------- */
+/*--------------------Custom login styling---------------------*/
+
+.auth-custom-card {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #fff;
+  padding: 5px;
+}
+
+.login-subtext {
+	font-size: 17px;
+	line-height: 20px;
+}
+
+.login-subtext a:link {
+	font-weight: bold;
+}
+
+.errorlist {
+	background-color: #f88080;
+	color: #fff;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	border-radius: 5px;
+	font-size: 18px;
+}
+
+#login-messages {
+	background-color: #f88080;
+	color: #fff;
+	border-radius: 5px;
+	padding: 6px 0px 6px 16px;
+	margin-top: 10px;
+	font-size: 18px;
+}
+
+/*---------------------------Buttons---------------------------*/
 
 .btn-black {
 	height: 110px;
