@@ -39,7 +39,7 @@ class Item(models.Model):
         ItemTag, null=True, blank=True, on_delete=models.SET_NULL)
 
     def get_absolute_url(self):
-        return reverse('orders:product', kwargs={
+        return reverse('orders:service', kwargs={
             'slug': self.slug
         })
 

@@ -6,12 +6,12 @@ from .models import Item, OrderItem, Order
 
 class ItemListView(ListView):
     model = Item
-    template_name = 'product_list.html'
+    template_name = 'services_list.html'
 
 
 class ItemDetailView(DetailView):
     model = Item
-    template_name = 'product.html'
+    template_name = 'service_details.html'
 
 
 def add_to_cart(request, slug):
@@ -33,16 +33,16 @@ def add_to_cart(request, slug):
         if order.items.filter(item__slug=item.slug).exists():
             messages.info(
                 request, 'Only one of the same service in the cart allowed')
-            return redirect('orders:product', slug=slug)
+            return redirect('orders:service', slug=slug)
         else:
             order.items.add(order_item)
             messages.info(request, 'Selected service was added to the cart.')
-            return redirect('orders:product', slug=slug)
+            return redirect('orders:service', slug=slug)
     else:
         order = Order.objects.create(user=request.user)
         order.items.add(order_item)
         messages.info(request, 'Selected service was added to the cart.')
-        return redirect('orders:product', slug=slug)
+        return redirect('orders:service', slug=slug)
 
 
 def remove_from_cart(request, slug):
@@ -63,10 +63,10 @@ def remove_from_cart(request, slug):
             )[0]
             order.items.remove(order_item)
             messages.info(request, 'Selected service was removed from cart.')
-            return redirect('orders:product', slug=slug)
+            return redirect('orders:service', slug=slug)
         else:
             messages.info(request, 'This service was not in your cart.')
-            return redirect('orders:product', slug=slug)
+            return redirect('orders:service', slug=slug)
     else:
         messages.info(request, 'You do not have an active order.')
-        return redirect('orders:product', slug=slug)
+        return redirect('orders:service', slug=slug)
