@@ -33,7 +33,7 @@
                 </div>
                 {{ form.password }}
               </div>
-                <p class="login-subtext"><a href="{% url 'account_reset_password' %}">Forgot Password?</a></p>
+                <p><a href="{% url 'account_reset_password' %}" class="subtext">Forgot Password?</a></p>
                 {{ form.errors }}
 
               <div class="justify-content-center btn-login-padding my-4">
@@ -41,12 +41,12 @@
               </div>
             </form>
               
-            <div class="row">
+            <div class="row subtext">
               <div class="col-12 text-center">
-                <p class="auth-subtext">Don't have an account?</p>
+                <p>Don't have an account?</p>
               </div>
               <div class="col-12 text-center">
-                <p class="auth-subtext"><a href="{{ signup_url }}"><i class="fas fa-pencil-alt mr-1"></i> Sign up</a></p>
+                <p><a href="{{ signup_url }}" class="subtext"><i class="fas fa-pencil-alt mr-1"></i> Sign up</a></p>
               </div>
             </div>
 

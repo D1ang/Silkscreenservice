@@ -119,17 +119,19 @@ html {
   padding: 5px;
 }
 
-.auth-subtext {
+.subtext {
 	font-size: 17px;
 	line-height: 20px;
 }
 
-.auth-subtext a:link, auth-subtext a:visited {
+a.subtext:link,
+a.subtext:visited {
   font-weight: bold;
   color: #fff;
 }
 
-.auth-subtext a:hover, auth-subtext a:active {
+a.subtext:hover,
+a.subtext:active {
   color: #000;
 }
 
