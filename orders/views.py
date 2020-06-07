@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import View, ListView, DetailView
+from .forms import CheckoutForm
 from .models import Item, OrderItem, Order
 
 
@@ -27,6 +28,19 @@ class OrderSummaryView(LoginRequiredMixin, View):
         except ObjectDoesNotExist:
             messages.error(self.request, 'You do not have an active order')
             return redirect('/')
+
+
+class CheckoutView(View):
+    def get(self, *args, **kwargs):
+        form = CheckoutForm()
+        context = {'form': form}
+        return render(self.request, 'checkout.html', context)
+
+    def post(self, *args, **kwargs):
+        form = CheckoutForm(self.request.POST or None)
+        if form.is_valid():
+            print('The form is valid')
+            return redirect('orders:checkout')
 
 
 @login_required
@@ -58,12 +72,12 @@ def add_to_cart(request, slug):
             item.save()
 
             messages.info(request, 'Selected service was added to the cart.')
-            return redirect('orders:service', slug=slug)
+            return redirect('orders:cart')
     else:
         order = Order.objects.create(user=request.user)
         order.items.add(order_item)
         messages.info(request, 'Selected service was added to the cart.')
-        return redirect('orders:service', slug=slug)
+        return redirect('orders:cart')
 
 
 @login_required
@@ -89,7 +103,7 @@ def remove_from_cart(request, slug):
             item.save()
 
             messages.info(request, 'Selected service was removed from cart.')
-            return redirect('orders:service', slug=slug)
+            return redirect('orders:cart')
         else:
             messages.info(request, 'This service was not in your cart.')
             return redirect('orders:service', slug=slug)
