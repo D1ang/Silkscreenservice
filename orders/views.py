@@ -36,10 +36,11 @@ def add_to_cart(request, slug):
     checks if an item already is in the order.
     """
     item = get_object_or_404(Item, slug=slug)
+
     order_item, created = OrderItem.objects.get_or_create(
         item=item,
         user=request.user,
-        ordered=False
+        ordered=False,
     )
     order_qs = Order.objects.filter(user=request.user, ordered=False)
     if order_qs.exists():
@@ -52,6 +53,10 @@ def add_to_cart(request, slug):
             return redirect('orders:service', slug=slug)
         else:
             order.items.add(order_item)
+
+            item.clicks += 1
+            item.save()
+
             messages.info(request, 'Selected service was added to the cart.')
             return redirect('orders:service', slug=slug)
     else:
@@ -79,6 +84,10 @@ def remove_from_cart(request, slug):
                 ordered=False
             )[0]
             order.items.remove(order_item)
+
+            item.clicks -= 1
+            item.save()
+
             messages.info(request, 'Selected service was removed from cart.')
             return redirect('orders:service', slug=slug)
         else:
