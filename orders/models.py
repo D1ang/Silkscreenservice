@@ -39,7 +39,7 @@ class Item(models.Model):
         ItemTag, null=True, blank=True, on_delete=models.SET_NULL)
 
     def get_absolute_url(self):
-        return reverse('orders:product', kwargs={
+        return reverse('orders:service', kwargs={
             'slug': self.slug
         })
 
@@ -68,6 +68,9 @@ class OrderItem(models.Model):
     quantity = models.IntegerField(default=1)
     ordered = models.BooleanField(default=False)
 
+    def get_total_item_price(self):
+        return self.item.price
+
     def __str__(self):
         return self.item.name
 
@@ -90,6 +93,12 @@ class Order(models.Model):
         choices=STATUS, default='requested', max_length=10)
     items = models.ManyToManyField(OrderItem)
     ordered = models.BooleanField(default=False)
+
+    def get_total(self):
+        total = 0
+        for order_item in self.items.all():
+            total += order_item.get_total_item_price()
+        return total
 
     def __str__(self):
         return self.user.username

@@ -18,7 +18,7 @@
         </p>
         <div class="row justify-content-center">
           <div class="col-lg-6 col-sm-8 px-3">
-            <button type="button" class="btn btn-black" onclick="window.location.href = '';">
+            <button type="button" class="btn btn-black" onclick="window.location.href = '{% url 'account_signup' %}';">
               <h4>Let us help you!</h4>
               {% if user.is_authenticated %}
               <span>Enter your personal space</span>
@@ -28,7 +28,7 @@
             </button>
           </div>
           <div class="col-lg-6 col-sm-8 px-3">
-            <button type="button" class="btn btn-black-outline" onclick="window.location.href = '';">
+            <button type="button" class="btn btn-black-outline" onclick="window.location.href = '{% url 'orders:services' %}';">
               <h4>Request a service</h4>
               <span>We are ready for it!</span>
             </button>
@@ -96,14 +96,8 @@
                 <h4 class="card-text text-center mt-auto">
                   <i class="fas fa-euro-sign"></i> {{ item.price }}
                   <span class="badge badge-pill badge-{{ item.tag.colour }} service-badge">{{ item.tag }}</span>
-                  <a href="{{ item.get_absolute_url }}">TEST MEH!</a>
                 </h4>
-
-                <form method="POST" action="">
-                  {% csrf_token %}
-                  <button class="btn btn-black-outline-sm mt-3" type="submit">Add to cart</button>
-                </form>
-
+                <a href="{{ item.get_absolute_url }}" class="btn btn-black-outline-sm mt-3" role="button">Service details</a>
               </div>
             </div>
           </div>
@@ -116,7 +110,7 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-4 col-sm-12 pb-5">
-        <button type="button" class="btn btn-black" onclick="window.location.href = '';">
+        <button type="button" class="btn btn-black" onclick="window.location.href = '{% url 'orders:services' %}';">
           <h4>View all services</h4>
           <span>We have more</span>
         </button>
