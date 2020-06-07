@@ -18,15 +18,10 @@
         <tbody>
           {% for order_item in object.items.all %}
             <tr>
-              <td>{{ order_item.item.name }}</td>
+              <td>{{ forloop.counter }}. {{ order_item.item.name }}</td>
               <td class="cart-align-right">{{ order_item.item.price }}€</td>
               <td class="cart-align-right">
-                <form method="POST" action="">
-                {% csrf_token %}
-                  <button type="submit" class="btn-delete-cart">
-                    <i class="fas fa-trash"></i>
-                  </button>
-                </form>
+                <a href="{% url 'orders:remove_from_cart' order_item.item.slug %}" class="btn-delete-cart"><i class="fas fa-trash"></i></a>
               </td>
             </tr>
           {% endfor %}
@@ -47,11 +42,11 @@
         <tbody>
           <tr>
             <td>Tax 21 %</td>
-            <td class="cart-td-align-right">{{ tax|floatformat:2 }}€</td>
+            <td class="cart-align-right">{{ tax|floatformat:2 }}€</td>
           </tr>
           <tr>
             <td><strong>Total</strong></td>
-            <td class="cart-td-align-right"><strong>{{ grand_total|floatformat:2 }}€</strong></td>
+            <td class="cart-align-right"><strong>{{ object.get_total }}€</strong></td>
           </tr>
           <tr>
             <td class="pt-5"><a href="{% url 'orders:services' %}" class="btn btn-black-sm" role="button">Add more services</a></td>
