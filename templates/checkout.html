@@ -4,10 +4,43 @@
 
 {% block content %}
 
-<form method="post" class="uniForm">
-  {% csrf_token %}
-  {{ form|crispy }}
-  <button class="btn btn-black-sm" type="submit">Checkout</button>
-</form>
+<!--Checkout-->
+<section id="cart">
+  <div class="container">
+    <div class="cart-container mt-5">
+
+      <form method="post" class="uniForm">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button class="btn btn-black-sm" type="submit">Checkout</button>
+      </form>
+
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="cart-container my-4">
+      <table id="dataTable" class="nowrap table table-sm height-fix">
+        <thead>
+          <tr>
+            <th>Payment details</th>
+            <th> </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tax 21 %</td>
+            <td class="cart-td-align-right"></td>
+          </tr>
+          <tr>
+            <td>Total to be paid</td>
+            <td class="cart-td-align-right"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<!--Checkout end-->
 
 {% endblock content %}

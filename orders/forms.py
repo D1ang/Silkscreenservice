@@ -9,7 +9,10 @@ PAYMENT_CHOICES = (
 
 
 class CheckoutForm(forms.Form):
-    address = forms.CharField()
+    """
+    A checkout form
+    """
+    address = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Address'}))
     address_number = forms.CharField()
     country = CountryField(blank_label='(select country)')
     postal = forms.CharField()
