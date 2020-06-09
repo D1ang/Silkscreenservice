@@ -10,7 +10,7 @@ from .models import Item, OrderItem, Order, BillingAddress, Payment
 import stripe
 
 
-stripe.api_key = settings.STRIPE_SECRET
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 class ItemListView(ListView):
@@ -62,7 +62,7 @@ class CheckoutView(View):
                 country = form.cleaned_data.get('country')
                 # TODO: add functionality to these fields.
                 # save_info = form.cleaned_data.get('save_info')
-                # payment_option = form.cleaned_data.get('payment_option')
+                payment_option = form.cleaned_data.get('payment_option')
                 billing_address = BillingAddress(
                     user=self.request.user,
                     first_name=first_name,
@@ -77,10 +77,14 @@ class CheckoutView(View):
                 billing_address.save()
                 order.billing_address = billing_address
                 order.save()
-                return redirect('orders:checkout')
 
-            messages.warning(self.request, 'Failed checkout')
-            return redirect('orders:checkout')
+                if payment_option == 'stripe':
+                    return redirect('orders:payment', payment_option='stripe')
+                elif payment_option == 'paypal':
+                    return redirect('orders:payment', payment_option='paypal')
+                else:
+                    messages.warning(self.request, 'Invalid payment option')
+                    return redirect('orders:checkout')
 
         except ObjectDoesNotExist:
             messages.error(self.request, 'You do not have an active order')
@@ -89,29 +93,43 @@ class CheckoutView(View):
 
 class PaymentView(View):
     def get(self, *args, **kwargs):
-        return render(self.request, 'payment.html')
+        order = Order.objects.get(user=self.request.user, ordered=False)
+        context = {'order': order}
+        return render(self.request, 'payment.html', context)
 
     def post(self, *args, **kwargs):
         order = Order.objects.get(user=self.request.user, ordered=False)
         token = self.request.POST.get('stripeToken')
-        amount = order.get_total() * 100
-        charge = stripe.Charge.create(
-            amount=amount,
-            currency='eur',
-            source=token
-        )
+        amount = int(order.get_total() * 100)
 
-        # Creating the payment
-        payment = Payment()
-        payment.stripe_charge_id = charge['id']
-        payment.user = self.request.user
-        payment.amount = amount
-        payment.save()
+        try:
+            # charge = stripe.Charge.create(
+            #     amount=amount,
+            #     currency='eur',
+            #     source=token
+            # )
 
-        # Assign payment to order
-        order.ordered = True
-        order.payment = payment
-        order.save()
+            # Creating the payment
+            payment = Payment()
+            # payment.stripe_charge_id = charge['id']
+            payment.user = self.request.user
+            payment.amount = order.get_total()
+            payment.save()
+
+            # Assign payment to order
+            order.ordered = True
+            order.payment = payment
+            order.save()
+
+            messages.success(self.request, 'Your order was successful!')
+            return redirect('/')
+
+        # Code from Stripe.com but modified
+        except stripe.error.CardError as e:
+            body = e.json_body
+            err = body.get('error', {})
+            # messages.warning(self.request, f"{err.get('message')}")
+            return redirect('/')
 
 
 @login_required
