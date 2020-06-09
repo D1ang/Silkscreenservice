@@ -8,38 +8,94 @@
 <section id="cart">
   <div class="container">
     <div class="cart-container mt-5">
+      <div class="row">
+        <div class="col p-4">
+          <form method="POST" action="" class="uniForm">
+            {% csrf_token %}
 
-      <form method="post" class="uniForm">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <button class="btn btn-black-sm" type="submit">Checkout</button>
-      </form>
+            <h5>Billing address</h5>
+            <hr>
 
+            <div class="form-row">
+              <div class="form-group col-md-6 mb-0">
+                {{ form.first_name|as_crispy_field }}
+              </div>
+              <div class="form-group col-md-6 mb-0">
+                {{ form.last_name|as_crispy_field }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              {{ form.street_address|as_crispy_field }}
+            </div>
+
+            <div class="form-group">
+              {{ form.address_line_2|as_crispy_field }}
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-5 mb-0">
+                {{ form.city|as_crispy_field }}
+              </div>
+              <div class="form-group col-md-5 mb-0">
+                {{ form.region|as_crispy_field }}
+              </div>
+              <div class="form-group col-md-2 mb-0">
+                {{ form.postal|as_crispy_field }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              {{ form.country|as_crispy_field }}
+            </div>
+
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" name="save_info" id="save_info">
+              <label class="custom-control-label" for="save_info">Save billing address</label>
+            </div>
+            <hr class="my-4">
+            <h5>Payment option</h5>
+
+            <div class="d-block my-4">
+              {% for value, name in form.fields.payment_option.choices %}
+              <div class="custom-control custom-radio">
+                <input id="{{ name }}" name="payment_option" value="{{ value }}" type="radio"
+                  class="custom-control-input" required>
+                <label class="custom-control-label" for="{{ name }}">{{ name }}</label>
+              </div>
+              {% endfor %}
+            </div>
+
+            <hr class="mb-4">
+
+            <button class="btn btn-black-sm" type="submit">Checkout</button>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="container">
-    <div class="cart-container my-4">
-      <table id="dataTable" class="nowrap table table-sm height-fix">
-        <thead>
-          <tr>
-            <th>Payment details</th>
-            <th> </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Tax 21 %</td>
-            <td class="cart-td-align-right"></td>
-          </tr>
-          <tr>
-            <td>Total to be paid</td>
-            <td class="cart-td-align-right"></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  <div class="col">
+    <table class="nowrap table table-sm height-fix">
+      <thead>
+        <tr>
+          <th>Payment details</th>
+          <th> </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Tax 21 %</td>
+          <td class="cart-td-align-right"></td>
+        </tr>
+        <tr>
+          <td>Total to be paid</td>
+          <td class="cart-td-align-right"></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+
 </section>
 <!--Checkout end-->
 
