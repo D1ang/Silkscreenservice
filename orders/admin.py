@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Item, ItemTag, OrderItem, Order
+from .models import Item, ItemTag, OrderItem, Order, Payment
 
 
 class ItemTagAdmin(admin.ModelAdmin):
@@ -40,3 +40,4 @@ admin.site.register(Item, ItemAdmin)
 admin.site.register(ItemTag, ItemTagAdmin)
 admin.site.register(OrderItem, OrderItemAdmin)
 admin.site.register(Order, OrderAdmin)
+admin.site.register(Payment)
