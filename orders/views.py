@@ -4,7 +4,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import View, ListView, DetailView
-from .models import Item, OrderItem, Order
+from .forms import CheckoutForm
+from .models import Item, OrderItem, Order, BillingAddress
 
 
 class ItemListView(ListView):
@@ -27,6 +28,57 @@ class OrderSummaryView(LoginRequiredMixin, View):
         except ObjectDoesNotExist:
             messages.error(self.request, 'You do not have an active order')
             return redirect('/')
+
+
+class CheckoutView(View):
+    """
+    Sends checkout form if its valid with
+    the customers address info and prefered
+    payment option.
+    """
+    def get(self, *args, **kwargs):
+        form = CheckoutForm()
+        context = {'form': form}
+        return render(self.request, 'checkout.html', context)
+
+    def post(self, *args, **kwargs):
+        form = CheckoutForm(self.request.POST or None)
+        try:
+            order = Order.objects.get(user=self.request.user, ordered=False)
+            if form.is_valid():
+                first_name = form.cleaned_data.get('first_name')
+                last_name = form.cleaned_data.get('last_name')
+                street_address = form.cleaned_data.get('street_address')
+                address_line_2 = form.cleaned_data.get('address_line_2')
+                city = form.cleaned_data.get('city')
+                region = form.cleaned_data.get('region')
+                postal = form.cleaned_data.get('postal')
+                country = form.cleaned_data.get('country')
+                # TODO: add functionality to these fields.
+                # save_info = form.cleaned_data.get('save_info')
+                # payment_option = form.cleaned_data.get('payment_option')
+                billing_address = BillingAddress(
+                    user=self.request.user,
+                    first_name=first_name,
+                    last_name=last_name,
+                    street_address=street_address,
+                    address_line_2=address_line_2,
+                    city=city,
+                    region=region,
+                    postal=postal,
+                    country=country
+                )
+                billing_address.save()
+                order.billing_address = billing_address
+                order.save()
+                return redirect('orders:checkout')
+
+            messages.warning(self.request, 'Failed checkout')
+            return redirect('orders:checkout')
+
+        except ObjectDoesNotExist:
+            messages.error(self.request, 'You do not have an active order')
+            return redirect('orders:checkout')
 
 
 @login_required
@@ -58,12 +110,12 @@ def add_to_cart(request, slug):
             item.save()
 
             messages.info(request, 'Selected service was added to the cart.')
-            return redirect('orders:service', slug=slug)
+            return redirect('orders:cart')
     else:
         order = Order.objects.create(user=request.user)
         order.items.add(order_item)
         messages.info(request, 'Selected service was added to the cart.')
-        return redirect('orders:service', slug=slug)
+        return redirect('orders:cart')
 
 
 @login_required
@@ -89,7 +141,7 @@ def remove_from_cart(request, slug):
             item.save()
 
             messages.info(request, 'Selected service was removed from cart.')
-            return redirect('orders:service', slug=slug)
+            return redirect('orders:cart')
         else:
             messages.info(request, 'This service was not in your cart.')
             return redirect('orders:service', slug=slug)
