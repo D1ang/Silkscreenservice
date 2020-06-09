@@ -6,11 +6,11 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import View, ListView, DetailView
 from .forms import CheckoutForm
-from .models import Item, OrderItem, Order, BillingAddress
+from .models import Item, OrderItem, Order, BillingAddress, Payment
 import stripe
 
 
-stripe.api_key = settings.STRIPE_TEST_KEY
+stripe.api_key = settings.STRIPE_SECRET
 
 
 class ItemListView(ListView):
@@ -33,21 +33,6 @@ class OrderSummaryView(LoginRequiredMixin, View):
         except ObjectDoesNotExist:
             messages.error(self.request, 'You do not have an active order')
             return redirect('/')
-
-
-class PaymentView(View):
-    def get(self, *args, **kwargs):
-        return render(self.request, 'payment.html')
-
-    def post(self, *args, **kwargs):
-        order = Order.objects.get(user=self.request.user, ordered=False)
-        token = self.request.POST.get('stripeToken')
-        stripe.Charge.create(
-            amount=order.get_total() * 100,
-            currency='eur',
-            source=token,
-            description='Charge for jenny.rosen@example.com'
-        )
 
 
 class CheckoutView(View):
@@ -100,6 +85,33 @@ class CheckoutView(View):
         except ObjectDoesNotExist:
             messages.error(self.request, 'You do not have an active order')
             return redirect('orders:checkout')
+
+
+class PaymentView(View):
+    def get(self, *args, **kwargs):
+        return render(self.request, 'payment.html')
+
+    def post(self, *args, **kwargs):
+        order = Order.objects.get(user=self.request.user, ordered=False)
+        token = self.request.POST.get('stripeToken')
+        amount = order.get_total() * 100
+        charge = stripe.Charge.create(
+            amount=amount,
+            currency='eur',
+            source=token
+        )
+
+        # Creating the payment
+        payment = Payment()
+        payment.stripe_charge_id = charge['id']
+        payment.user = self.request.user
+        payment.amount = amount
+        payment.save()
+
+        # Assign payment to order
+        order.ordered = True
+        order.payment = payment
+        order.save()
 
 
 @login_required

@@ -163,3 +163,10 @@ LOGIN_REDIRECT_URL = '/'
 # Crispy Forms
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
+# Sripe functionality
+# https://stripe.com/
+
+STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE')
+STRIPE_SECRET = os.getenv('STRIPE_SECRET')
