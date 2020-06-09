@@ -169,4 +169,4 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # https://stripe.com/
 
 STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE')
-STRIPE_SECRET = os.getenv('STRIPE_SECRET')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
