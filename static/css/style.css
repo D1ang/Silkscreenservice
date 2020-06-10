@@ -187,6 +187,22 @@ a.subtext:active {
   text-align:right;
 }
 
+/*-------------------Stripe element styling--------------------*/
+
+.StripeElement {
+  box-sizing: border-box;
+  height: 40px;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: #fff;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
 /*---------------------------Buttons---------------------------*/
 
 .btn-black {
