@@ -10,7 +10,8 @@ from .models import Item, OrderItem, Order, BillingAddress, Payment
 import stripe
 
 
-stripe.api_key = settings.STRIPE_SECRET_KEY
+stripe_public_key = settings.STRIPE_PUBLIC_KEY
+stripe_secret_key = settings.STRIPE_SECRET_KEY
 
 
 class ItemListView(ListView):
@@ -92,44 +93,53 @@ class CheckoutView(View):
 
 
 class PaymentView(View):
+    """
+    Load the payment view and loads the public
+    Stripe key for the card field.
+    """
     def get(self, *args, **kwargs):
         order = Order.objects.get(user=self.request.user, ordered=False)
-        context = {'order': order}
-        return render(self.request, 'payment.html', context)
+        stripe.api_key = stripe_secret_key
+
+        template = 'payment.html'
+        context = {
+            'order': order,
+            'stripe_public_key': stripe_public_key,
+            'client_secret': stripe_secret_key,
+        }
+        return render(self.request, template, context)
 
     def post(self, *args, **kwargs):
+        """
+        When POST payment will be created in the database
+        and on Stripe.
+        """
+        stripe.api_key = stripe_secret_key
+
         order = Order.objects.get(user=self.request.user, ordered=False)
         token = self.request.POST.get('stripeToken')
         amount = int(order.get_total() * 100)
+        charge = stripe.Charge.create(
+            amount=amount,
+            currency='eur',
+            description='Silkscreenservice order',
+            source=token
+        )
 
-        try:
-            # charge = stripe.Charge.create(
-            #     amount=amount,
-            #     currency='eur',
-            #     source=token
-            # )
+        # Creating the payment
+        payment = Payment()
+        payment.stripe_charge_id = charge['id']
+        payment.user = self.request.user
+        payment.amount = amount
+        payment.save()
 
-            # Creating the payment
-            payment = Payment()
-            # payment.stripe_charge_id = charge['id']
-            payment.user = self.request.user
-            payment.amount = order.get_total()
-            payment.save()
+        # Assign payment to order
+        order.ordered = True
+        order.payment = payment
+        order.save()
 
-            # Assign payment to order
-            order.ordered = True
-            order.payment = payment
-            order.save()
-
-            messages.success(self.request, 'Your order was successful!')
-            return redirect('/')
-
-        # Code from Stripe.com but modified
-        except stripe.error.CardError as e:
-            body = e.json_body
-            err = body.get('error', {})
-            # messages.warning(self.request, f"{err.get('message')}")
-            return redirect('/')
+        messages.success(self.request, 'Your order was successful!')
+        return redirect('/')
 
 
 @login_required

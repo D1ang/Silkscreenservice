@@ -1,20 +1,20 @@
 /*
     Core logic/payment flow for this comes from here:
-    https://stripe.com/docs/payments/accept-a-payment
+    https://stripe.com/docs/payments/accept-a-payment-charges
 
     CSS from here: 
     https://stripe.com/docs/stripe-js
 */
 
-var stripe_public_key = $('#id_stripe_public_key').text().slice(1, -1);
-var client_secret = $('#id_client_secret').text().slice(1, -1);
-var stripe = Stripe(stripe_public_key);
+var stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
+var clientSecret = $('#id_client_secret').text().slice(1, -1);
+var stripe = Stripe(stripePublicKey);
 var elements = stripe.elements();
 
 var style = {
 	base: {
 		color: '#32325d',
-    fontFamily: '"Poppins", sans-serif',
+		fontFamily: '"Poppins", sans-serif',
 		fontSmoothing: 'antialiased',
 		fontSize: '17px',
 		'::placeholder': {
@@ -34,7 +34,7 @@ card.mount('#card-element');
 card.addEventListener('change', function(event) {
 	var errorDiv = document.getElementById('card-errors');
 	if (event.error) {
-    var html = `
+		var html = `
       <div class="stripe-icon my-2 pl-1">
         <i class = "fas fa-times"></i> ${event.error.message}
       </div>
@@ -45,33 +45,33 @@ card.addEventListener('change', function(event) {
 	}
 });
 
-// Handle form submission.
+// Handle form submit
 var form = document.getElementById('payment-form');
 form.addEventListener('submit', function(event) {
-	event.preventDefault();
-
-	stripe.createToken(card).then(function(result) {
-		if (result.error) {
-			// Inform the user if there was an error.
-			var errorElement = document.getElementById('card-errors');
-			errorElement.textContent = result.error.message;
-		} else {
-			// Send the token to your server.
-			stripeTokenHandler(result.token);
-		}
-	});
+  event.preventDefault();
+  
+  stripe.createToken(card).then(function(result) {
+    if (result.error) {
+      var errorElement = document.getElementById('card-errors');
+      var html = `
+            <div class="stripe-icon my-2 pl-1">
+              <i class = "fas fa-times"></i> ${result.error.message}
+            </div>`;
+      $(errorElement).html(html);
+    } else {
+      stripeTokenHandler(result.token);
+    }
+  });
 });
 
-// Submit the form with the token ID.
+// Send token to backend
 function stripeTokenHandler(token) {
-	// Insert the token ID into the form so it gets submitted to the server
-	var form = document.getElementById('payment-form');
-	var hiddenInput = document.createElement('input');
-	hiddenInput.setAttribute('type', 'hidden');
-	hiddenInput.setAttribute('name', 'stripeToken');
-	hiddenInput.setAttribute('value', token.id);
-	form.appendChild(hiddenInput);
-
-	// Submit the form
-	form.submit();
+  var form = document.getElementById('payment-form');
+  var hiddenInput = document.createElement('input');
+  hiddenInput.setAttribute('type', 'hidden');
+  hiddenInput.setAttribute('name', 'stripeToken');
+  hiddenInput.setAttribute('value', token.id);
+  form.appendChild(hiddenInput);
+  form.submit();
 }
+
