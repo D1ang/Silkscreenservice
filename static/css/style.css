@@ -203,6 +203,10 @@ a.subtext:active {
   border-color: #fa755a;
 }
 
+.stripe-icon {
+  font-size: 17px;
+}
+
 /*---------------------------Buttons---------------------------*/
 
 .btn-black {
