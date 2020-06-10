@@ -97,6 +97,7 @@ class PaymentView(View):
     Load the payment view and loads the public
     Stripe key for the card field.
     """
+
     def get(self, *args, **kwargs):
         order = Order.objects.get(user=self.request.user, ordered=False)
         stripe.api_key = stripe_secret_key
@@ -134,6 +135,11 @@ class PaymentView(View):
         payment.save()
 
         # Assign payment to order
+        order_items = order.items.all()
+        order_items.update(ordered=True)
+        for item in order_items:
+            item.save()
+
         order.ordered = True
         order.payment = payment
         order.save()
