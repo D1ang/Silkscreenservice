@@ -4,89 +4,97 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Your design studio">
-  <meta name="author" content="Django Heimgartner">
-  <title>{% block head_title %}{% endblock %}</title>
-  {% block extra_head %}{% endblock %}
+  <head>
+    {% block meta %}
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="Your design studio">
+      <meta name="author" content="Django Heimgartner">
+    {% endblock %}
 
-  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon.png' %}">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/v/bs4/dt-1.10.21/r-2.2.4/datatables.min.css" />
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  <script src="https://js.stripe.com/v3/"></script>
-</head>
+    {% block corecss %}
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://cdn.datatables.net/v/bs4/dt-1.10.21/r-2.2.4/datatables.min.css" />
+      <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% endblock %}
 
-<body>
+    {% block corejs %}
+      <!--Jquery, Fontawesome, DataTables, Stripe and JavaScript-->
+      <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+      <script src="https://kit.fontawesome.com/dd6f581e56.js"></script>
+      <script src="https://cdn.datatables.net/v/bs4/dt-1.10.21/r-2.2.4/datatables.min.js"></script>
+      <script src="https://js.stripe.com/v3/"></script>
+      <script src="{% static 'js/main.js' %}"></script>
+    {% endblock %}
 
-  <!--Navigation bar-->
-  <nav class="navbar navbar-expand-md navbar-dark custom-navbar">
-    <a class="navbar-brand custom-navbarLogo" href="{% url 'home:index' %}">Silkscreenservice.com</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarToggler">
-      <ul class="navbar-nav ml-auto text-uppercase">
-        <li class="nav-item"><a class="nav-link" href="{% url 'home:index' %}">home</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url 'orders:services' %}">services</a></li>
+    <title>{% block head_title %}{% endblock %} {% block extra_title %}{% endblock %}</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon.png' %}">
+  </head>
 
-        {% if request.user.is_authenticated %}
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#0" id="navbarDropdown" role="button" data-toggle="dropdown">Account</a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="">Dashboard</a>
-              <a class="dropdown-item" href="">Profile</a>
-              <a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a>
-            </div>
-          </li>
-        {% else %}
-          <li class="nav-item"><a class="nav-link" href="{% url 'account_signup' %}">sign up</a></li>
-        {% endif %}
+  <body>
 
-        {% if request.user.is_authenticated %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'orders:cart' %}">
-              <span class="badge badge-pill badge-light">
-                {{ request.user|cart_item_count }} <i class="fas fa-shopping-cart"></i>
-              </span>
-            </a>  
-          </li>
-        {% endif %}
-        
-      </ul>
+    <!--Navigation bar-->
+    <nav class="navbar navbar-expand-md navbar-dark custom-navbar">
+      <a class="navbar-brand custom-navbarLogo" href="{% url 'home:index' %}">Silkscreenservice.com</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarToggler">
+        <ul class="navbar-nav ml-auto text-uppercase">
+          <li class="nav-item"><a class="nav-link" href="{% url 'home:index' %}">home</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'orders:services' %}">services</a></li>
+
+          {% if request.user.is_authenticated %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#0" id="navbarDropdown" role="button" data-toggle="dropdown">Account</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="">Dashboard</a>
+                <a class="dropdown-item" href="">Profile</a>
+                <a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a>
+              </div>
+            </li>
+          {% else %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'account_signup' %}">sign up</a></li>
+          {% endif %}
+
+          {% if request.user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'orders:cart' %}">
+                <span class="badge badge-pill badge-light">
+                  {{ request.user|cart_item_count }} <i class="fas fa-shopping-cart"></i>
+                </span>
+              </a>  
+            </li>
+          {% endif %}
+          
+        </ul>
+      </div>
+    </nav>
+
+    <div>
+      {% if messages %}
+        {% for message in messages %}
+          <div id="alerts" class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        {% endfor %}
+      {% endif %}
     </div>
-  </nav>
 
-  <div>
-    {% if messages %}
-      {% for message in messages %}
-        <div id="alerts" class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-          {{ message }}
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-      {% endfor %}
-    {% endif %}
-  </div>
+    {% block page_header %}
+    {% endblock %}
 
-  {% block content %}
-  {% endblock  %}
+    {% block content %}
+    {% endblock  %}
 
-  {% block extra_body %}
-  {% endblock %}
+    {% block postloadjs %}
+    {% endblock %}
 
-  <!--Jquery, Fontawesome, DataTables and JavaScript-->
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-  <script src="https://kit.fontawesome.com/dd6f581e56.js"></script>
-  <script src="https://cdn.datatables.net/v/bs4/dt-1.10.21/r-2.2.4/datatables.min.js"></script>
-  <script src="{% static 'js/main.js' %}"></script>
-  <script src="{% static 'js/stripe.js' %}"></script>
-</body>
-
+  </body>
 </html>
