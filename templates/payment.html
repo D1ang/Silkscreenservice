@@ -1,0 +1,88 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!--Checkout-->
+<section id="cart">
+  <div class="container">
+    <div class="cart-container mt-5">
+      <table class="nowrap table table-sm height-fix">
+        <thead>
+          <tr>
+            <th>Items </th>
+            <th id="cart-th-align-right">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in cart_items %}
+            <tr>
+              <td>{{ item.product.name }}</td>
+              <td class="cart-td-align-right">
+                <form method="POST" action="">
+                  {% csrf_token %}
+                  {{ item.product.price }}€
+                </form>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="cart-container my-4">
+      <table class="nowrap table table-sm height-fix">
+        <thead>
+          <tr>
+            <th>Payment details</th>
+            <th> </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tax 21 %</td>
+            <td class="cart-td-align-right">{{ tax|floatformat:2 }}€</td>
+          </tr>
+          <tr>
+            <td>Total to be paid</td>
+            <td class="cart-td-align-right">{{ grand_total|floatformat:2 }}€</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <form role="form" method="post" id="payment-form" action="">
+        {% csrf_token %}
+
+        <div id="credit-card-errors" style="display: none;">
+          <div class="alert-message block-message error" id="stripe-error-message"></div>
+        </div>
+
+        <div class="">
+          <div id="card-element">
+            <!-- A Stripe Element will be inserted here. -->
+          </div>
+
+          <!-- Used to display form errors. -->
+          <div id="card-errors" role="alert"></div>
+        </div>
+
+        <div class="form-group col-md-12">
+          <input class=" btn btn-primary" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment">
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+<!--Checkout end-->
+
+{% endblock %}
+
+{% block postloadjs %}
+  {{ block.super }}
+  {{ stripe_public_key|json_script:"id_stripe_public_key" }}
+  {{ client_secret|json_script:"id_client_secret" }}
+  <script src="{% static 'js/stripe.js' %}"></script>
+{% endblock %}

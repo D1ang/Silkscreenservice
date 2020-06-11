@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -5,7 +6,12 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import View, ListView, DetailView
 from .forms import CheckoutForm
-from .models import Item, OrderItem, Order, BillingAddress
+from .models import Item, OrderItem, Order, BillingAddress, Payment
+import stripe
+
+
+stripe_public_key = settings.STRIPE_PUBLIC_KEY
+stripe_secret_key = settings.STRIPE_SECRET_KEY
 
 
 class ItemListView(ListView):
@@ -26,16 +32,17 @@ class OrderSummaryView(LoginRequiredMixin, View):
             context = {'object': order}
             return render(self.request, 'cart.html', context)
         except ObjectDoesNotExist:
-            messages.error(self.request, 'You do not have an active order')
+            messages.warning(self.request, 'You do not have an active order')
             return redirect('/')
 
 
 class CheckoutView(View):
     """
-    Sends checkout form if its valid with
-    the customers address info and prefered
+    Sends the checkout form if its valid with
+    the customer address info and prefered
     payment option.
     """
+
     def get(self, *args, **kwargs):
         form = CheckoutForm()
         context = {'form': form}
@@ -56,7 +63,7 @@ class CheckoutView(View):
                 country = form.cleaned_data.get('country')
                 # TODO: add functionality to these fields.
                 # save_info = form.cleaned_data.get('save_info')
-                # payment_option = form.cleaned_data.get('payment_option')
+                payment_option = form.cleaned_data.get('payment_option')
                 billing_address = BillingAddress(
                     user=self.request.user,
                     first_name=first_name,
@@ -71,14 +78,79 @@ class CheckoutView(View):
                 billing_address.save()
                 order.billing_address = billing_address
                 order.save()
-                return redirect('orders:checkout')
 
-            messages.warning(self.request, 'Failed checkout')
-            return redirect('orders:checkout')
+                if payment_option == 'stripe':
+                    return redirect('orders:payment', payment_option='stripe')
+                elif payment_option == 'paypal':
+                    return redirect('orders:payment', payment_option='paypal')
+                else:
+                    messages.warning(self.request, 'Invalid payment option')
+                    return redirect('orders:checkout')
 
         except ObjectDoesNotExist:
-            messages.error(self.request, 'You do not have an active order')
+            messages.warning(self.request, 'You do not have an active order')
             return redirect('orders:checkout')
+
+
+class PaymentView(View):
+    """
+    Load the payment view and loads the public
+    Stripe key for the card field.
+    """
+
+    def get(self, *args, **kwargs):
+        order = Order.objects.get(user=self.request.user, ordered=False)
+        if order.billing_address:
+            stripe.api_key = stripe_secret_key
+
+            template = 'payment.html'
+            context = {
+                'order': order,
+                'stripe_public_key': stripe_public_key,
+                'client_secret': stripe_secret_key,
+            }
+            return render(self.request, template, context)
+        else:
+            messages.warning(
+                self.request, 'You have not added a billing address')
+            return redirect('orders:checkout')
+
+    def post(self, *args, **kwargs):
+        """
+        When POST payment will be created in the database
+        and on Stripe.
+        """
+        stripe.api_key = stripe_secret_key
+
+        order = Order.objects.get(user=self.request.user, ordered=False)
+        token = self.request.POST.get('stripeToken')
+        amount = int(order.get_total() * 100)
+        charge = stripe.Charge.create(
+            amount=amount,
+            currency='eur',
+            description='Silkscreenservice order',
+            source=token
+        )
+
+        # Creating the payment
+        payment = Payment()
+        payment.stripe_charge_id = charge['id']
+        payment.user = self.request.user
+        payment.amount = amount
+        payment.save()
+
+        # Assign payment to order
+        order_items = order.items.all()
+        order_items.update(ordered=True)
+        for item in order_items:
+            item.save()
+
+        order.ordered = True
+        order.payment = payment
+        order.save()
+
+        messages.success(self.request, 'Your order was successful!')
+        return redirect('/')
 
 
 @login_required
