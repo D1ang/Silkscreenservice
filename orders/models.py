@@ -87,6 +87,7 @@ class Order(models.Model):
         ('finished', 'Finished')
     )
 
+    id_code = models.CharField(max_length=15)
     date = models.DateField(auto_now_add=True)
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -98,6 +99,8 @@ class Order(models.Model):
         'BillingAddress', on_delete=models.SET_NULL, blank=True, null=True)
     payment = models.ForeignKey(
         'Payment', on_delete=models.SET_NULL, blank=True, null=True)
+    refund_requested = models.BooleanField(default=False)
+    refund_granted = models.BooleanField(default=False)
 
     def get_total(self):
         total = 0
