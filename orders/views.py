@@ -7,11 +7,19 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import View, ListView, DetailView
 from .forms import CheckoutForm
 from .models import Item, OrderItem, Order, BillingAddress, Payment
+import random
+import string
 import stripe
 
 
 stripe_public_key = settings.STRIPE_PUBLIC_KEY
 stripe_secret_key = settings.STRIPE_SECRET_KEY
+
+
+def create_id_code():
+    return ''.join(
+      random.choices(string.ascii_uppercase + string.digits, k=8)
+    )
 
 
 class ItemListView(ListView):
@@ -147,6 +155,7 @@ class PaymentView(View):
 
         order.ordered = True
         order.payment = payment
+        order.id_code = '920-' + create_id_code()
         order.save()
 
         messages.success(self.request, 'Your order was successful!')
