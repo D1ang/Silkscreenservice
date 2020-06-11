@@ -29,24 +29,24 @@ class OrderItemAdmin(admin.ModelAdmin):
 
 class OrderAdmin(admin.ModelAdmin):
     list_display = (
+        'id_code',
         'date',
-        'user',
         'status',
         'ordered',
-        'refund_requested',
-        'refund_granted',
         'billing_address',
         'payment'
     )
     list_display_links = (
-        'user',
+        'id_code',
         'billing_address',
         'payment'
     )
     list_filter = (
         'ordered',
-        'refund_requested',
-        'refund_granted'
+    )
+    search_fields = (
+        'user__username',
+        'id_code'
     )
 
 
