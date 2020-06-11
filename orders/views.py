@@ -32,7 +32,7 @@ class OrderSummaryView(LoginRequiredMixin, View):
             context = {'object': order}
             return render(self.request, 'cart.html', context)
         except ObjectDoesNotExist:
-            messages.error(self.request, 'You do not have an active order')
+            messages.warning(self.request, 'You do not have an active order')
             return redirect('/')
 
 
@@ -88,7 +88,7 @@ class CheckoutView(View):
                     return redirect('orders:checkout')
 
         except ObjectDoesNotExist:
-            messages.error(self.request, 'You do not have an active order')
+            messages.warning(self.request, 'You do not have an active order')
             return redirect('orders:checkout')
 
 
@@ -100,15 +100,20 @@ class PaymentView(View):
 
     def get(self, *args, **kwargs):
         order = Order.objects.get(user=self.request.user, ordered=False)
-        stripe.api_key = stripe_secret_key
+        if order.billing_address:
+            stripe.api_key = stripe_secret_key
 
-        template = 'payment.html'
-        context = {
-            'order': order,
-            'stripe_public_key': stripe_public_key,
-            'client_secret': stripe_secret_key,
-        }
-        return render(self.request, template, context)
+            template = 'payment.html'
+            context = {
+                'order': order,
+                'stripe_public_key': stripe_public_key,
+                'client_secret': stripe_secret_key,
+            }
+            return render(self.request, template, context)
+        else:
+            messages.warning(
+                self.request, 'You have not added a billing address')
+            return redirect('orders:checkout')
 
     def post(self, *args, **kwargs):
         """
