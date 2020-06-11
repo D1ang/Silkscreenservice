@@ -2,6 +2,18 @@ from django.contrib import admin
 from .models import Item, ItemTag, OrderItem, Order, Payment
 
 
+def set_status_pending(modeladmin, request, queryset):
+    queryset.update(status='pending')
+
+
+def set_status_finished(modeladmin, request, queryset):
+    queryset.update(status='finished')
+
+
+set_status_pending.short_description = 'Set status to pending'
+set_status_finished.short_description = 'Set status to finished'
+
+
 class ItemTagAdmin(admin.ModelAdmin):
     list_display = (
         'name',
@@ -31,10 +43,10 @@ class OrderAdmin(admin.ModelAdmin):
     list_display = (
         'id_code',
         'date',
-        'status',
-        'ordered',
         'billing_address',
-        'payment'
+        'payment',
+        'ordered',
+        'status'
     )
     list_display_links = (
         'id_code',
@@ -47,6 +59,10 @@ class OrderAdmin(admin.ModelAdmin):
     search_fields = (
         'user__username',
         'id_code'
+    )
+    actions = (
+        set_status_pending,
+        set_status_finished
     )
 
 
