@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section id="dashboard">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col custom-card text-center p-3 m-3">
+        <h6>Options</h6>
+      </div>
+      <div class="col custom-card text-center p-3 m-3">
+        <h6>Customer</h6>
+        <p></p>
+      </div>
+      <div class="col custom-card text-center p-3 m-3">
+        <h6>Total orders</h6>
+        <h5>{{ total_orders }}</h5>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-12">
+        <h6 class="text-uppercase pl-2">orders</h6>
+        <hr class="dashboard m-0">
+
+        <div class="custom-card mt-3">
+          <table id="dataTable" class="nowrap table table-sm" style="width:100%">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              {% for order in orders %}
+              <tr>
+                <td>{{ order.id_code }}</td>
+                <td>{{ order.date }}</td>
+                <td>{{ order.status }}</td>
+              </tr>
+              {% endfor %}
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

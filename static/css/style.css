@@ -153,6 +153,26 @@ a.subtext:active {
 	font-size: 18px;
 }
 
+/*------------------Custom dashboard styling-------------------*/
+
+#dashboard {
+	height: 95vh;
+	background-image: url(/static/svg/dashboard-rocket.svg);
+	background-repeat: no-repeat;
+	background-position: right bottom;
+	background-size: 50%;
+	background-color: #06b3be;
+}
+
+hr.dashboard {
+	border-top: solid 0.1px #000;
+}
+
+.custom-card {
+	background: rgba(196, 196, 196, 0.5);
+	padding: 0 8px 40px 8px;
+}
+
 /*---------------------Custom cart styling---------------------*/
 
 #cart {
@@ -187,7 +207,7 @@ a.subtext:active {
   text-align:right;
 }
 
-/*-------------------Stripe element styling--------------------*/
+/*-----------------------Stripe element------------------------*/
 
 .StripeElement {
   box-sizing: border-box;
