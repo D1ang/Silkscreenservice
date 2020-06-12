@@ -19,17 +19,17 @@
         <div class="row justify-content-center">
           <div class="col-lg-6 col-sm-8 px-3">
             <button type="button" class="btn btn-black" onclick="window.location.href = '{% url 'account_signup' %}';">
-              <h4>Let us help you!</h4>
+              <h5>Let us help you!</h5>
               {% if user.is_authenticated %}
-              <span>Enter your personal space</span>
+                <span>Enter your personal space</span>
               {% else %}
-              <span>Create an account</span>
+                <span>Create an account</span>
               {% endif %}
             </button>
           </div>
           <div class="col-lg-6 col-sm-8 px-3">
             <button type="button" class="btn btn-black-outline" onclick="window.location.href = '{% url 'orders:services' %}';">
-              <h4>Request a service</h4>
+              <h5>Request a service</h5>
               <span>We are ready for it!</span>
             </button>
           </div>
