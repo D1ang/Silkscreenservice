@@ -14,7 +14,7 @@
       </div>
       <div class="col custom-card text-center p-3 m-3">
         <h6>Total orders</h6>
-        <h5>{{ order_count }}</h5>
+        <h5>{{ total_orders }}</h5>
       </div>
     </div>
     <div class="row mt-4">
@@ -35,13 +35,9 @@
 
               {% for order in orders %}
               <tr>
-                <td>{{ order.product }}</td>
+                <td>{{ order.id_code }}</td>
+                <td>{{ order.date }}</td>
                 <td>{{ order.status }}</td>
-                <td>
-                  <a onclick="#" href=""><i
-                      class="fas fa-edit pr-2 custom-icon"></i></a>
-                  <a onclick="#" href=""><i class="fas fa-trash custom-icon"></i></a>
-                </td>
               </tr>
               {% endfor %}
 
