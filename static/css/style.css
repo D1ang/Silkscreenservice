@@ -13,13 +13,6 @@ html {
 	background-color: #06b3be;
 }
 
-.alert {
-  margin-bottom: 0;
-  border: 0;
-  border-radius: 0;
-  z-index: 999999;
-}
-
 /*----------------Section backgrounds & styling----------------*/
 
 #home {
@@ -48,18 +41,6 @@ html {
 		font-size: 7.5vw;
 		padding-bottom: 22px;
 	}
-}
-
-.service-card {
-	height: 100%;
-	font-size: 17px;
-}
-
-.service-badge {
-	font-size: 17px;
-	font-weight: 300;
-	vertical-align: 4px;
-	margin-left: 5px;
 }
 
 /*--------------------Custom navbar styling--------------------*/
@@ -174,6 +155,20 @@ hr.dashboard {
 	padding: 0 8px 40px 8px;
 }
 
+/*-------------------Custom services styling-------------------*/
+
+.service-card {
+	height: 100%;
+	font-size: 17px;
+}
+
+.service-badge {
+	font-size: 17px;
+	font-weight: 300;
+	vertical-align: 4px;
+	margin-left: 5px;
+}
+
 /*---------------------Custom cart styling---------------------*/
 
 #cart {
@@ -255,6 +250,19 @@ footer {
 
 .stripe-icon {
   font-size: 17px;
+}
+
+/*---------------------------Messages--------------------------*/
+
+.alert {
+  margin-bottom: 0;
+  border: 0;
+  border-radius: 0;
+}
+
+.alert-error {
+  color: #721c24;
+  background-color: #f8d7da;
 }
 
 /*---------------------------Buttons---------------------------*/
