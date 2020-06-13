@@ -7,13 +7,18 @@ html {
 	padding: 0;
 	height: 100%;
 	font-family: 'Poppins', sans-serif;
-  font-size: 1.1em;
-  font-weight: 300;
+	font-size: 1.1em;
+	font-weight: 300;
 	color: #000;
 	background-color: #06b3be;
 }
 
-/*----------------Section backgrounds & styling----------------*/
+.fixed-card-height {
+	height: 100%;
+	font-size: 17px;
+}
+
+/*------------------Home backgrounds & styling-----------------*/
 
 #home {
 	background-color: #f7c945;
@@ -84,37 +89,30 @@ html {
 
 /*---------------------Custom Auth styling---------------------*/
 
-#auth-bg {
-	background-image: url(/static/svg/designer-shop.svg);
-	background-repeat: no-repeat;
-	background-position: right bottom;
-	background-size: 100%;
-  background-color: #06b3be;
-  overflow: visible;
-  min-height: 650px;
-  margin-bottom: 8px;
+#auth {
+	min-height: 850px;
 }
 
 .auth-custom-card {
-  background-color: rgba(0, 0, 0, 0.2);
-  color: #fff;
-  padding: 5px;
+	background-color: rgba(0, 0, 0, 0.2);
+	color: #fff;
+	padding: 4px;
 }
 
 .subtext {
 	font-size: 17px;
-	line-height: 20px;
+	line-height: 16px;
 }
 
 a.subtext:link,
 a.subtext:visited {
-  font-weight: bold;
-  color: #fff;
+	font-weight: bold;
+	color: #fff;
 }
 
 a.subtext:hover,
 a.subtext:active {
-  color: #000;
+	color: #000;
 }
 
 .errorlist {
@@ -157,11 +155,6 @@ hr.dashboard {
 
 /*-------------------Custom services styling-------------------*/
 
-.service-card {
-	height: 100%;
-	font-size: 17px;
-}
-
 .service-badge {
 	font-size: 17px;
 	font-weight: 300;
@@ -181,9 +174,9 @@ hr.dashboard {
 }
 
 .cart-container {
-  background: rgba(0, 0, 0, 0.18);
-  padding: 0 8px 40px 8px;
-  border-radius: 5px;
+	background: rgba(0, 0, 0, 0.18);
+	padding: 0 8px 40px 8px;
+	border-radius: 5px;
 }
 
 .btn-delete-cart {
@@ -200,69 +193,87 @@ hr.dashboard {
 }
 
 .cart-align-right {
-  text-align:right;
+	text-align: right;
 }
 
 /*----------------------------Footer---------------------------*/
 
 footer {
-  background-color: #000;
-  padding: 0.8em;
+	background-color: #000;
+	padding: 0.8em;
 }
 
 .footer-container h2 {
-  font-family: 'Pacifico', cursive;
+	font-family: 'Pacifico', cursive;
 	font-size: 32px;
-  padding-top: 18px;
-  padding-bottom: 15px;
+	padding-top: 18px;
+	padding-bottom: 15px;
+}
+
+@media screen and (max-width: 995px) {
+	.footer-container h2 {
+		font-family: 'Pacifico', cursive;
+		font-size: 18px;
+		padding-top: 18px;
+		padding-bottom: 15px;
+	}
+}
+
+@media screen and (max-width: 575px) {
+	.footer-container h2 {
+		font-family: 'Pacifico', cursive;
+		font-size: 30px;
+		padding-top: 18px;
+		padding-bottom: 15px;
+	}
 }
 
 .footer-container a {
-  color: #fff;
+	color: #fff;
 }
 
 .footer-container a:hover {
-  text-decoration: none;
-  color: #830000;
+	text-decoration: none;
+	color: #830000;
 }
 
-@media screen and (max-width: 600px) {
-  .footer-container li {
-    text-align: center;
-  }
+@media screen and (max-width: 575px) {
+	.footer-container li {
+		text-align: center;
+	}
 }
 
 /*---------------------------Stripe----------------------------*/
 
 .StripeElement {
-  box-sizing: border-box;
-  height: 40px;
-  padding: 10px 12px;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  background-color: #fff;
-  transition: box-shadow 150ms ease;
+	box-sizing: border-box;
+	height: 40px;
+	padding: 10px 12px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	background-color: #fff;
+	transition: box-shadow 150ms ease;
 }
 
 .StripeElement--invalid {
-  border-color: #fa755a;
+	border-color: #fa755a;
 }
 
 .stripe-icon {
-  font-size: 17px;
+	font-size: 17px;
 }
 
 /*---------------------------Messages--------------------------*/
 
 .alert {
-  margin-bottom: 0;
-  border: 0;
-  border-radius: 0;
+	margin-bottom: 0;
+	border: 0;
+	border-radius: 0;
 }
 
 .alert-error {
-  color: #721c24;
-  background-color: #f8d7da;
+	color: #721c24;
+	background-color: #f8d7da;
 }
 
 /*---------------------------Buttons---------------------------*/

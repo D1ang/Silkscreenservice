@@ -7,7 +7,7 @@
 <section id="cart">
   <div class="container">
     <div class="cart-container mt-5">
-      <table id="dataTable" class="nowrap table table-sm height-fix">
+      <table class="nowrap table table-sm height-fix">
         <thead>
           <tr>
             <th>Services</th>
@@ -32,7 +32,7 @@
 
   <div class="container">
     <div class="cart-container my-4">
-      <table id="dataTable" class="nowrap table table-sm height-fix">
+      <table class="nowrap table table-sm height-fix">
         <thead>
           <tr>
             <th>Additional costs</th>
@@ -45,8 +45,8 @@
             <td class="cart-align-right">{{ tax|floatformat:2 }}€</td>
           </tr>
           <tr>
-            <td><strong>Total</strong></td>
-            <td class="cart-align-right"><strong>{{ object.get_total }}€</strong></td>
+            <td class="font-weight-bold">Total</td>
+            <td class="cart-align-right font-weight-bold"><strong>{{ object.get_total }}€</strong></td>
           </tr>
           <tr>
             <td class="pt-5"><a href="{% url 'orders:services' %}" class="btn btn-black-sm" role="button">Add more services</a></td>
