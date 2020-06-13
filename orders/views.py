@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import View, ListView, DetailView
+from django.views.generic import View, ListView
 from .forms import CheckoutForm
 from .models import Item, OrderItem, Order, BillingAddress, Payment
 import random
@@ -24,12 +24,7 @@ def create_id_code():
 
 class ItemListView(ListView):
     model = Item
-    template_name = 'services_list.html'
-
-
-class ItemDetailView(DetailView):
-    model = Item
-    template_name = 'service_details.html'
+    template_name = 'services.html'
 
 
 class OrderSummaryView(LoginRequiredMixin, View):
