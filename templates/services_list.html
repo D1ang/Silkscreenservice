@@ -23,7 +23,7 @@
                     <i class="fas fa-euro-sign"></i> {{ item.price }}
                     <span class="badge badge-pill badge-{{ item.tag.colour }} service-badge">{{ item.tag }}</span>
                   </h4>
-                  <a href="{{ item.get_absolute_url }}" class="btn btn-black-outline-sm mt-3" role="button">Service details</a>
+                  <a href="{% url 'orders:add_to_cart' item.slug %}" class="btn btn-black-outline-sm mt-3" role="button">Add to cart</a>
                 </div>
               </div>
             </div>

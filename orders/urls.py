@@ -13,7 +13,6 @@ app_name = 'orders'
 
 urlpatterns = [
     path('services_list/', ItemListView.as_view(), name='services'),
-    path('service/<slug>/', ItemDetailView.as_view(), name='service'),
     path('cart/', OrderSummaryView.as_view(), name='cart'),
     path('checkout/', CheckoutView.as_view(), name='checkout'),
     path('payment/<payment_option>/', PaymentView.as_view(), name='payment'),

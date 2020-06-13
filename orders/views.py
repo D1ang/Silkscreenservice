@@ -165,8 +165,9 @@ class PaymentView(View):
 @login_required
 def add_to_cart(request, slug):
     """
-    Adds an item to cart and creates an order
+    Adds an item to the cart, creates an order and
     checks if an item already is in the order.
+    Adds 1 popularity click.
     """
     item = get_object_or_404(Item, slug=slug)
 
@@ -181,9 +182,9 @@ def add_to_cart(request, slug):
 
         # check if the order item is in the order
         if order.items.filter(item__slug=item.slug).exists():
-            messages.info(
-                request, 'Only one of the same service in the cart allowed')
-            return redirect('orders:service', slug=slug)
+            messages.error(
+                request, 'Only one of the same service is allowed.')
+            return redirect('orders:services')
         else:
             order.items.add(order_item)
 
@@ -202,14 +203,16 @@ def add_to_cart(request, slug):
 @login_required
 def remove_from_cart(request, slug):
     """
-    Removes an item from cart.
+    Checks if the item is in the cart
+    and removes it if there is an active order.
+    Removes 1 popularity click.
     """
     item = get_object_or_404(Item, slug=slug)
     order_qs = Order.objects.filter(user=request.user, ordered=False)
     if order_qs.exists():
         order = order_qs[0]
 
-        # check if the order item is in the order
+        # check if the item is in the order
         if order.items.filter(item__slug=item.slug).exists():
             order_item = OrderItem.objects.filter(
                 item=item,
@@ -225,7 +228,7 @@ def remove_from_cart(request, slug):
             return redirect('orders:cart')
         else:
             messages.info(request, 'This service was not in your cart.')
-            return redirect('orders:service', slug=slug)
+            return redirect('orders:cart')
     else:
         messages.info(request, 'You do not have an active order.')
-        return redirect('orders:service', slug=slug)
+        return redirect('orders:cart')
