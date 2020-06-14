@@ -10,8 +10,6 @@ def dashboard(request):
     orders = request.user.order_set.all()
 
     total_orders = orders.count()
-
-    total_orders = orders.count()
     pending_orders = orders.filter(status='pending').count()
     finished_orders = orders.filter(status='finished').count()
 
@@ -22,7 +20,5 @@ def dashboard(request):
         'pending_orders': pending_orders,
         'finished_orders': finished_orders,
     }
-
-    print(context)
 
     return render(request, 'dashboard/customer.html', context)

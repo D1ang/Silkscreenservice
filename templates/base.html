@@ -1,49 +1,49 @@
 {% load static %}
-{% load i18n %}
 
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    {% block meta %}
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <meta name="description" content="Your design studio">
-      <meta name="author" content="Django Heimgartner">
-    {% endblock %}
+<head>
+  {% block meta %}
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Your design studio">
+    <meta name="author" content="Django Heimgartner">
+  {% endblock %}
 
-    {% block corecss %}
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-      <link rel="stylesheet" href="https://cdn.datatables.net/v/bs4/dt-1.10.21/r-2.2.4/datatables.min.css" />
-      <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    {% endblock %}
+  {% block corecss %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/v/bs4/dt-1.10.21/r-2.2.4/datatables.min.css" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  {% endblock %}
 
-    {% block corejs %}
-      <!--Jquery, Fontawesome, DataTables, Stripe and JavaScript-->
-      <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-      <script src="https://kit.fontawesome.com/dd6f581e56.js"></script>
-      <script src="https://cdn.datatables.net/v/bs4/dt-1.10.21/r-2.2.4/datatables.min.js"></script>
-      <script src="https://js.stripe.com/v3/"></script>
-      <script src="{% static 'js/main.js' %}"></script>
-    {% endblock %}
+  {% block corejs %}
+  <!--Jquery, Fontawesome, DataTables, Stripe and JavaScript-->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/dd6f581e56.js"></script>
+    <script src="https://cdn.datatables.net/v/bs4/dt-1.10.21/r-2.2.4/datatables.min.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+  {% endblock %}
 
-    <title>{% block head_title %}{% endblock %} {% block extra_title %}{% endblock %}</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon.png' %}">
-  </head>
+  <title>{% block head_title %}{% endblock %} {% block extra_title %}{% endblock %}</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon.png' %}">
+</head>
 
-  <body>
-    {% include 'navbar.html' %}
+<body>
+  {% include 'navbar.html' %}
 
-    {% block page_header %}
-    {% endblock %}
+  {% block page_header %}
+  {% endblock %}
 
-    {% block content %}
-    {% endblock  %}
+  {% block content %}
+  {% endblock  %}
 
-    {% block postloadjs %}
-    {% endblock %}
-  </body>
+  {% block postloadjs %}
+  {% endblock %}
+</body>
+
 </html>

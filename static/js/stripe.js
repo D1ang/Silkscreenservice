@@ -6,12 +6,12 @@
     https://stripe.com/docs/stripe-js
 */
 
-var stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
-var clientSecret = $('#id_client_secret').text().slice(1, -1);
-var stripe = Stripe(stripePublicKey);
-var elements = stripe.elements();
+const stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
+const clientSecret = $('#id_client_secret').text().slice(1, -1);
+const stripe = Stripe(stripePublicKey);
+const elements = stripe.elements();
 
-var style = {
+let style = {
 	base: {
 		color: '#32325d',
 		fontFamily: '"Poppins", sans-serif',
@@ -22,19 +22,19 @@ var style = {
 		}
 	},
 	invalid: {
-		color: '#fa755a',
-		iconColor: '#fa755a'
+		color: '#ff0000',
+		iconColor: '#ff0000'
 	}
 };
 
-var card = elements.create('card', { style: style });
+let card = elements.create('card', { style: style });
 card.mount('#card-element');
 
 // Handle real-time validation errors from the card Element.
 card.addEventListener('change', function(event) {
-	var errorDiv = document.getElementById('card-errors');
+	let errorDiv = document.getElementById('card-errors');
 	if (event.error) {
-		var html = `
+		let html = `
       <div class="stripe-icon my-2 pl-1">
         <i class = "fas fa-times"></i> ${event.error.message}
       </div>
@@ -46,14 +46,14 @@ card.addEventListener('change', function(event) {
 });
 
 // Handle form submit
-var form = document.getElementById('payment-form');
+let form = document.getElementById('payment-form');
 form.addEventListener('submit', function(event) {
   event.preventDefault();
   
   stripe.createToken(card).then(function(result) {
     if (result.error) {
-      var errorElement = document.getElementById('card-errors');
-      var html = `
+      let errorElement = document.getElementById('card-errors');
+      let html = `
             <div class="stripe-icon my-2 pl-1">
               <i class = "fas fa-times"></i> ${result.error.message}
             </div>`;
@@ -66,8 +66,8 @@ form.addEventListener('submit', function(event) {
 
 // Send token to backend
 function stripeTokenHandler(token) {
-  var form = document.getElementById('payment-form');
-  var hiddenInput = document.createElement('input');
+  let form = document.getElementById('payment-form');
+  let hiddenInput = document.createElement('input');
   hiddenInput.setAttribute('type', 'hidden');
   hiddenInput.setAttribute('name', 'stripeToken');
   hiddenInput.setAttribute('value', token.id);

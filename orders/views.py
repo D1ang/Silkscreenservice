@@ -18,7 +18,7 @@ stripe_secret_key = settings.STRIPE_SECRET_KEY
 
 def create_id_code():
     return ''.join(
-      random.choices(string.ascii_uppercase + string.digits, k=8)
+        random.choices(string.ascii_uppercase + string.digits, k=8)
     )
 
 

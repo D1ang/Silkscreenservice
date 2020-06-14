@@ -1,7 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load i18n %}
-{% block head_title %}{% trans "Sign in" %}{% endblock %}
 
 {% block content %}
 
@@ -27,13 +25,12 @@
                 </div>
                 {{ form.login }}
               </div>
-              <div class="input-group mb-2">
+              <div class="input-group mb-2 pb-4">
                 <div class="input-group-prepend">
                   <div class="input-group-text"><i class="fas fa-key"></i></div>
                 </div>
                 {{ form.password }}
               </div>
-                <p><a href="{% url 'account_reset_password' %}" class="subtext">Forgot Password?</a></p>
                 {{ form.errors }}
 
               <div class="justify-content-center btn-login-padding my-3">
@@ -60,5 +57,7 @@
   </div>
 </section>
 <!--Login end-->
+
+{% include 'footer.html '%}
 
 {% endblock %}
