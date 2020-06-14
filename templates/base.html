@@ -1,6 +1,5 @@
 {% load static %}
 {% load i18n %}
-{% load cart_template_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -36,68 +35,7 @@
   </head>
 
   <body>
-
-    <!--Navbar-->
-    <nav id="navbar" class="navbar navbar-expand-md navbar-dark custom-navbar">
-      <a class="navbar-brand custom-navbarLogo" href="{% url 'home:index' %}">Silkscreenservice.com</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarToggler">
-        <ul class="navbar-nav ml-auto text-uppercase">
-          <li class="nav-item"><a class="nav-link" href="{% url 'home:index' %}">home</a></li>
-          <li class="nav-item"><a class="nav-link" href="{% url 'orders:services' %}">services</a></li>
-
-          {% if request.user.is_authenticated %}
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#0" id="navbarDropdown" role="button" data-toggle="dropdown">Account</a>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="{% url 'dashboard:dashboard' %}">Dashboard</a>
-                <a class="dropdown-item" href="">Profile</a>
-
-                <form method="post" action="{% url 'account_logout' %}">
-                  {% csrf_token %}
-                  {% if redirect_field_value %}
-                  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
-                  {% endif %}
-                  
-                  <!-- https://stackoverflow.com/questions/1367409/how-to-make-button-look-like-a-link -->
-                  <a class="dropdown-item" href="#" onclick="this.parentNode.submit();">Sign out</a>
-                </form>
-
-              </div>
-            </li>
-          {% else %}
-            <li class="nav-item"><a class="nav-link" href="{% url 'account_signup' %}">sign up</a></li>
-          {% endif %}
-
-          {% if request.user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'orders:cart' %}">
-                <span class="badge badge-pill badge-light">
-                  {{ request.user|cart_item_count }} <i class="fas fa-shopping-cart"></i>
-                </span>
-              </a>  
-            </li>
-          {% endif %}
-          
-        </ul>
-      </div>
-    </nav>
-    <!--Navbar end-->
-
-    <div>
-      {% if messages %}
-        {% for message in messages %}
-          <div id="alerts" class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-            {{ message }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-        {% endfor %}
-      {% endif %}
-    </div>
+    {% include 'navbar.html' %}
 
     {% block page_header %}
     {% endblock %}
@@ -105,47 +43,7 @@
     {% block content %}
     {% endblock  %}
 
-    <!--Footer-->
-    <footer> 
-      <div class="container-fluid footer-container text-white mt-3 px-5">
-        <div class="row text-center text-xs-center text-sm-left text-md-left">
-          <div class="col-xs-12 col-sm-4 col-md-4">
-            <ul class="list-unstyled quick-links">
-              <li>
-                <h2>Silkscreenservice.com</h2>
-              </li>
-            </ul>
-          </div>
-          <div class="col-xs-12 col-sm-4 col-md-4">
-            <ul class="list-unstyled quick-links text-center">
-              <li>Groot Mijdrechtstraat 24</li>
-              <li>3641RW Mijdrecht</li>
-              <li>+31 (0) 297 - 286884</li>
-            </ul>
-          </div>
-          <div class="col-xs-12 col-sm-4 col-md-4">
-            <ul class="list-unstyled quick-links text-right">
-              <li><a class="footer-container" href="{% url 'home:index' %}">Home</a></li>
-              <li><a href="{% url 'orders:services' %}">Services</a></li>
-              <li><a href="{% url 'account_signup' %}">Sign up</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-3">
-            <div class="list-unstyled list-inline social text-center mb-3">
-              <a target="_blank" href="https://www.linkedin.com/"><i class="fab fa-linkedin fa-2x px-1"></i></a>
-              <a target="_blank" href="https://www.facebook.com/"><i class="fab fa-facebook-square fa-2x px-1"></i></a>
-              <a target="_blank" href="https://wa.me/5551337"><i class="fab fa-whatsapp-square fa-2x px-1"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-    <!--Footer end-->
-
     {% block postloadjs %}
     {% endblock %}
-
   </body>
 </html>
