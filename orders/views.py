@@ -24,7 +24,7 @@ def create_id_code():
 
 class ItemListView(ListView):
     model = Item
-    template_name = 'services.html'
+    template_name = 'orders/services.html'
 
 
 class OrderSummaryView(LoginRequiredMixin, View):
@@ -33,7 +33,7 @@ class OrderSummaryView(LoginRequiredMixin, View):
         try:
             order = Order.objects.get(user=self.request.user, ordered=False)
             context = {'object': order}
-            return render(self.request, 'cart.html', context)
+            return render(self.request, 'orders/cart.html', context)
         except ObjectDoesNotExist:
             messages.warning(self.request, 'You do not have an active order')
             return redirect('/')
@@ -49,7 +49,7 @@ class CheckoutView(View):
     def get(self, *args, **kwargs):
         form = CheckoutForm()
         context = {'form': form}
-        return render(self.request, 'checkout.html', context)
+        return render(self.request, 'orders/checkout.html', context)
 
     def post(self, *args, **kwargs):
         form = CheckoutForm(self.request.POST or None)
@@ -106,7 +106,7 @@ class PaymentView(View):
         if order.billing_address:
             stripe.api_key = stripe_secret_key
 
-            template = 'payment.html'
+            template = 'orders/payment.html'
             context = {
                 'order': order,
                 'stripe_public_key': stripe_public_key,

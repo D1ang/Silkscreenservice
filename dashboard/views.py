@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from orders.models import Order
 
 
 def dashboard(request):
@@ -26,4 +25,4 @@ def dashboard(request):
 
     print(context)
 
-    return render(request, 'dashboard.html', context)
+    return render(request, 'dashboard/customer.html', context)
