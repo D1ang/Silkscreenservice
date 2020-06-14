@@ -9,7 +9,7 @@
     <div class="row">
       <div class="col-lg-7 col-sm-12 mt-3 p-3">
         <h1 class="custom-title d-none d-sm-block">Silkscreenservice.com</h1>
-        <h2 class="text-lg-left text-center font-weight-bold mt-5 pb-2">Your design studio</h2>
+        <h2 class="text-lg-left text-center mt-5 pb-2">Your design studio</h2>
         <p class="text-lg-left text-center">
           At Silkscreenservice we are happy to help you. From the first
           contact to the delivery of your order, your order has our full
@@ -36,7 +36,7 @@
         </div>
       </div>
       <div class="col-lg-5 col-sm-12 p-5">
-        <img src="{% static 'svg/designer-tools.svg' %}" class="img-fluid float-right " alt="designer-tools">
+        <img src="{% static 'svg/designer-tools.svg' %}" class="img-fluid float-right" alt="designer-tools">
       </div>
     </div>
   </div>
@@ -51,7 +51,7 @@
         <img src="{% static 'svg/designer-girl.svg' %}" class="img-fluid float-left pl-4" alt="designer-girl">
       </div>
       <div class="col-lg-6 col-sm-12 px-4 mt-5">
-        <h2 class="text-lg-left text-center font-weight-bold pb-2">Your wish is our inspiration!</h2>
+        <h2 class="text-lg-left text-center pb-2">Your wish is our inspiration!</h2>
         <p class="text-lg-left text-center">
           Imagine you have a catchy idea or a specific wish, but can’t make it
           visual, no worries! Our design employees have extensive experience in
@@ -77,11 +77,11 @@
 <!--Additional end-->
 
 <!--Services-->
-<section id="services">
+<section id="freq_services">
   <div class="container-fluid">
     <div class="row">
       <div class="col">
-        <h2 class="text-center font-weight-bold my-5">Frequently used services</h2>
+        <h2 class="text-center mb-5">Frequently used services</h2>
         <div class="row">
 
           {% for item in items %}
@@ -97,7 +97,7 @@
                   <i class="fas fa-euro-sign"></i> {{ item.price }}
                   <span class="badge badge-pill badge-{{ item.tag.colour }} service-badge">{{ item.tag }}</span>
                 </h4>
-                <a href="{{ item.get_absolute_url }}" class="btn btn-black-outline-sm mt-3" role="button">Service details</a>
+                <a href="{% url 'orders:add_to_cart' item.slug %}" class="btn btn-black-outline-sm mt-3" role="button">Add to cart</a>
               </div>
             </div>
           </div>

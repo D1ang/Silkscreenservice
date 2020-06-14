@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
 <!--Services-->
-<section id="products">
-  <div class="container-fluid my-5">
+<section id="services">
+  <div class="container-fluid">
     <div class="row">
       <div class="col">
-        <h2 class="text-center font-weight-bold mb-5">Available services</h2>
+        <h2 class="text-center my-5">Available services</h2>
         <div class="row">
 
           {% for item in object_list %}
