@@ -56,18 +56,15 @@ h2 {
 	padding-top: 60px;
 }
 
-/*--------------------Custom navbar styling--------------------*/
+/*-----------------------Navbar styling------------------------*/
 
-#navbar {
+#custom-navbar {
 	position: fixed;
-	width: 100%;
-	transition: top 0.3s;
 	z-index: 1;
-}
-
-.custom-navbar {
-	background-color: #da552f;
+	width: 100%;
 	padding-right: 30px;
+	transition: top 0.3s;
+	background-color: #da552f;
 }
 
 .custom-navbarLogo {
@@ -95,23 +92,33 @@ h2 {
 	border-radius: 0 0 5px 5px;
 }
 
-@media screen and (max-width: 600px) {
+.dropdown-item:hover {
+	color: #830000;
+	background-color: #fff;
+}
+
+@media screen and (max-width: 767px) {
 	.navbar .navbar-nav .nav-link {
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		padding: 0.7rem 0;
 		border-left: none;
-  }
-  
+	}
+
 	.dropdown-menu {
 		width: 100%;
 		text-align: center;
-    background-color: #da552f;
-    border-top: 1px solid #830000;
-    border-bottom: 1px solid #830000;
-    border-radius: 0;
-  }
+		background-color: #da552f;
+		border-top: 1px solid #830000;
+		border-bottom: 1px solid #830000;
+		border-radius: 0;
+	}
+
+	.dropdown-item:hover {
+		color: #da552f;
+		background-color: #fff;
+	}
 }
 
 .navbar .nav-item.active .nav-link,
@@ -119,11 +126,16 @@ h2 {
 	color: #830000;
 }
 
-/*---------------------Custom Auth styling---------------------*/
+.badge-light:hover {
+	color: #fff;
+	background-color: #830000;
+}
+
+/*------------------------Auth styling-------------------------*/
 
 #auth {
-  min-height: 900px;
-  padding-top: 60px;
+	min-height: 900px;
+	padding-top: 60px;
 }
 
 .auth-custom-card {
@@ -166,7 +178,7 @@ a.subtext:active {
 	font-size: 18px;
 }
 
-/*------------------Custom dashboard styling-------------------*/
+/*----------------------Dashboard styling----------------------*/
 
 #dashboard {
 	height: 100vh;
@@ -174,8 +186,8 @@ a.subtext:active {
 	background-repeat: no-repeat;
 	background-position: right bottom;
 	background-size: 50%;
-  background-color: #06b3be;
-  padding-top: 60px;
+	background-color: #06b3be;
+	padding-top: 60px;
 }
 
 hr.dashboard {
@@ -187,7 +199,7 @@ hr.dashboard {
 	padding: 0 8px 40px 8px;
 }
 
-/*-------------------Custom services styling-------------------*/
+/*----------------------Services styling-----------------------*/
 
 #services {
 	background-color: #06b3be;
@@ -202,16 +214,16 @@ hr.dashboard {
 	margin-left: 5px;
 }
 
-/*---------------------Custom cart styling---------------------*/
+/*------------------------Cart styling-------------------------*/
 
 #cart {
 	background-image: url(/static/svg/wallet.svg);
 	background-repeat: no-repeat;
 	background-position: right bottom;
 	background-size: 35%;
-  background-color: #06b3be;
-  min-height: 850px;
-  padding-top: 60px;
+	background-color: #06b3be;
+	min-height: 850px;
+	padding-top: 60px;
 }
 
 .cart-container {
