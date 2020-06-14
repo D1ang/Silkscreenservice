@@ -37,7 +37,7 @@ h2 {
 	font-size: 17px;
 }
 
-/*--------------------------Sections---------------------------*/
+/*-----------------------Home sections-------------------------*/
 
 #home {
 	background-color: #f7c945;
@@ -51,12 +51,6 @@ h2 {
 }
 
 #freq_services {
-	background-color: #06b3be;
-	min-height: 900px;
-	padding-top: 60px;
-}
-
-#services {
 	background-color: #06b3be;
 	min-height: 900px;
 	padding-top: 60px;
@@ -128,7 +122,8 @@ h2 {
 /*---------------------Custom Auth styling---------------------*/
 
 #auth {
-	min-height: 850px;
+  min-height: 900px;
+  padding-top: 60px;
 }
 
 .auth-custom-card {
@@ -174,12 +169,13 @@ a.subtext:active {
 /*------------------Custom dashboard styling-------------------*/
 
 #dashboard {
-	height: 95vh;
+	height: 100vh;
 	background-image: url(/static/svg/dashboard-rocket.svg);
 	background-repeat: no-repeat;
 	background-position: right bottom;
 	background-size: 50%;
-	background-color: #06b3be;
+  background-color: #06b3be;
+  padding-top: 60px;
 }
 
 hr.dashboard {
@@ -193,6 +189,12 @@ hr.dashboard {
 
 /*-------------------Custom services styling-------------------*/
 
+#services {
+	background-color: #06b3be;
+	min-height: 900px;
+	padding-top: 60px;
+}
+
 .service-badge {
 	font-size: 17px;
 	font-weight: 300;
@@ -203,12 +205,13 @@ hr.dashboard {
 /*---------------------Custom cart styling---------------------*/
 
 #cart {
-	height: 85vh;
 	background-image: url(/static/svg/wallet.svg);
 	background-repeat: no-repeat;
 	background-position: right bottom;
 	background-size: 35%;
-	background-color: #06b3be;
+  background-color: #06b3be;
+  min-height: 850px;
+  padding-top: 60px;
 }
 
 .cart-container {
