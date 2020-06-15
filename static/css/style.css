@@ -27,6 +27,28 @@ html {
 	}
 }
 
+.subtext {
+	font-size: 17px;
+	line-height: 16px;
+}
+
+.subtext-bold {
+	font-size: 17px;
+  line-height: 16px;
+  font-weight: bold;
+}
+
+a.subtext:link,
+a.subtext:visited {
+	font-weight: bold;
+	color: #fff;
+}
+
+a.subtext:hover,
+a.subtext:active {
+	color: #000;
+}
+
 h2 {
 	font-size: 2rem;
 	font-weight: 600;
@@ -144,22 +166,6 @@ h2 {
 	padding: 4px;
 }
 
-.subtext {
-	font-size: 17px;
-	line-height: 16px;
-}
-
-a.subtext:link,
-a.subtext:visited {
-	font-weight: bold;
-	color: #fff;
-}
-
-a.subtext:hover,
-a.subtext:active {
-	color: #000;
-}
-
 .errorlist {
 	background-color: #f88080;
 	color: #fff;
@@ -185,9 +191,10 @@ a.subtext:active {
 	background-image: url(/static/svg/dashboard-rocket.svg);
 	background-repeat: no-repeat;
 	background-position: right bottom;
-	background-size: 50%;
+	background-size: 40%;
 	background-color: #06b3be;
 	padding-top: 60px;
+	font-weight: 400;
 }
 
 hr.dashboard {
@@ -195,7 +202,7 @@ hr.dashboard {
 }
 
 .custom-card {
-	background: rgba(196, 196, 196, 0.5);
+	background: rgba(0, 0, 0, 0.18);
 	padding: 0 8px 40px 8px;
 }
 
@@ -434,4 +441,9 @@ footer {
 .table thead > tr > th {
 	border: 0px;
 	padding: 10px;
+}
+
+table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td.dtr-control:before,
+table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th.dtr-control:before {
+  margin-top: 6px;
 }

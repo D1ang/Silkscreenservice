@@ -6,43 +6,67 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col custom-card text-center p-3 m-3">
-        <h6>Options</h6>
-      </div>
-      <div class="col custom-card text-center p-3 m-3">
-        <h6>Customer</h6>
-        <p></p>
-      </div>
-      <div class="col custom-card text-center p-3 m-3">
-        <h6>Total orders</h6>
+        <h6>Orders</h6>
         <h5>{{ total_orders }}</h5>
+      </div>
+      <div class="col custom-card text-center p-3 m-3">
+        <h6>Pending</h6>
+        <h5>{{ pending_orders }}</h5>
+      </div>
+      <div class="col custom-card text-center p-3 m-3">
+        <h6>Finished</h6>
+        <h5>{{ finished_orders }}</h5>
       </div>
     </div>
     <div class="row mt-4">
       <div class="col-12">
-        <h6 class="text-uppercase pl-2">orders</h6>
+        <h6 class="text-uppercase pl-2">order overview</h6>
         <hr class="dashboard m-0">
 
         <div class="custom-card mt-3">
           <table id="dataTable" class="nowrap table table-sm" style="width:100%">
             <thead>
               <tr>
-                <th>Product</th>
+                <th>Order ID</th>
+                <th>Date</th>
                 <th>Status</th>
-                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
 
-              {% for order in orders %}
-              <tr>
-                <td>{{ order.id_code }}</td>
-                <td>{{ order.date }}</td>
-                <td>{{ order.status }}</td>
-              </tr>
+              {% for order in page_object %}     
+                  <tr>
+                    <td>
+                      {% if order.id_code %}
+                        {{ order.id_code }}
+                      {% else %}
+                        In cart
+                      {% endif %}
+                    </td>
+                    <td>{{ order.date }}</td>
+                    <td>{{ order.status }}</td>
+                  </tr>
               {% endfor %}
 
             </tbody>
           </table>
+        </div>
+        <div>
+          <span>
+            {% if page_object.has_previous %}
+              <a href="?page={{ page_object.previous_page_number }}" class="subtext">
+              <i class="fas fa-angle-double-left"></i> previous</a>
+            {% endif %}
+
+            <span class="subtext-bold px-1">
+              page {{ page_object.number }} of {{ page_object.paginator.num_pages }}
+            </span>
+
+            {% if page_object.has_next %}
+              <a href="?page={{ page_object.next_page_number }}" class="subtext">next 
+              <i class="fas fa-angle-double-right"></i></a>
+            {% endif %}
+          </span>
         </div>
       </div>
     </div>

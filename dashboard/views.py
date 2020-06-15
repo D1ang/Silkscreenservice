@@ -1,21 +1,23 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render
 
 
 def dashboard(request):
     """
     A view that displays the dashboard
-    for the customers.
+    for the customer & paginate the order list.
     """
-    customer = request.user
-    orders = request.user.order_set.all()
+    order_list = request.user.order_set.all()
+    paginator = Paginator(order_list, 6)
+    page_number = request.GET.get('page')
+    page_object = paginator.get_page(page_number)
 
-    total_orders = orders.count()
-    pending_orders = orders.filter(status='pending').count()
-    finished_orders = orders.filter(status='finished').count()
+    total_orders = order_list.count()
+    pending_orders = order_list.filter(status='pending').count()
+    finished_orders = order_list.filter(status='finished').count()
 
     context = {
-        'customer': customer,
-        'orders': orders,
+        'page_object': page_object,
         'total_orders': total_orders,
         'pending_orders': pending_orders,
         'finished_orders': finished_orders,
