@@ -48,30 +48,29 @@ card.addEventListener('change', function(event) {
 // Handle form submit
 let form = document.getElementById('payment-form');
 form.addEventListener('submit', function(event) {
-  event.preventDefault();
-  
-  stripe.createToken(card).then(function(result) {
-    if (result.error) {
-      let errorElement = document.getElementById('card-errors');
-      let html = `
+	event.preventDefault();
+
+	stripe.createToken(card).then(function(result) {
+		if (result.error) {
+			let errorElement = document.getElementById('card-errors');
+			let html = `
             <div class="stripe-icon my-2 pl-1">
               <i class = "fas fa-times"></i> ${result.error.message}
             </div>`;
-      $(errorElement).html(html);
-    } else {
-      stripeTokenHandler(result.token);
-    }
-  });
+			$(errorElement).html(html);
+		} else {
+			stripeTokenHandler(result.token);
+		}
+	});
 });
 
 // Send token to backend
 function stripeTokenHandler(token) {
-  let form = document.getElementById('payment-form');
-  let hiddenInput = document.createElement('input');
-  hiddenInput.setAttribute('type', 'hidden');
-  hiddenInput.setAttribute('name', 'stripeToken');
-  hiddenInput.setAttribute('value', token.id);
-  form.appendChild(hiddenInput);
-  form.submit();
+	let form = document.getElementById('payment-form');
+	let hiddenInput = document.createElement('input');
+	hiddenInput.setAttribute('type', 'hidden');
+	hiddenInput.setAttribute('name', 'stripeToken');
+	hiddenInput.setAttribute('value', token.id);
+	form.appendChild(hiddenInput);
+	form.submit();
 }
-
