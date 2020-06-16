@@ -53,47 +53,12 @@
               <input type="checkbox" class="custom-control-input" name="save_info" id="save_info">
               <label class="custom-control-label" for="save_info">Save billing address</label>
             </div>
-            <hr class="my-4">
-            <h5>Payment option</h5>
-
-            <div class="d-block my-4">
-              {% for value, name in form.fields.payment_option.choices %}
-              <div class="custom-control custom-radio">
-                <input id="{{ name }}" name="payment_option" value="{{ value }}" type="radio"
-                  class="custom-control-input" required>
-                <label class="custom-control-label" for="{{ name }}">{{ name }}</label>
-              </div>
-              {% endfor %}
-            </div>
-
-            <hr class="mb-4">
 
             <button class="btn btn-black-sm" type="submit">Checkout</button>
           </form>
         </div>
       </div>
     </div>
-  </div>
-
-  <div class="col">
-    <table class="nowrap table table-sm height-fix">
-      <thead>
-        <tr>
-          <th>Payment details</th>
-          <th> </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Tax 21 %</td>
-          <td class="cart-td-align-right"></td>
-        </tr>
-        <tr>
-          <td>Total to be paid</td>
-          <td class="cart-td-align-right"></td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 
 </section>

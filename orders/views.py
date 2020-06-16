@@ -72,9 +72,6 @@ class CheckoutView(View):
                 region = form.cleaned_data.get('region')
                 postal = form.cleaned_data.get('postal')
                 country = form.cleaned_data.get('country')
-                # TODO: add functionality to these fields.
-                # save_info = form.cleaned_data.get('save_info')
-                payment_option = form.cleaned_data.get('payment_option')
                 billing_address = BillingAddress(
                     user=self.request.user,
                     first_name=first_name,
@@ -90,13 +87,7 @@ class CheckoutView(View):
                 order.billing_address = billing_address
                 order.save()
 
-                if payment_option == 'stripe':
-                    return redirect('orders:payment', payment_option='stripe')
-                elif payment_option == 'paypal':
-                    return redirect('orders:payment', payment_option='paypal')
-                else:
-                    messages.warning(self.request, 'Invalid payment option')
-                    return redirect('orders:checkout')
+                return redirect('orders:payment')
 
         except ObjectDoesNotExist:
             messages.warning(self.request, 'You do not have an active order')
