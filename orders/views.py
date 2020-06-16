@@ -40,12 +40,16 @@ class OrderSummaryView(LoginRequiredMixin, View):
                 messages.warning(self.request, 'Your cart is empty')
                 return redirect('/services')
             else:
-                context = {'object': order, 'tax': tax, 'total': total}
+                context = {
+                    'object': order,
+                    'tax': tax,
+                    'total': total
+                }
                 return render(self.request, 'orders/cart.html', context)
 
         except ObjectDoesNotExist:
             messages.warning(self.request, 'You do not have an active order')
-            return redirect('/')
+            return redirect('orders:services')
 
 
 class CheckoutView(LoginRequiredMixin, View):
@@ -54,17 +58,22 @@ class CheckoutView(LoginRequiredMixin, View):
     the customer address info and prefered
     payment option.
     """
-    def get(self, *args, **kwargs):
-        order = Order.objects.get(user=self.request.user, ordered=False)
-        total = order.get_total()
 
-        if total < 1:
-            messages.warning(self.request, 'Your cart is empty')
-            return redirect('/services')
-        else:
-            form = CheckoutForm()
-            context = {'form': form}
-            return render(self.request, 'orders/checkout.html', context)
+    def get(self, *args, **kwargs):
+        try:
+            order = Order.objects.get(user=self.request.user, ordered=False)
+            total = order.get_total()
+
+            if total < 1:
+                messages.warning(self.request, 'Your cart is empty')
+                return redirect('orders:services')
+            else:
+                form = CheckoutForm()
+                context = {'form': form}
+                return render(self.request, 'orders/checkout.html', context)
+        except ObjectDoesNotExist:
+            messages.warning(self.request, 'You do not have an active order')
+            return redirect('orders:services')
 
     def post(self, *args, **kwargs):
         form = CheckoutForm(self.request.POST or None)
@@ -106,15 +115,17 @@ class PaymentView(LoginRequiredMixin, View):
     Load the payment view and loads the public
     Stripe key for the card field.
     """
-    def get(self, *args, **kwargs):
-        order = Order.objects.get(user=self.request.user, ordered=False)
-        tax = order.get_total() * Decimal(21 / 100)
-        total = order.get_total() + tax
 
-        if total < 1:
-            messages.warning(self.request, 'Your cart is empty')
-            return redirect('/services')
-        else:
+    def get(self, *args, **kwargs):
+        try:
+            order = Order.objects.get(user=self.request.user, ordered=False)
+            tax = order.get_total() * Decimal(21 / 100)
+            total = order.get_total() + tax
+
+            if total < 1:
+                messages.warning(self.request, 'Your cart is empty')
+                return redirect('orders:services')
+
             if order.billing_address:
                 stripe.api_key = stripe_secret_key
 
@@ -131,8 +142,10 @@ class PaymentView(LoginRequiredMixin, View):
                 messages.warning(
                     self.request, 'You have not added a billing address')
                 return redirect('orders:checkout')
+        except ObjectDoesNotExist:
+            messages.warning(self.request, 'You do not have an active order')
+            return redirect('orders:services')
 
-    @login_required
     def post(self, *args, **kwargs):
         """
         When POST payment will be created in the database
@@ -174,7 +187,7 @@ class PaymentView(LoginRequiredMixin, View):
         order.save()
 
         messages.success(self.request, 'Your order was successful!')
-        return redirect('/')
+        return redirect('dashboard:dashboard')
 
 
 @login_required
