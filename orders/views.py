@@ -35,9 +35,12 @@ class OrderSummaryView(LoginRequiredMixin, View):
             order = Order.objects.get(user=self.request.user, ordered=False)
             tax = order.get_total() * Decimal(21 / 100)
             total = order.get_total() + tax
-
-            context = {'object': order, 'tax': tax, 'total': total}
-            return render(self.request, 'orders/cart.html', context)
+            if total < 1:
+                messages.warning(self.request, 'Your cart is empty')
+                return redirect('/services')
+            else:
+                context = {'object': order, 'tax': tax, 'total': total}
+                return render(self.request, 'orders/cart.html', context)
 
         except ObjectDoesNotExist:
             messages.warning(self.request, 'You do not have an active order')
