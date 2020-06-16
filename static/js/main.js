@@ -33,6 +33,5 @@ $(document).ready(function() {
 		paging: false,
 		bSort: false,
 		responsive: true,
-		columns: [ { responsivePriority: 1 }, { responsivePriority: 2 }, { responsivePriority: 3 } ]
 	});
 });
