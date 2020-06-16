@@ -7,6 +7,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import View, ListView
 from .forms import CheckoutForm
 from .models import Item, OrderItem, Order, BillingAddress, Payment
+from decimal import Decimal
 import random
 import string
 import stripe
@@ -32,8 +33,12 @@ class OrderSummaryView(LoginRequiredMixin, View):
 
         try:
             order = Order.objects.get(user=self.request.user, ordered=False)
-            context = {'object': order}
+            tax = order.get_total() * Decimal(21 / 100)
+            total = order.get_total() + tax
+
+            context = {'object': order, 'tax': tax, 'total': total}
             return render(self.request, 'orders/cart.html', context)
+
         except ObjectDoesNotExist:
             messages.warning(self.request, 'You do not have an active order')
             return redirect('/')
@@ -103,6 +108,9 @@ class PaymentView(View):
 
     def get(self, *args, **kwargs):
         order = Order.objects.get(user=self.request.user, ordered=False)
+        tax = order.get_total() * Decimal(21 / 100)
+        total = order.get_total() + tax
+
         if order.billing_address:
             stripe.api_key = stripe_secret_key
 
@@ -111,6 +119,8 @@ class PaymentView(View):
                 'order': order,
                 'stripe_public_key': stripe_public_key,
                 'client_secret': stripe_secret_key,
+                'tax': tax,
+                'total': total
             }
             return render(self.request, template, context)
         else:
@@ -126,8 +136,11 @@ class PaymentView(View):
         stripe.api_key = stripe_secret_key
 
         order = Order.objects.get(user=self.request.user, ordered=False)
+        tax = order.get_total() * Decimal(21 / 100)
+        total = order.get_total() + tax
+
         token = self.request.POST.get('stripeToken')
-        amount = int(order.get_total() * 100)
+        amount = int(total * 100)
         charge = stripe.Charge.create(
             amount=amount,
             currency='eur',
@@ -150,6 +163,8 @@ class PaymentView(View):
 
         order.ordered = True
         order.payment = payment
+        order.total = total
+        order.tax = tax
         order.id_code = '920-' + create_id_code()
         order.save()
 

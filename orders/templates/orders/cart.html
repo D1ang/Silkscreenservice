@@ -46,7 +46,7 @@
           </tr>
           <tr>
             <td class="font-weight-bold">Total</td>
-            <td class="cart-align-right font-weight-bold"><strong>{{ object.get_total }}€</strong></td>
+            <td class="cart-align-right font-weight-bold">{{ total|floatformat:2 }}€</td>
           </tr>
           <tr>
             <td class="pt-5"><a href="{% url 'orders:services' %}" class="btn btn-black-sm" role="button">Add more services</a></td>

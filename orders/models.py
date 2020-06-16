@@ -90,6 +90,8 @@ class Order(models.Model):
         choices=STATUS, default='requested', max_length=10)
     items = models.ManyToManyField(OrderItem)
     ordered = models.BooleanField(default=False)
+    total = models.FloatField(blank=True, null=True)
+    tax = models.FloatField(blank=True, null=True)
     billing_address = models.ForeignKey(
         'BillingAddress', on_delete=models.SET_NULL, blank=True, null=True)
     payment = models.ForeignKey(
