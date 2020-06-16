@@ -35,6 +35,7 @@ class OrderSummaryView(LoginRequiredMixin, View):
             order = Order.objects.get(user=self.request.user, ordered=False)
             tax = order.get_total() * Decimal(21 / 100)
             total = order.get_total() + tax
+
             if total < 1:
                 messages.warning(self.request, 'Your cart is empty')
                 return redirect('/services')
@@ -47,17 +48,23 @@ class OrderSummaryView(LoginRequiredMixin, View):
             return redirect('/')
 
 
-class CheckoutView(View):
+class CheckoutView(LoginRequiredMixin, View):
     """
     Sends the checkout form if its valid with
     the customer address info and prefered
     payment option.
     """
-
     def get(self, *args, **kwargs):
-        form = CheckoutForm()
-        context = {'form': form}
-        return render(self.request, 'orders/checkout.html', context)
+        order = Order.objects.get(user=self.request.user, ordered=False)
+        total = order.get_total()
+
+        if total < 1:
+            messages.warning(self.request, 'Your cart is empty')
+            return redirect('/services')
+        else:
+            form = CheckoutForm()
+            context = {'form': form}
+            return render(self.request, 'orders/checkout.html', context)
 
     def post(self, *args, **kwargs):
         form = CheckoutForm(self.request.POST or None)
@@ -94,34 +101,38 @@ class CheckoutView(View):
             return redirect('orders:checkout')
 
 
-class PaymentView(View):
+class PaymentView(LoginRequiredMixin, View):
     """
     Load the payment view and loads the public
     Stripe key for the card field.
     """
-
     def get(self, *args, **kwargs):
         order = Order.objects.get(user=self.request.user, ordered=False)
         tax = order.get_total() * Decimal(21 / 100)
         total = order.get_total() + tax
 
-        if order.billing_address:
-            stripe.api_key = stripe_secret_key
-
-            template = 'orders/payment.html'
-            context = {
-                'order': order,
-                'stripe_public_key': stripe_public_key,
-                'client_secret': stripe_secret_key,
-                'tax': tax,
-                'total': total
-            }
-            return render(self.request, template, context)
+        if total < 1:
+            messages.warning(self.request, 'Your cart is empty')
+            return redirect('/services')
         else:
-            messages.warning(
-                self.request, 'You have not added a billing address')
-            return redirect('orders:checkout')
+            if order.billing_address:
+                stripe.api_key = stripe_secret_key
 
+                template = 'orders/payment.html'
+                context = {
+                    'order': order,
+                    'stripe_public_key': stripe_public_key,
+                    'client_secret': stripe_secret_key,
+                    'tax': tax,
+                    'total': total
+                }
+                return render(self.request, template, context)
+            else:
+                messages.warning(
+                    self.request, 'You have not added a billing address')
+                return redirect('orders:checkout')
+
+    @login_required
     def post(self, *args, **kwargs):
         """
         When POST payment will be created in the database

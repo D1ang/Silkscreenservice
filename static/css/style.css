@@ -78,7 +78,7 @@ h2 {
 }
 
 #readmore-icon a {
-	color: rgba(255, 255, 255, 0.8);
+	color: #a38329;
 	text-decoration: none;
 	transition: 0.3s;
 }
@@ -123,8 +123,8 @@ h2 {
 }
 
 .dropdown-item:hover {
-	color: #830000;
-	background-color: #fff;
+	color: #fff;
+  background-color: #da552f;
 }
 
 @media screen and (max-width: 767px) {
@@ -244,7 +244,7 @@ hr.dashboard {
 .cart-container {
 	background: rgba(0, 0, 0, 0.18);
 	padding: 0 8px 40px 8px;
-	border-radius: 5px;
+	border-radius: 0px;
 }
 
 .btn-delete-cart {
