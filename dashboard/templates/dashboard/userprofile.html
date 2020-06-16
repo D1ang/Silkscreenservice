@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<!--Profile form-->
+<section id="cart">
+  <div class="container">
+    <div class="cart-container mt-5">
+      <div class="row">
+        <div class="col p-4">
+          <form method="POST" action="" enctype="uniForm">
+          
+            {% csrf_token %}
+
+            <h5>Profile information</h5>
+            <hr>
+
+            <div class="form-row">
+              <div class="form-group col-md-6 mb-0">
+                {{ form.company_name|as_crispy_field }}
+              </div>
+              <div class="form-group col-md-6 mb-0">
+                {{ form.first_name|as_crispy_field }}
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-6 mb-0">
+                {{ form.street_address|as_crispy_field }}
+              </div>
+              <div class="form-group col-md-6 mb-0">
+                {{ form.last_name|as_crispy_field }}
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-6 mb-0">
+                {{ form.address_line_2|as_crispy_field }}
+              </div>
+              <div class="form-group col-md-6 mb-0">
+                {{ form.country|as_crispy_field }}
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-5 mb-0">
+                {{ form.city|as_crispy_field }}
+              </div>
+              <div class="form-group col-md-5 mb-0">
+                {{ form.region|as_crispy_field }}
+              </div>
+              <div class="form-group col-md-2 mb-0">
+                {{ form.postal|as_crispy_field }}
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-6 mb-0">
+                {{ form.email|as_crispy_field }}
+              </div>
+              <div class="form-group col-md-6 mb-0">
+                {{ form.phone|as_crispy_field }}
+              </div>
+            </div>
+            <input class="btn btn-black-sm" type="submit" value="Update changes">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+<!--Profile form end-->
+
+{% include 'footer.html' %}
+
+{% endblock content %}
