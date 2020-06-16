@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section id="dashboard">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col custom-card text-center p-3 m-3">
+        <h6>Order ID</h6>
+        <h5>{{ order.id_code }}</h5>
+      </div>
+      <div class="col custom-card text-center p-3 m-3">
+        <h6>Date</h6>
+        <h5>{{ order.date }}</h5>
+      </div>
+      <div class="col custom-card text-center p-3 m-3">
+        <h6>Status</h6>
+        <h5>{{ order.status }}</h5>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-12">
+        <h6 class="text-uppercase pl-2">order details</h6>
+        <hr class="dashboard m-0">
+
+        <div class="custom-card mt-3">
+          <table class="nowrap table table-sm height-fix">
+            <thead>
+              <tr>
+                <th>Services</th>
+                <th class="cart-align-right">Price</th>
+                <th class="cart-align-right">Artwork</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for order_item in order.items.all %}
+                <tr>
+                  <td>{{ forloop.counter }}. {{ order_item.item.name }}</td>
+                  <td class="cart-align-right">{{ order_item.item.price }}€</td>
+                  <td class="cart-align-right">x</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="custom-card my-4">
+          <table class="nowrap table table-sm height-fix">
+            <thead>
+              <tr>
+                <th>Additional costs</th>
+                <th> </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Tax 21 %</td>
+                <td class="cart-align-right">{{ order.tax|floatformat:2 }}€</td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Total</td>
+                <td class="cart-align-right font-weight-bold"><strong>{{ order.total|floatformat:2 }}€</strong></td>
+              </tr>
+              <tr>
+                <td class="pt-5"><a href="{% url 'dashboard:dashboard' %}" class="btn btn-black-sm" role="button">Return to overview</a></td>
+                <td class="pt-5"><a href="" class="btn btn-black-sm" role="button">Print order</a></td>
+              <tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

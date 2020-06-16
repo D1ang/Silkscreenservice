@@ -30,22 +30,28 @@
                 <th>Order ID</th>
                 <th>Date</th>
                 <th>Status</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
 
-              {% for order in page_object %}     
-                  <tr>
-                    <td>
-                      {% if order.id_code %}
-                        {{ order.id_code }}
-                      {% else %}
-                        In cart
-                      {% endif %}
-                    </td>
-                    <td>{{ order.date }}</td>
-                    <td>{{ order.status }}</td>
-                  </tr>
+              {% for order in page_object %}
+                <tr>
+                  <td>
+                    {% if order.id_code %}
+                      {{ order.id_code }}
+                    {% else %}
+                      In cart
+                    {% endif %}
+                  </td>
+                  <td>{{ order.date }}</td>
+                  <td>{{ order.status }}</td>
+                  <td>
+                    <a class="subtext" href="{% url 'dashboard:orderdetails' order.id %}">
+                      <i class="far fa-eye"></i>
+                    </a>
+                  </td>
+                </tr>
               {% endfor %}
 
             </tbody>
@@ -63,7 +69,7 @@
             </span>
 
             {% if page_object.has_next %}
-              <a href="?page={{ page_object.next_page_number }}" class="subtext">next 
+              <a href="?page={{ page_object.next_page_number }}" class="subtext">next
               <i class="fas fa-angle-double-right"></i></a>
             {% endif %}
           </span>
