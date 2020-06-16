@@ -7,7 +7,7 @@
 <!--Profile form-->
 <section id="cart">
   <div class="container">
-    <div class="cart-container mt-5">
+    <div class="cart-container mt-3">
       <div class="row">
         <div class="col p-4">
           <form method="POST" action="" enctype="uniForm">
@@ -64,7 +64,16 @@
                 {{ form.phone|as_crispy_field }}
               </div>
             </div>
-            <input class="btn btn-black-sm" type="submit" value="Update changes">
+
+            <div class="form-row justify-content-center mt-3">
+              <div class="form-group col-md-3 mb-0">
+                <a href="{% url 'dashboard:dashboard' %}" class="btn btn-black-sm" role="button">Return to dashboard</a>
+              </div>
+              <div class="form-group col-md-3 mb-0">
+                <input class="btn btn-black-sm" type="submit" value="Update changes">
+              </div>
+            </div>
+            
           </form>
         </div>
       </div>
