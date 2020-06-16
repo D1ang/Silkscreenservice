@@ -10,7 +10,7 @@ html {
 	font-size: 1.1em;
 	font-weight: 400;
 	color: #000;
-	background-color: #06b3be;
+  background-color: #06b3be;
 }
 
 .custom-title {
@@ -63,8 +63,7 @@ h2 {
 
 #home {
 	background-color: #f7c945;
-	min-height: 900px;
-	padding-top: 60px;
+	min-height: 100vh;
 }
 
 #additional {
@@ -76,6 +75,15 @@ h2 {
 	background-color: #06b3be;
 	min-height: 900px;
 	padding-top: 60px;
+}
+
+#readmore-icon a{
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: 0.3s;
+}
+#readmore-icon a:hover {
+  color: #000;
 }
 
 /*-----------------------Navbar styling------------------------*/
