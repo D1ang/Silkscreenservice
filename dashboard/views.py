@@ -1,8 +1,12 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.core.paginator import Paginator
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from orders.models import Order
+from .forms import CustomerForm
 
 
+@login_required
 def dashboard(request):
     """
     A view that displays the dashboard
@@ -27,6 +31,7 @@ def dashboard(request):
     return render(request, 'dashboard/customer.html', context)
 
 
+@login_required
 def orderdetails(request, pk_order):
     """
     Updating an exciting order.
@@ -38,3 +43,23 @@ def orderdetails(request, pk_order):
     }
 
     return render(request, 'dashboard/orderdetails.html', context)
+
+
+@login_required
+def userprofile(request):
+    """
+    Authenticated profile settings for the user
+    to change the profile settings.
+    """
+    customer = request.user.customer
+    form = CustomerForm(instance=customer)
+
+    if request.method == 'POST':
+        form = CustomerForm(request.POST, request.FILES, instance=customer)
+        if form.is_valid():
+            form.save()
+            messages.info(request, 'Profile update successfully')
+            return redirect('dashboard:dashboard')
+    else:
+        context = {'form': form}
+        return render(request, 'dashboard/userprofile.html', context)
