@@ -195,14 +195,14 @@ h2 {
 /*----------------------Dashboard styling----------------------*/
 
 #dashboard {
-	height: 100vh;
-	background-image: url(/static/svg/dashboard-rocket.svg);
-	background-repeat: no-repeat;
-	background-position: right bottom;
-	background-size: 40%;
-	background-color: #06b3be;
+  background-image: url(/static/svg/dashboard-rocket.svg);
+  background-position: right bottom;
+  background-repeat: no-repeat;
+  background-size: 40%;
+  background-color: #06b3be;
+  min-height:100%;
 	padding-top: 60px;
-	font-weight: 400;
+  font-weight: 400;
 }
 
 hr.dashboard {
@@ -267,9 +267,8 @@ hr.dashboard {
 /*----------------------------Footer---------------------------*/
 
 footer {
-	background-color: #000;
-	padding: 0.8em;
-	margin-top: 50px;
+  padding: 0.8em;
+  background-color: #000;
 }
 
 .footer-container h2 {
