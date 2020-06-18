@@ -26,3 +26,7 @@ urlpatterns = [
     path('', include('home.urls', namespace='home')),
     path('', include('orders.urls', namespace='orders')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+admin.site.site_header = "Silkscreenservice Admin"
+admin.site.site_title = "Silkscreenservice Admin Portal"
+admin.site.index_title = "Welcome to the Silkscreenservice Portal"

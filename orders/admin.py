@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.auth.models import Group
 from .models import Item, ItemTag, OrderItem, Order, Payment, BillingAddress
 
 
@@ -95,3 +96,5 @@ admin.site.register(OrderItem, OrderItemAdmin)
 admin.site.register(Order, OrderAdmin)
 admin.site.register(Payment)
 admin.site.register(BillingAddress, BillingAddressAdmin)
+
+admin.site.unregister(Group)
