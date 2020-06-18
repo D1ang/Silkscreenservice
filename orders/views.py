@@ -7,6 +7,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import View, ListView
 from .forms import CheckoutForm
 from .models import Item, OrderItem, Order, BillingAddress, Payment
+from dashboard.models import Customer
 from decimal import Decimal
 import random
 import string
@@ -62,13 +63,23 @@ class CheckoutView(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
         try:
             order = Order.objects.get(user=self.request.user, ordered=False)
+            customer = Customer.objects.get(user=self.request.user)
             total = order.get_total()
 
             if total < 1:
                 messages.warning(self.request, 'Your cart is empty')
                 return redirect('orders:services')
             else:
-                form = CheckoutForm()
+                form = CheckoutForm(initial={
+                  'first_name': customer.first_name,
+                  'last_name': customer.last_name,
+                  'street_address': customer.street_address,
+                  'address_line_2': customer.address_line_2,
+                  'city': customer.city,
+                  'region': customer.region,
+                  'postal': customer.postal,
+                  'country': customer.country
+                })
                 context = {'form': form}
                 return render(self.request, 'orders/checkout.html', context)
         except ObjectDoesNotExist:
