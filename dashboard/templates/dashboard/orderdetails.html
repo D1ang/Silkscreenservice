@@ -29,7 +29,6 @@
               <tr>
                 <th>Services</th>
                 <th class="cart-align-right">Price</th>
-                <th class="cart-align-right">Artwork</th>
               </tr>
             </thead>
             <tbody>
@@ -37,7 +36,6 @@
                 <tr>
                   <td>{{ forloop.counter }}. {{ order_item.item.name }}</td>
                   <td class="cart-align-right">{{ order_item.item.price }}€</td>
-                  <td class="cart-align-right">x</td>
                 </tr>
               {% endfor %}
             </tbody>
@@ -62,7 +60,7 @@
               </tr>
               <tr>
                 <td class="pt-5"><a href="{% url 'dashboard:dashboard' %}" class="btn btn-black-sm" role="button">Return to overview</a></td>
-                <td class="pt-5"><a href="" class="btn btn-black-sm" role="button">Print order</a></td>
+                <td class="pt-5"><a href="/media/{{ order.artwork }}" class="btn btn-black-sm" role="button" >Download artwork</a></td>
               <tr>
             </tbody>
           </table>
