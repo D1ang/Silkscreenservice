@@ -87,7 +87,7 @@ class CheckoutView(LoginRequiredMixin, View):
             return redirect('orders:services')
 
     def post(self, *args, **kwargs):
-        form = CheckoutForm(self.request.POST or None)
+        form = CheckoutForm(self.request.POST, self.request.FILES or None)
         try:
             order = Order.objects.get(user=self.request.user, ordered=False)
             if form.is_valid():
@@ -99,6 +99,7 @@ class CheckoutView(LoginRequiredMixin, View):
                 region = form.cleaned_data.get('region')
                 postal = form.cleaned_data.get('postal')
                 country = form.cleaned_data.get('country')
+                artwork = form.cleaned_data.get('artwork')
                 billing_address = BillingAddress(
                     user=self.request.user,
                     first_name=first_name,
@@ -112,6 +113,7 @@ class CheckoutView(LoginRequiredMixin, View):
                 )
                 billing_address.save()
                 order.billing_address = billing_address
+                order.artwork = artwork
                 order.save()
 
                 return redirect('orders:payment')

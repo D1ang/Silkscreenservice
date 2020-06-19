@@ -18,8 +18,8 @@ class ItemTag(models.Model):
     )
 
     name = models.CharField(max_length=10)
-    colour = models.CharField(choices=TAG_COLOURS,
-                              max_length=10, default='Red')
+    colour = models.CharField(
+        choices=TAG_COLOURS, max_length=10, default='Red')
 
     def __str__(self):
         return self.name
@@ -61,7 +61,6 @@ class OrderItem(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
-    quantity = models.IntegerField(default=1)
     ordered = models.BooleanField(default=False)
 
     def get_total_item_price(self):
@@ -84,14 +83,16 @@ class Order(models.Model):
 
     id_code = models.CharField(max_length=15)
     date = models.DateField(auto_now_add=True)
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
     status = models.CharField(
         choices=STATUS, default='requested', max_length=10)
     items = models.ManyToManyField(OrderItem)
     ordered = models.BooleanField(default=False)
     total = models.FloatField(blank=True, null=True)
     tax = models.FloatField(blank=True, null=True)
+    artwork = models.FileField(
+        upload_to='artwork/%Y/%m/%d', blank=True, null=True)
     billing_address = models.ForeignKey(
         'BillingAddress', on_delete=models.SET_NULL, blank=True, null=True)
     payment = models.ForeignKey(

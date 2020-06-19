@@ -18,5 +18,4 @@ class CheckoutForm(forms.Form):
     region = forms.CharField()
     postal = forms.CharField()
     country = CountryField(blank_label='Select country').formfield()
-    save_info = forms.BooleanField(
-        required=False, widget=forms.CheckboxInput())
+    artwork = forms.FileField()
