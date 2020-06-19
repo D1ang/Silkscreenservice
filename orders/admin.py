@@ -46,7 +46,8 @@ class OrderAdmin(admin.ModelAdmin):
         'billing_address',
         'payment',
         'ordered',
-        'status'
+        'status',
+        'artwork'
     )
     list_display_links = (
         'id_code',
@@ -55,10 +56,11 @@ class OrderAdmin(admin.ModelAdmin):
     )
     list_filter = (
         'ordered',
+        'status'
     )
     search_fields = (
         'user__username',
-        'id_code'
+        'status'
     )
     actions = (
         set_status_pending,
