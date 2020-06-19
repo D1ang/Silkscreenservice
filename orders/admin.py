@@ -35,7 +35,6 @@ class OrderItemAdmin(admin.ModelAdmin):
     list_display = (
         'item',
         'user',
-        'quantity',
         'ordered'
     )
 

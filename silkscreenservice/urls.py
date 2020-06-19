@@ -18,6 +18,10 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+admin.site.site_header = "Silkscreenservice Admin"
+admin.site.site_title = "Silkscreenservice Admin Portal"
+admin.site.index_title = "Welcome to the Silkscreenservice Portal"
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
@@ -25,8 +29,10 @@ urlpatterns = [
 
     path('', include('home.urls', namespace='home')),
     path('', include('orders.urls', namespace='orders')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
 
-admin.site.site_header = "Silkscreenservice Admin"
-admin.site.site_title = "Silkscreenservice Admin Portal"
-admin.site.index_title = "Welcome to the Silkscreenservice Portal"
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL,
+                          document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
