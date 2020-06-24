@@ -97,5 +97,3 @@ admin.site.register(OrderItem, OrderItemAdmin)
 admin.site.register(Order, OrderAdmin)
 admin.site.register(Payment)
 admin.site.register(BillingAddress, BillingAddressAdmin)
-
-admin.site.unregister(Group)
