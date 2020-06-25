@@ -90,7 +90,7 @@ def userprofile(request):
         if form.is_valid():
             form.save()
             messages.info(request, 'Profile update successfully')
-            return redirect('accounts:userpage')
+            return redirect('accounts:customerpage')
     else:
         context = {'form': form}
         return render(request, 'accounts/userprofile.html', context)
