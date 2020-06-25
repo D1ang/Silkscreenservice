@@ -36,7 +36,7 @@ def adminpage(request):
         'finished_orders': finished_orders,
     }
 
-    return render(request, 'dashboard/adminpage.html', context)
+    return render(request, 'accounts/adminpage.html', context)
 
 
 @login_required
@@ -62,28 +62,25 @@ def customerpage(request):
         'finished_orders': finished_orders,
     }
 
-    return render(request, 'dashboard/customerpage.html', context)
+    return render(request, 'accounts/customerpage.html', context)
 
 
 @login_required
 def orderdetails(request, pk_order):
-    """
-    Updating an exciting order.
-    """
     order = Order.objects.get(id=pk_order)
 
     context = {
         'order': order,
     }
 
-    return render(request, 'dashboard/orderdetails.html', context)
+    return render(request, 'accounts/orderdetails.html', context)
 
 
 @login_required
 def userprofile(request):
     """
-    Authenticated profile settings for the user
-    to change the profile settings.
+    Profile settings for the user,
+    to change/update the user profile.
     """
     customer = request.user.customer
     form = CustomerForm(instance=customer)
@@ -93,7 +90,7 @@ def userprofile(request):
         if form.is_valid():
             form.save()
             messages.info(request, 'Profile update successfully')
-            return redirect('dashboard:dashboard')
+            return redirect('accounts:userpage')
     else:
         context = {'form': form}
-        return render(request, 'dashboard/userprofile.html', context)
+        return render(request, 'accounts/userprofile.html', context)

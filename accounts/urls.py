@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import adminpage, customerpage, orderdetails, userprofile
 
-app_name = 'dashboard'
+app_name = 'accounts'
 
 urlpatterns = [
     path('', customerpage, name='customerpage'),

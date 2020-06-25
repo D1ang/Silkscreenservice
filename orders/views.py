@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import View, ListView
 from .forms import CheckoutForm
 from .models import Item, OrderItem, Order, BillingAddress, Payment
-from dashboard.models import Customer
+from accounts.models import Customer
 from decimal import Decimal
 import random
 import string
@@ -200,7 +200,7 @@ class PaymentView(LoginRequiredMixin, View):
         order.save()
 
         messages.success(self.request, 'Your order was successful!')
-        return redirect('dashboard:dashboard')
+        return redirect('accounts:customerpage')
 
 
 @login_required

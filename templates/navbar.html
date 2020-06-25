@@ -16,8 +16,8 @@
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
             data-toggle="dropdown">Account</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="{% url 'dashboard:customerpage' %}">Dashboard</a>
-            <a class="dropdown-item" href="{% url 'dashboard:userprofile' %}">Profile</a>
+            <a class="dropdown-item" href="{% url 'accounts:customerpage' %}">Dashboard</a>
+            <a class="dropdown-item" href="{% url 'accounts:userprofile' %}">Profile</a>
 
             <form method="post" action="{% url 'account_logout' %}">
               {% csrf_token %}

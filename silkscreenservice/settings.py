@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'home',
     'orders',
-    'dashboard',
+    'accounts',
 
     'allauth',
     'allauth.account',
@@ -188,8 +188,8 @@ ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = False
 ACCOUNT_EMAIL_VERIFICATION = 'None'
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/dashboard/'
-ACCOUNT_FORMS = {'signup': 'dashboard.forms.MyCustomSignupForm'}
+LOGIN_REDIRECT_URL = '/accounts/'
+ACCOUNT_FORMS = {'signup': 'accounts.forms.MyCustomSignupForm'}
 
 
 # Crispy Forms

@@ -46,7 +46,7 @@
         <h6 class="text-uppercase d-inline pl-2">Orders</h6>
         <hr class="dashboard m-0">
         <div class="custom-card mt-3">
-          <table id="dataTable" class="nowrap table table-sm" style="width:100%">
+          <table id="dataTable" class="nowrap table table-sm">
             <thead>
               <tr>
                 <th>order ID</th>
@@ -69,7 +69,7 @@
                   <td>{{ order.date }}</td>
                   <td>{{ order.status }}</td>
                   <td>
-                    <a class="subtext" href="{% url 'dashboard:orderdetails' order.id %}">
+                    <a class="subtext" href="{% url 'accounts:orderdetails' order.id %}">
                       <i class="far fa-eye"></i>
                     </a>
                   </td>
