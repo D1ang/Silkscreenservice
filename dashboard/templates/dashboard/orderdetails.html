@@ -59,7 +59,7 @@
                 <td class="cart-align-right font-weight-bold"><strong>{{ order.total|floatformat:2 }}€</strong></td>
               </tr>
               <tr>
-                <td class="pt-5"><a href="{% url 'dashboard:dashboard' %}" class="btn btn-black-sm" role="button">Return to overview</a></td>
+                <td class="pt-5"><a href="{% url 'dashboard:customerpage' %}" class="btn btn-black-sm" role="button">Return to overview</a></td>
                 <td class="pt-5"><a href="/media/{{ order.artwork }}" class="btn btn-black-sm" role="button" >Download artwork</a></td>
               <tr>
             </tbody>
