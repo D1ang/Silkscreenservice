@@ -458,5 +458,11 @@ footer {
 
 table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td.dtr-control:before,
 table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th.dtr-control:before {
-	margin-top: 6px;
+  margin-top: 6px;
+}
+
+
+table.dataTable > tbody > tr.child ul.dtr-details > li {
+  border-style: none;
+  padding: 0;
 }
