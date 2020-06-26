@@ -24,7 +24,7 @@ admin.site.index_title = "Welcome to the Silkscreenservice Portal"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('auth/', include('allauth.urls')),
+    path('accounts/', include('allauth.urls')),
     path('accounts/', include('accounts.urls')),
 
     path('', include('home.urls', namespace='home')),
