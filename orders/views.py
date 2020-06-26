@@ -49,7 +49,7 @@ class OrderSummaryView(LoginRequiredMixin, View):
                 return render(self.request, 'orders/cart.html', context)
 
         except ObjectDoesNotExist:
-            messages.warning(self.request, 'You do not have an active order')
+            messages.warning(self.request, 'There is no active order')
             return redirect('orders:services')
 
 
@@ -83,7 +83,7 @@ class CheckoutView(LoginRequiredMixin, View):
                 context = {'form': form}
                 return render(self.request, 'orders/checkout.html', context)
         except ObjectDoesNotExist:
-            messages.warning(self.request, 'You do not have an active order')
+            messages.warning(self.request, 'There is no active order')
             return redirect('orders:services')
 
     def post(self, *args, **kwargs):
@@ -119,7 +119,7 @@ class CheckoutView(LoginRequiredMixin, View):
                 return redirect('orders:payment')
 
         except ObjectDoesNotExist:
-            messages.warning(self.request, 'You do not have an active order')
+            messages.warning(self.request, 'There is no active order')
             return redirect('orders:checkout')
 
 
@@ -153,10 +153,10 @@ class PaymentView(LoginRequiredMixin, View):
                 return render(self.request, template, context)
             else:
                 messages.warning(
-                    self.request, 'You have not added a billing address')
+                    self.request, 'billing address missing')
                 return redirect('orders:checkout')
         except ObjectDoesNotExist:
-            messages.warning(self.request, 'You do not have an active order')
+            messages.warning(self.request, 'There is no active order')
             return redirect('orders:services')
 
     def post(self, *args, **kwargs):
@@ -232,12 +232,12 @@ def add_to_cart(request, slug):
             item.clicks += 1
             item.save()
 
-            messages.info(request, 'Selected service was added to the cart.')
+            messages.info(request, 'Service is added to the cart.')
             return redirect('orders:cart')
     else:
         order = Order.objects.create(user=request.user)
         order.items.add(order_item)
-        messages.info(request, 'Selected service was added to the cart.')
+        messages.info(request, 'Service is added to the cart.')
         return redirect('orders:cart')
 
 
@@ -265,11 +265,11 @@ def remove_from_cart(request, slug):
             item.clicks -= 1
             item.save()
 
-            messages.info(request, 'Selected service was removed from cart.')
+            messages.info(request, 'service was removed from cart.')
             return redirect('orders:cart')
         else:
-            messages.info(request, 'This service was not in your cart.')
+            messages.info(request, 'service was not in your cart.')
             return redirect('orders:cart')
     else:
-        messages.info(request, 'You do not have an active order.')
+        messages.info(request, 'There is\'nt an active order.')
         return redirect('orders:cart')
