@@ -68,9 +68,13 @@ def customerpage(request):
 @login_required
 def orderdetails(request, pk_order):
     order = Order.objects.get(id=pk_order)
+    tax = order.get_total() / 100 * 21
+    total = order.get_total() + tax
 
     context = {
         'order': order,
+        'tax': tax,
+        'total': total
     }
 
     return render(request, 'accounts/orderdetails.html', context)
