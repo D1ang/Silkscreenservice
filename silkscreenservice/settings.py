@@ -192,6 +192,10 @@ LOGIN_REDIRECT_URL = '/accounts/'
 ACCOUNT_FORMS = {'signup': 'accounts.forms.MyCustomSignupForm'}
 
 
+# Messages
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
 # Crispy Forms
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
