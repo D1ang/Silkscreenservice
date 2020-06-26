@@ -3,7 +3,9 @@
 {% block content %}
 
 <section id="dashboard">
-  <div class="container-fluid mt-5">
+  <div class="container-fluid mt-4">
+
+    <!--Ordersstatus-->
     <div class="row">
       <div class="col custom-card text-center p-3 m-3">
         <h6>Orders</h6>
@@ -18,12 +20,16 @@
         <h5>{{ finished_orders }}</h5>
       </div>
     </div>
-    <div class="row mt-4">
+    <!--Ordersstatus end-->
+
+    <div class="row mt-3">
       <div class="col-12">
         <h6 class="text-uppercase pl-2">order overview</h6>
         <hr class="dashboard m-0">
+
+        <!--Orderdetails-->
         <div class="custom-card mt-3">
-          <table id="dataTable" class="nowrap table table-sm">
+          <table id="dataTable" class="nowrap table table-sm height-fix">
             <thead>
               <tr>
                 <th>Order ID</th>
@@ -33,7 +39,6 @@
               </tr>
             </thead>
             <tbody>
-
               {% for order in page_object %}
                 <tr>
                   <td>
@@ -47,15 +52,17 @@
                   <td>{{ order.status }}</td>
                   <td>
                     <a class="subtext" href="{% url 'accounts:orderdetails' order.id %}">
-                      <i class="far fa-eye"></i>
+                    <i class="far fa-eye"></i>
                     </a>
                   </td>
                 </tr>
               {% endfor %}
-
             </tbody>
           </table>
         </div>
+        <!--Orderdetails end-->
+
+        <!--Paginator-->
         <div>
           <span>
             {% if page_object.has_previous %}
@@ -73,6 +80,8 @@
             {% endif %}
           </span>
         </div>
+        <!--Paginator end-->
+
       </div>
     </div>
   </div>
