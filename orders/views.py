@@ -153,7 +153,7 @@ class PaymentView(LoginRequiredMixin, View):
                 return render(self.request, template, context)
             else:
                 messages.warning(
-                    self.request, 'billing address missing')
+                    self.request, 'Billing address is missing')
                 return redirect('orders:checkout')
         except ObjectDoesNotExist:
             messages.warning(self.request, 'There is no active order')
@@ -224,7 +224,7 @@ def add_to_cart(request, slug):
         # check if the order item is in the order
         if order.items.filter(item__slug=item.slug).exists():
             messages.error(
-                request, 'Only one of the same service is allowed.')
+                request, 'Only one of same allowed')
             return redirect('orders:services')
         else:
             order.items.add(order_item)
@@ -232,12 +232,12 @@ def add_to_cart(request, slug):
             item.clicks += 1
             item.save()
 
-            messages.info(request, 'Service is added to the cart.')
+            messages.info(request, 'Service is added to the cart')
             return redirect('orders:cart')
     else:
         order = Order.objects.create(user=request.user)
         order.items.add(order_item)
-        messages.info(request, 'Service is added to the cart.')
+        messages.info(request, 'Service is added to the cart')
         return redirect('orders:cart')
 
 
@@ -265,11 +265,11 @@ def remove_from_cart(request, slug):
             item.clicks -= 1
             item.save()
 
-            messages.info(request, 'service was removed from cart.')
+            messages.info(request, 'Service removed from cart')
             return redirect('orders:cart')
         else:
-            messages.info(request, 'service was not in your cart.')
+            messages.info(request, 'Service not in your cart')
             return redirect('orders:cart')
     else:
-        messages.info(request, 'There is\'nt an active order.')
+        messages.info(request, 'There is\'nt an active order')
         return redirect('orders:cart')
