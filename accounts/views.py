@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect
 from orders.models import Order
 from .models import Customer
 from .forms import CustomerForm
+from .filters import OrderFilter
 
 
 @login_required
@@ -19,13 +20,16 @@ def adminpage(request):
     total_customers = customer_list.count()
 
     order_list = Order.objects.all().order_by('-date')
-    paginator = Paginator(order_list, 6)
-    page_number = request.GET.get('page')
-    page_object = paginator.get_page(page_number)
-
     total_orders = order_list.count()
     pending_orders = order_list.filter(status='pending').count()
     finished_orders = order_list.filter(status='finished').count()
+
+    orderFilter = OrderFilter(request.GET, queryset=order_list)
+    order_list = orderFilter.qs
+
+    paginator = Paginator(order_list, 6)
+    page_number = request.GET.get('page')
+    page_object = paginator.get_page(page_number)
 
     context = {
         'customer_list': customer_list,
@@ -34,6 +38,7 @@ def adminpage(request):
         'total_orders': total_orders,
         'pending_orders': pending_orders,
         'finished_orders': finished_orders,
+        'orderFilter': orderFilter,
     }
 
     return render(request, 'accounts/adminpage.html', context)
