@@ -1,62 +1,72 @@
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
 
 <section id="dashboard">
-  <div class="container-fluid mt-5">
+  <div class="container-fluid mt-4">
+
+    <!--Orderstatus-->
     <div class="row">
       <div class="col custom-card text-center p-3 m-3">
         <h6>Total orders</h6>
         <h5>{{ total_orders }}</h5>
       </div>
       <div class="col custom-card text-center p-3 m-3">
-        <h6>Pending orders</h6>
+        <h6>Pending</h6>
         <h5>{{ pending_orders }}</h5>
       </div>
       <div class="col custom-card text-center p-3 m-3">
-        <h6>Finished orders</h6>
+        <h6>Finished</h6>
         <h5>{{ finished_orders }}</h5>
       </div>
     </div>
-    <div class="row mt-4">
-      <div class="col-4">
-        <h6 class="text-uppercase pl-2">customers</h6>
+    <!--Orderstatus end-->
+
+    <div class="row mt-3">
+      <div class="col-12">
+        <h6 class="text-uppercase pl-2">Order overview</h6>
         <hr class="dashboard m-0">
-        <div class="custom-card mt-3">
-          <table id="dataTable" class="nowrap table table-sm">
-            <thead>
-              <tr>
-                <th>Company name</th>
-              </tr>
-            </thead>
-            <tbody>
 
-              {% for customer in customer_list %}
-                <tr>
-                  <td>{{ customer.company_name }}</td>
-                  <td><a class="btn btn-sm btn-info" href="">view</a></td>
-                </tr>
-              {% endfor %}
-
-            </tbody>
-          </table>
+        <!--Ordersearch-->
+        <div class="row mt-3">
+          <div class="col-12">
+            <div class="custom-card p-2">
+              <form id="auth-form" method="GET" action="" enctype="uniForm">
+                <div class="form-row align-items-center">
+                  <div class="col-lg-4 col-sm-12 my-1">
+                    {{ orderFilter.form.company_name }}
+                  </div>
+                  <div class="col-lg-3 col-sm-12 my-1">
+                    {{ orderFilter.form.status }}
+                  </div>
+                  <div class="col-lg-3 col-sm-12 my-1">
+                    {{ orderFilter.form.start_date }}
+                  </div>
+                  <div class="col-lg-2 col-sm-12 my-1">
+                    <button type="submit" id="btn-ordersearch" class="btn btn-black-sm">Search</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="col-8">
-        <h6 class="text-uppercase d-inline pl-2">Orders</h6>
-        <hr class="dashboard m-0">
+        <!--Ordersearch end-->
+
+        <!--Orderdetails-->
         <div class="custom-card mt-3">
-          <table id="dataTable" class="nowrap table table-sm">
+          <table id="dataTable" class="nowrap table table-sm height-fix">
             <thead>
               <tr>
-                <th>order ID</th>
+                <th>Order ID</th>
+                <th>Customer</th>
                 <th>Date</th>
                 <th>Status</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-
               {% for order in page_object %}
                 <tr>
                   <td>
@@ -66,19 +76,43 @@
                       In cart
                     {% endif %}
                   </td>
+                  <td>{{ order.user.customer.company_name }}</td>
                   <td>{{ order.date }}</td>
                   <td>{{ order.status }}</td>
                   <td>
                     <a class="subtext" href="{% url 'accounts:orderdetails' order.id %}">
-                      <i class="far fa-eye"></i>
+                    <i class="far fa-eye"></i>
                     </a>
                   </td>
                 </tr>
               {% endfor %}
-
             </tbody>
           </table>
         </div>
+        <!--Orderdetails end-->
+
+        <!--Paginator-->
+        <div class="row mb-5">
+          <div class="col">
+            <span>
+              {% if page_object.has_previous %}
+              <a href="?page={{ page_object.previous_page_number }}" class="subtext">
+                <i class="fas fa-angle-double-left"></i> previous</a>
+              {% endif %}
+
+              <span class="subtext-bold px-1">
+                page {{ page_object.number }} of {{ page_object.paginator.num_pages }}
+              </span>
+
+              {% if page_object.has_next %}
+              <a href="?page={{ page_object.next_page_number }}" class="subtext">next
+                <i class="fas fa-angle-double-right"></i></a>
+              {% endif %}
+            </span>
+          </div>
+        </div>
+        <!--Paginator end-->
+
       </div>
     </div>
   </div>
