@@ -20,19 +20,13 @@
         <ul class="list-unstyled quick-links text-right">
           <li><a class="footer-container" href="{% url 'home:index' %}">Home</a></li>
           <li><a href="{% url 'orders:services' %}">Services</a></li>
+
           {% if request.user.is_authenticated %}
-
-            <form method="post" action="{% url 'account_logout' %}">
-              {% csrf_token %}
-              {% if redirect_field_value %}
-                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
-              {% endif %}
-              <li><a href="#" onclick="this.parentNode.submit();">Sign out</a></li>
-            </form>
-
+            <li><a href="#">To top</a></li>
           {% else %}
             <li><a href="{% url 'account_signup' %}">Sign up</a></li>
           {% endif %}
+
         </ul>
       </div>
     </div>

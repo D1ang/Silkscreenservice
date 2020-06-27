@@ -19,7 +19,7 @@
             <a class="dropdown-item" href="{% url 'accounts:customerpage' %}">Dashboard</a>
             <a class="dropdown-item" href="{% url 'accounts:userprofile' %}">Profile</a>
 
-            <form method="post" action="{% url 'account_logout' %}">
+            <form method="POST" action="{% url 'account_logout' %}">
               {% csrf_token %}
               {% if redirect_field_value %}
                 <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
