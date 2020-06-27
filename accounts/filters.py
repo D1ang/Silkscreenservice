@@ -9,7 +9,7 @@ class OrderFilter(filters.FilterSet):
     This will search through the order model
     and filter out the request profided by the admin.
     """
-    company_name = filters.CharFilter(
+    company = filters.CharFilter(
         field_name='user__customer__company_name',
         lookup_expr='icontains',
         widget=TextInput(attrs={'placeholder': 'Company name'})
@@ -27,4 +27,4 @@ class OrderFilter(filters.FilterSet):
 
     class Meta:
         model = Order
-        fields = ['company_name', 'status', 'start_date']
+        fields = ['company', 'status', 'start_date']
