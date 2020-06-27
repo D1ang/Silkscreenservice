@@ -20,7 +20,7 @@
         <div class="row justify-content-center">
           <div class="col-lg-6 col-sm-8 px-3">
             <button type="button" class="btn btn-black" onclick="window.location.href = '{% url 'account_signup' %}';">
-              <h5>Let us help you!</h5>
+              <p class="btn-black-title">Let us help you!</p>
               {% if user.is_authenticated %}
                 <span>Enter your personal space</span>
               {% else %}
@@ -30,7 +30,7 @@
           </div>
           <div class="col-lg-6 col-sm-8 px-3">
             <button type="button" class="btn btn-black-outline" onclick="window.location.href = '{% url 'orders:services' %}';">
-              <h5>Request a service</h5>
+              <p class="btn-black-title">Request a service</p>
               <span>We are ready for it!</span>
             </button>
           </div>
@@ -110,7 +110,7 @@
                     <i class="fas fa-euro-sign"></i> {{ item.price }}
                     <span class="badge badge-pill badge-{{ item.tag.colour }} service-badge">{{ item.tag }}</span>
                   </h4>
-                  <a href="{% url 'orders:add_to_cart' item.slug %}" class="btn btn-black-outline-sm mt-3" role="button">Add to cart</a>
+                  <a href="{% url 'orders:add_to_cart' item.slug %}" class="btn btn-black-outline-sm mt-3">Add to cart</a>
                 </div>
               </div>
             </div>
@@ -124,7 +124,7 @@
     <div class="row justify-content-center">
       <div class="col-lg-4 col-md-4 col-sm-12 pb-5">
         <button type="button" class="btn btn-black" onclick="window.location.href = '{% url 'orders:services' %}';">
-          <h4>View more . . .</h4>
+          <p class="btn-black-title">View more . . .</p>
           <span>Yes We have more to offer</span>
         </button>
       </div>

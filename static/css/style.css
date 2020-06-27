@@ -373,6 +373,12 @@ footer {
 	background-color: #fff;
 }
 
+.btn-black-title {
+  font-size: 1.3em;
+  font-weight: 400;
+  line-height: 0.5em;
+}
+
 .btn-black-outline {
 	height: 100px;
 	width: 100%;
