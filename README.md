@@ -147,3 +147,4 @@ Illustrations: https://illlustrations.co/
 - W3schools.com [link](https://www.w3schools.com/)
 - Django 3.0 documentation [link](https://docs.djangoproject.com/en/3.0/)
 - Django Admin Cookbook [link](https://books.agiliq.com/projects/django-admin-cookbook/en/latest/introduction.html)
+- SVG compressing [link](https://www.compresss.com/compress-svg.html)
