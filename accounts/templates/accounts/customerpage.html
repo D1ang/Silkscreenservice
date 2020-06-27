@@ -63,22 +63,24 @@
         <!--Orderdetails end-->
 
         <!--Paginator-->
-        <div>
-          <span>
-            {% if page_object.has_previous %}
+        <div class="row mb-5">
+          <div class="col">
+            <span>
+              {% if page_object.has_previous %}
               <a href="?page={{ page_object.previous_page_number }}" class="subtext">
-              <i class="fas fa-angle-double-left"></i> previous</a>
-            {% endif %}
+                <i class="fas fa-angle-double-left"></i> previous</a>
+              {% endif %}
 
-            <span class="subtext-bold px-1">
-              page {{ page_object.number }} of {{ page_object.paginator.num_pages }}
-            </span>
+              <span class="subtext-bold px-1">
+                page {{ page_object.number }} of {{ page_object.paginator.num_pages }}
+              </span>
 
-            {% if page_object.has_next %}
+              {% if page_object.has_next %}
               <a href="?page={{ page_object.next_page_number }}" class="subtext">next
-              <i class="fas fa-angle-double-right"></i></a>
-            {% endif %}
-          </span>
+                <i class="fas fa-angle-double-right"></i></a>
+              {% endif %}
+            </span>
+          </div>
         </div>
         <!--Paginator end-->
 
