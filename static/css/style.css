@@ -248,7 +248,7 @@ hr.dashboard {
 }
 
 .btn-delete-cart {
-	padding: 2;
+	padding: 2px;
 	border: none;
 	color: #b20000;
 	background-color: rgba(0, 0, 0, 0);
@@ -375,10 +375,6 @@ footer {
 .btn-black-title {
   font-size: 1.3em;
   font-weight: 400;
-<<<<<<< HEAD
-=======
-  line-height: 0.5em;
->>>>>>> 231e8324474220ee00a6bb42608d869fa7bc200a
 }
 
 .btn-black-outline {
