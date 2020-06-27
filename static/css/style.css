@@ -359,7 +359,6 @@ footer {
 	min-width: 255px;
 	border-radius: 8px;
 	margin-top: 5vw;
-	padding-top: 10px;
 	font-size: 17px;
 	font-weight: 200;
 	color: #fff;
@@ -373,6 +372,11 @@ footer {
 	background-color: #fff;
 }
 
+.btn-black-title {
+  font-size: 1.3em;
+  font-weight: 400;
+}
+
 .btn-black-outline {
 	height: 100px;
 	width: 100%;
@@ -381,7 +385,6 @@ footer {
 	border: 2px solid #000;
 	border-radius: 8px;
 	margin-top: 5vw;
-	padding-top: 10px;
 	font-size: 17px;
 	font-weight: 400;
 	-webkit-transition: 0.3s;
