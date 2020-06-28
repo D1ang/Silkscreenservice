@@ -81,7 +81,7 @@
               <tr>
                 <td class="pt-5"><a href="{% url 'accounts:customerpage' %}" class="btn btn-black-sm">Return to overview</a></td>
                 {% if order.id_code %}
-                  <td class="pt-5"><a href="/media/{{ order.artwork }}" class="btn btn-black-sm">Download artwork</a></td>
+                  <td class="pt-5"><a href="{{ order.artwork.url }}" target="_blank" class="btn btn-black-sm">Download artwork</a></td>
                 {% else %}
                   <td class="pt-5"><a href="{% url 'orders:checkout' %}" class="btn btn-black-sm" role="button">Checkout</a></td>
                 {% endif %}
