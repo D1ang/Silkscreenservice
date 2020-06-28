@@ -103,7 +103,7 @@ def update_order(request, pk_order):
 
     if order.id_code:
         if request.method == 'POST':
-            form = OrderForm(request.POST, instance=order)
+            form = OrderForm(request.POST, request.FILES, instance=order)
             if form.is_valid():
                 form.save()
                 messages.info(request, 'Order updated successfully')
