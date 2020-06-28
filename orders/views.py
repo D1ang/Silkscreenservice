@@ -224,7 +224,7 @@ def add_to_cart(request, slug):
         # check if the order item is in the order
         if order.items.filter(item__slug=item.slug).exists():
             messages.error(
-                request, 'Only one of same allowed')
+                request, 'Only one of the same allowed')
             return redirect('orders:services')
         else:
             order.items.add(order_item)
