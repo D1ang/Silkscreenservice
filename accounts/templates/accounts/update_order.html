@@ -1,12 +1,62 @@
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
 
-<form action="" method="POST">
-  {% csrf_token %}
-  {{form}}
+<section id="dashboard">
+  <div class="container-fluid mt-4">
+    <form action="" method="POST">
+      {% csrf_token %}
 
-  <input type="submit" name="Submit">
+      <!--Orderstatus-->
+      <div class="row">
+        <div class="col custom-card text-center p-3 m-3">
+          <h6>Order ID</h6>
+          {% if order.id_code %}
+          <h5>{{ order.id_code }}</h5>
+          {% else %}
+          <h5>In cart</h5>
+          {% endif %}
+        </div>
+        <div class="col custom-card text-center p-3 m-3">
+          <h6>Date</h6>
+          <h5>{{ order.date }}</h5>
+        </div>
+        <div class="col custom-card text-center p-3 m-3">
+          <h6>Current status</h6>
+          <h5>{{ order.status }}</h5>
+        </div>
+      </div>
+      <!--Orderstatus end-->
+
+      <div class="row mt-3">
+        <div class="col-12">
+          <h6 class="text-uppercase pl-2">order details</h6>
+          <hr class="dashboard m-0">
+
+          <!--Edit order-->
+          <div class="custom-card mt-3 pt-4">
+            <table class="nowrap table table-sm height-fix">
+              <tbody>
+                  <tr>
+                    <td>{{form.artwork|as_crispy_field}}</td>
+                    <td>{{form.status|as_crispy_field}}</td>
+                  </tr>
+                  <tr>
+                    <td class="pt-5"><a href="{% url 'accounts:customerpage' %}" class="btn btn-black-sm">Return to overview</a></td>
+                    <td class="pt-5"><input class="btn btn-black-sm" type="submit" value="Update order"></td>
+                  </tr>
+              </tbody>
+            </table>
+          </div>
+          <!--Edit order end-->
+
+        </div>
+      </div>
+  </div>
+</section>
+
 </form>
 
 {% endblock content %}
