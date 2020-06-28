@@ -101,20 +101,24 @@ def update_order(request, pk_order):
     tax = order.get_total() / 100 * 21
     total = order.get_total() + tax
 
-    if request.method == 'POST':
-        form = OrderForm(request.POST, instance=order)
-        if form.is_valid():
-            form.save()
-            messages.info(request, 'Order updated successfully')
-            return redirect('accounts:adminpage')
+    if order.id_code:
+        if request.method == 'POST':
+            form = OrderForm(request.POST, instance=order)
+            if form.is_valid():
+                form.save()
+                messages.info(request, 'Order updated successfully')
+                return redirect('accounts:adminpage')
+        else:
+            context = {
+                'order': order,
+                'tax': tax,
+                'total': total,
+                'form': form
+            }
+            return render(request, 'accounts/update_order.html', context)
     else:
-        context = {
-            'order': order,
-            'tax': tax,
-            'total': total,
-            'form': form
-        }
-        return render(request, 'accounts/update_order.html', context)
+        messages.error(request, 'Order still in progress')
+        return redirect('accounts:adminpage')
 
 
 @login_required
