@@ -3,7 +3,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
+
 from orders.models import Order
+from orders.forms import OrderForm
+
 from .models import Customer
 from .forms import CustomerForm
 from .filters import OrderFilter
@@ -40,7 +43,6 @@ def adminpage(request):
         'finished_orders': finished_orders,
         'orderFilter': orderFilter,
     }
-
     return render(request, 'accounts/adminpage.html', context)
 
 
@@ -66,12 +68,15 @@ def customerpage(request):
         'pending_orders': pending_orders,
         'finished_orders': finished_orders,
     }
-
     return render(request, 'accounts/customerpage.html', context)
 
 
 @login_required
 def orderdetails(request, pk_order):
+    """
+    A orderdetail page for the customer to view the selected
+    order and be able to download the provided artwork.
+    """
     order = Order.objects.get(id=pk_order)
     tax = order.get_total() / 100 * 21
     total = order.get_total() + tax
@@ -81,15 +86,42 @@ def orderdetails(request, pk_order):
         'tax': tax,
         'total': total
     }
-
     return render(request, 'accounts/orderdetails.html', context)
+
+
+@login_required
+@allowed_users(allowed_roles=['admin'])
+def update_order(request, pk_order):
+    """
+    A order update page for the admin to change the status
+    and download/upload the artwork for the customer.
+    """
+    order = Order.objects.get(id=pk_order)
+    form = OrderForm(instance=order)
+    tax = order.get_total() / 100 * 21
+    total = order.get_total() + tax
+
+    if request.method == 'POST':
+        form = OrderForm(request.POST, instance=order)
+        if form.is_valid():
+            form.save()
+            messages.info(request, 'Order updated successfully')
+            return redirect('accounts:adminpage')
+    else:
+        context = {
+            'order': order,
+            'tax': tax,
+            'total': total,
+            'form': form
+        }
+        return render(request, 'accounts/update_order.html', context)
 
 
 @login_required
 def userprofile(request):
     """
     Profile settings for the user,
-    to change/update the user profile.
+    to change/update their own profile.
     """
     customer = request.user.customer
     form = CustomerForm(instance=customer)

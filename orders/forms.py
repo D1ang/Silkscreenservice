@@ -1,6 +1,18 @@
 from django import forms
+from django.forms import ModelForm
 from django_countries.fields import CountryField
 from django_countries.widgets import CountrySelectWidget  # noqa: F401
+from orders.models import Order
+
+
+class OrderForm(ModelForm):
+    """
+    A orderform for editting an order by
+    the admin trough the admin's dashboard.
+    """
+    class Meta:
+        model = Order
+        fields = ['status', 'artwork']
 
 
 class CheckoutForm(forms.Form):
