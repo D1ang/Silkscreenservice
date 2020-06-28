@@ -5,8 +5,8 @@ from django.forms.widgets import TextInput
 
 class OrderFilter(filters.FilterSet):
     """
-    Creating a filterset for the Orders model.
-    This will search through the order model
+    Creating a filterset for the Order model.
+    This will search through the Order model
     and filter out the request profided by the admin.
     """
     company = filters.CharFilter(

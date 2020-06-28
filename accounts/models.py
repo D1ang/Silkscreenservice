@@ -7,7 +7,7 @@ class Customer(models.Model):
     # a customer can only have 1 user & user only 1 customer
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
 
-    company_name = models.CharField(max_length=100)
+    company_name = models.CharField(max_length=25)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     street_address = models.CharField(max_length=100)
