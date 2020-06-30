@@ -83,7 +83,11 @@
                 {% if order.id_code %}
                   <td class="pt-5"><a href="{{ order.artwork.url }}" target="_blank" class="btn btn-black-sm">Download artwork</a></td>
                 {% else %}
-                  <td class="pt-5"><a href="{% url 'orders:checkout' %}" class="btn btn-black-sm" role="button">Checkout</a></td>
+                  {% if request.user.is_superuser %}
+                    <td class="pt-5"><button disabled class="btn btn-gray-sm">Artwork not available</button></td>
+                  {% else %}
+                    <td class="pt-5"><a href="{% url 'orders:checkout' %}" class="btn btn-black-sm" role="button">Checkout</a></td>
+                  {% endif %}
                 {% endif %}
               <tr>
             </tbody>
