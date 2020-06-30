@@ -7,7 +7,7 @@ html {
 	padding: 0;
 	height: 100%;
 	font-family: 'Poppins', sans-serif;
-	font-size: 1.1em;
+	font-size: 1.1rem;
 	font-weight: 400;
 	color: #000;
 	background-color: #06b3be;
@@ -28,19 +28,19 @@ html {
 }
 
 .subtext {
-	font-size: 17px;
+  font-size: 1.1rem;
+  font-weight: 600;
 	line-height: 16px;
 }
 
 .subtext-bold {
-	font-size: 17px;
+  font-size: 1.1rem;
+  font-weight: 600;
 	line-height: 16px;
-	font-weight: bold;
 }
 
 a.subtext:link,
 a.subtext:visited {
-	font-weight: bold;
 	color: #fff;
 }
 
@@ -56,7 +56,7 @@ h2 {
 
 .fixed-card-height {
 	height: 100%;
-	font-size: 17px;
+	font-size: 1rem;
 }
 
 /*-----------------------Home sections-------------------------*/
@@ -103,7 +103,7 @@ h2 {
 
 .custom-navbarLogo {
 	font-family: 'Pacifico', sans-serif;
-	font-size: 1.1em;
+	font-size: 1.2rem;
 }
 
 .navbar .navbar-nav .nav-link {
@@ -112,7 +112,7 @@ h2 {
 	border-left: 2px solid #fff;
 	font-weight: 300;
 	font-size: 20px;
-	letter-spacing: 0.030em;
+	letter-spacing: 0.030rem;
 	color: #fff;
 }
 
@@ -221,32 +221,8 @@ hr.dashboard {
 
 .custom-card {
 	background: rgba(0, 0, 0, 0.18);
-	padding: 0 8px 40px 8px;
-}
-
-#id_company {
-  height: 35px;
-  border-radius: 0px;
-  color: #495057;
-}
-
-#id_status {
-  height: 35px;
-  padding: 2px 0 0 7px;
-  border-radius: 0px;
-  color: #495057;
-}
-
-#id_start_date {
-  height: 35px;
-  border-radius: 0px;
-  color: #495057;
-}
-
-#btn-ordersearch {
-  padding-top: 5px;
-  height: 37px;
-  border-radius: 0px;
+  padding: 0 8px 40px 8px;
+  border-radius: 7px;
 }
 
 /*----------------------Services styling-----------------------*/
@@ -277,9 +253,9 @@ hr.dashboard {
 }
 
 .cart-container {
-	background: rgba(0, 0, 0, 0.18);
+	background: rgba(0, 0, 0, 0.2);
 	padding: 0 8px 40px 8px;
-	border-radius: 0px;
+  border-radius: 7px;
 }
 
 .btn-delete-cart {
@@ -401,8 +377,8 @@ footer {
 	min-width: 255px;
 	border-radius: 8px;
 	margin-top: 5vw;
-	font-size: 17px;
-	font-weight: 200;
+	font-size: 1.1rem;
+	font-weight: 300;
 	color: #fff;
 	background-color: #000;
 	-webkit-transition: 0.3s;
@@ -415,8 +391,8 @@ footer {
 }
 
 .btn-black-title {
-	font-size: 1.3em;
-	font-weight: 400;
+	font-size: 1.3rem;
+	font-weight: 600;
 }
 
 .btn-black-outline {
@@ -427,7 +403,7 @@ footer {
 	border: 2px solid #000;
 	border-radius: 8px;
 	margin-top: 5vw;
-	font-size: 17px;
+	font-size: 1.1rem;
 	font-weight: 400;
 	-webkit-transition: 0.3s;
 	-o-transition: 0.3s;
@@ -440,7 +416,8 @@ footer {
 }
 
 .btn-black-outline-sm {
-	width: 100%;
+  font-size: 1.1rem;
+  width: 100%;
 	color: #000;
 	border: 2px solid #000;
 	border-radius: 6px;
@@ -458,7 +435,8 @@ footer {
 	width: 100%;
 	color: #fff;
 	background-color: #000;
-	border-radius: 6px;
+  border-radius: 6px;
+  font-size: 1.1rem;
 	-webkit-transition: 0.3s;
 	-o-transition: 0.3s;
 	transition: 0.3s;
@@ -466,6 +444,21 @@ footer {
 
 .btn-black-sm:hover {
 	background-color: #fff;
+}
+
+.btn-gray-sm {
+  width: 100%;
+  cursor: default;
+	color: #000;
+	background-color: rgb(112, 112, 112);
+  border-radius: 6px;
+  font-size: 1.1rem;
+}
+
+.btn-gray-sm:hover {
+  cursor: default;
+  color: #000;
+	background-color: rgb(112, 112, 112);
 }
 
 .btn-black-auth {
@@ -487,7 +480,7 @@ footer {
 /*---------------------------Tables--------------------------- */
 
 .table {
-	font-size: 17px;
+	font-size: 1.1rem;
 }
 
 .table > tbody > tr > td {
