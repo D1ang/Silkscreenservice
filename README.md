@@ -72,24 +72,24 @@ The buttons are style in 2 versions full black or black outlined to fit the over
 2.  HTML - *To create the basics*
 3.  CSS - *To improve placements and design*
 4.  JavaScript - *The engine to create user interaction*
-5.  Python 3.8.2 - *To communicate to the backend*
-6.  Postgres 4.2.6 - *Opensource database to save the transactions*
-7.  Django 3.0.7 - *Micro web framework in python*
-8.  Bootstrap 4.4.1 - *To make the design responsive*
-9.  Font Awesome 5.13.0 - *Easy icon access for the icons*
-10. Font Awesome animations 0.3.0 - *additional animations for the Font Awesome icons*
+5.  Python - *Programming language*
+6.  Postgres - *Opensource database to save the transactions*
+7.  Django - *Web framework in python*
+8.  Bootstrap - *To make the design responsive*
+9.  Font Awesome - *Easy icon access for the icons*
+10. Font Awesome animations - *additional animations for the Font Awesome icons*
 
 ### JavaScript Libraries
-1. jQuery 3.4.1 - *To improve input field feedback*
-2. flatpickr 4.6.3 - *lightweight, powerful JavaScript datetimepicker with no dependencies*
-3. DataTables 1.10.20 - *Adds advanced interaction controls to HTML tables*
+1. jQuery - *To improve input field feedback*
+2. flatpickr - *lightweight, powerful JavaScript datetimepicker with no dependencies*
+3. DataTables - *Adds advanced interaction controls to HTML tables*
 
 ### Python & Django Plugins
-1. Pillow 7.1.2 *Python Imaging Library*
-2. stripe 2.48.0 *Creditcard payments end transaction security*
-3. django-allauth 0.42.0 *Authentication, registration & account management*
-4. django-countries 6.1.2 *Provides country choices for use with forms*
-5. django-crispy-forms 1.9.1 *Controls the rendering behavior of Django forms*
+1. Pillow - *Python Imaging Library*
+2. stripe - *Creditcard payments end transaction security*
+3. django-allauth - *Authentication, registration & account management*
+4. django-countries - *Provides country choices for use with forms*
+5. django-crispy-forms - *Controls the rendering behavior of Django forms*
 
 ## Features
 xxxx
@@ -127,10 +127,7 @@ To run locally, you can clone this repository directly into the editor of your c
 `git clone https://github.com/D1ang/Silkscreenservice.git` into your terminal.
 To cut ties with this GitHub repository, type `git remote rm origin` into the terminal.
 
-When the code is downloaded as a .zip it can be unzipped.
-To get it up and running some extra steps need to be taken as will be explained in the following text:
-
-- The code will be executed in the browser that is set as main browser, this can be Chrome or one of the other available browsers.
+*NOTE: Also deployment is a detailed description on how to clone and setup locally, and how to setup on remote (heroku etc)
 
 ## Credits
 
