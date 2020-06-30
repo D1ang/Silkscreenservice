@@ -111,6 +111,7 @@ class Order(models.Model):
 class BillingAddress(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
+    company_name = models.CharField(max_length=25)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     street_address = models.CharField(max_length=100)

@@ -71,6 +71,7 @@ class CheckoutView(LoginRequiredMixin, View):
                 return redirect('orders:services')
             else:
                 form = CheckoutForm(initial={
+                  'company_name': customer.company_name,
                   'first_name': customer.first_name,
                   'last_name': customer.last_name,
                   'street_address': customer.street_address,
@@ -91,6 +92,7 @@ class CheckoutView(LoginRequiredMixin, View):
         try:
             order = Order.objects.get(user=self.request.user, ordered=False)
             if form.is_valid():
+                company_name = form.cleaned_data.get('company_name')
                 first_name = form.cleaned_data.get('first_name')
                 last_name = form.cleaned_data.get('last_name')
                 street_address = form.cleaned_data.get('street_address')
@@ -102,6 +104,7 @@ class CheckoutView(LoginRequiredMixin, View):
                 artwork = form.cleaned_data.get('artwork')
                 billing_address = BillingAddress(
                     user=self.request.user,
+                    company_name=company_name,
                     first_name=first_name,
                     last_name=last_name,
                     street_address=street_address,
