@@ -29,7 +29,7 @@ html {
 
 .subtext {
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 300;
 	line-height: 16px;
 }
 
@@ -41,7 +41,9 @@ html {
 
 a.subtext:link,
 a.subtext:visited {
-	color: #fff;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
 a.subtext:hover,
@@ -223,6 +225,27 @@ hr.dashboard {
 	background: rgba(0, 0, 0, 0.18);
   padding: 0 8px 40px 8px;
   border-radius: 7px;
+}
+
+.badge-requested {
+  width: 90px;
+  font-weight: 300;
+  color: #fff;
+  background-color: #000;
+}
+
+.badge-pending {
+  width: 90px;
+  font-weight: 300;
+  color: #fff;
+  background-color: rgb(243, 187, 1);
+}
+
+.badge-finished {
+  width: 90px;
+  font-weight: 300;
+  color: #fff;
+  background-color: rgb(0, 148, 32);
 }
 
 /*----------------------Services styling-----------------------*/
