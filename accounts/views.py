@@ -1,5 +1,6 @@
 from .decorators import allowed_users
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
@@ -77,16 +78,20 @@ def orderdetails(request, pk_order):
     A orderdetail page for the customer to view the selected
     order and be able to download the provided artwork.
     """
-    order = Order.objects.get(id=pk_order)
-    tax = order.get_total() / 100 * 21
-    total = order.get_total() + tax
+    try:
+        order = Order.objects.get(id=pk_order, user=request.user)
+        tax = order.get_total() / 100 * 21
+        total = order.get_total() + tax
 
-    context = {
-        'order': order,
-        'tax': tax,
-        'total': total
-    }
-    return render(request, 'accounts/orderdetails.html', context)
+        context = {
+            'order': order,
+            'tax': tax,
+            'total': total
+        }
+        return render(request, 'accounts/orderdetails.html', context)
+    except ObjectDoesNotExist:
+        messages.error(request, 'This order is not available')
+        return redirect('accounts:customerpage')
 
 
 @login_required
