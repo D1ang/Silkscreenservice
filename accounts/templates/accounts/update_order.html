@@ -9,21 +9,21 @@
 
     <!--Orderstatus-->
     <div class="row">
-      <div class="col custom-card text-center p-3 m-3">
-        <h6>Order ID</h6>
+      <div class="col-lg col-sm-12 custom-card text-center p-3 m-3">
+        <h5>Order ID</h5>
         {% if order.id_code %}
-          <h5>{{ order.id_code }}</h5>
+          <h6>{{ order.id_code }}</h6>
         {% else %}
-          <h5>In cart</h5>
+          <h6>In cart</h6>
         {% endif %}
       </div>
       <div class="col custom-card text-center p-3 m-3">
-        <h6>Date</h6>
-        <h5>{{ order.date }}</h5>
+        <h5>Date</h5>
+        <h6>{{ order.date }}</h6>
       </div>
       <div class="col custom-card text-center p-3 m-3">
-        <h6>Current status</h6>
-        <h5>{{ order.status }}</h5>
+        <h5>Current status</h5>
+        <h6>{{ order.status }}</h6>
       </div>
     </div>
     <!--Orderstatus end-->
