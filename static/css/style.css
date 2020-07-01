@@ -228,21 +228,30 @@ hr.dashboard {
 }
 
 .badge-requested {
+  position: relative;
+  bottom: 2px;
   width: 90px;
+  line-height: 18px;
   font-weight: 300;
   color: #fff;
   background-color: #000;
 }
 
 .badge-pending {
+  position: relative;
+  bottom: 2px;
   width: 90px;
+  line-height: 18px;
   font-weight: 300;
   color: #fff;
-  background-color: rgb(243, 187, 1);
+  background-color: rgb(134, 42, 19);
 }
 
 .badge-finished {
+  position: relative;
+  bottom: 2px;
   width: 90px;
+  line-height: 18px;
   font-weight: 300;
   color: #fff;
   background-color: rgb(0, 148, 32);
@@ -519,7 +528,7 @@ footer {
 
 table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td.dtr-control:before,
 table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th.dtr-control:before {
-	margin-top: 6px;
+	margin-top: 10px;
 }
 
 table.dataTable > tbody > tr.child ul.dtr-details > li {
