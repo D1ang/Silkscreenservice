@@ -4,10 +4,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
-
 from orders.models import Order
 from orders.forms import OrderForm
-
 from .models import Customer
 from .forms import CustomerForm
 from .filters import OrderFilter
@@ -31,6 +29,7 @@ def adminpage(request):
     orderFilter = OrderFilter(request.GET, queryset=order_list)
     order_list = orderFilter.qs
 
+    # Paginate the order to max 6 result per page
     paginator = Paginator(order_list, 6)
     page_number = request.GET.get('page')
     page_object = paginator.get_page(page_number)
@@ -73,25 +72,45 @@ def customerpage(request):
 
 
 @login_required
+@allowed_users(allowed_roles=['admin', 'customer'])
 def orderdetails(request, pk_order):
     """
-    A orderdetail page for the customer to view the selected
+    A orderdetail page for the customers and admin to view the selected
     order and be able to download the provided artwork.
+    Extra security is provided to prevent URL snooping.
     """
-    try:
-        order = Order.objects.get(id=pk_order, user=request.user)
+    admin = request.user
+
+    if admin.is_active and admin.is_superuser:
+        order = Order.objects.get(id=pk_order)
         tax = order.get_total() / 100 * 21
         total = order.get_total() + tax
 
-        context = {
-            'order': order,
-            'tax': tax,
-            'total': total
-        }
-        return render(request, 'accounts/orderdetails.html', context)
-    except ObjectDoesNotExist:
-        messages.error(request, 'This order is not available')
-        return redirect('accounts:customerpage')
+        if total < 1:
+            messages.error(request, 'Order still in progress')
+            return redirect('accounts:adminpage')
+        else:
+            context = {
+                'order': order,
+                'tax': tax,
+                'total': total
+            }
+            return render(request, 'accounts/orderdetails.html', context)
+    else:
+        try:
+            order = Order.objects.get(id=pk_order, user=request.user)
+            tax = order.get_total() / 100 * 21
+            total = order.get_total() + tax
+
+            context = {
+                'order': order,
+                'tax': tax,
+                'total': total
+            }
+            return render(request, 'accounts/orderdetails.html', context)
+        except ObjectDoesNotExist:
+            messages.error(request, 'This order is not available')
+            return redirect('accounts:customerpage')
 
 
 @login_required
