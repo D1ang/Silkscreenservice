@@ -28,22 +28,22 @@ html {
 }
 
 .subtext {
-  font-size: 1.1rem;
-  font-weight: 300;
+	font-size: 1.1rem;
+	font-weight: 300;
 	line-height: 16px;
 }
 
 .subtext-bold {
-  font-size: 1.1rem;
-  font-weight: 600;
+	font-size: 1.1rem;
+	font-weight: 600;
 	line-height: 16px;
 }
 
 a.subtext:link,
 a.subtext:visited {
-  color: #fff;
-  font-size: 1.1rem;
-  font-weight: 600;
+	color: #fff;
+	font-size: 1.1rem;
+	font-weight: 600;
 }
 
 a.subtext:hover,
@@ -223,38 +223,38 @@ hr.dashboard {
 
 .custom-card {
 	background: rgba(0, 0, 0, 0.18);
-  padding: 0 8px 40px 8px;
-  border-radius: 7px;
+	padding: 0 8px 40px 8px;
+	border-radius: 7px;
 }
 
 .badge-requested {
-  position: relative;
-  bottom: 2px;
-  width: 90px;
-  line-height: 18px;
-  font-weight: 300;
-  color: #fff;
-  background-color: #000;
+	position: relative;
+	bottom: 2px;
+	width: 90px;
+	line-height: 18px;
+	font-weight: 300;
+	color: #fff;
+	background-color: #000;
 }
 
 .badge-pending {
-  position: relative;
-  bottom: 2px;
-  width: 90px;
-  line-height: 18px;
-  font-weight: 300;
-  color: #fff;
-  background-color: rgb(134, 42, 19);
+	position: relative;
+	bottom: 2px;
+	width: 90px;
+	line-height: 18px;
+	font-weight: 300;
+	color: #fff;
+	background-color: #b20000;
 }
 
 .badge-finished {
-  position: relative;
-  bottom: 2px;
-  width: 90px;
-  line-height: 18px;
-  font-weight: 300;
-  color: #fff;
-  background-color: rgb(0, 148, 32);
+	position: relative;
+	bottom: 2px;
+	width: 90px;
+	line-height: 18px;
+	font-weight: 300;
+	color: #fff;
+	background-color: #5cb85c;
 }
 
 /*----------------------Services styling-----------------------*/
@@ -287,7 +287,7 @@ hr.dashboard {
 .cart-container {
 	background: rgba(0, 0, 0, 0.2);
 	padding: 0 8px 40px 8px;
-  border-radius: 7px;
+	border-radius: 7px;
 }
 
 .btn-delete-cart {
@@ -448,8 +448,8 @@ footer {
 }
 
 .btn-black-outline-sm {
-  font-size: 1.1rem;
-  width: 100%;
+	font-size: 1.1rem;
+	width: 100%;
 	color: #000;
 	border: 2px solid #000;
 	border-radius: 6px;
@@ -467,8 +467,8 @@ footer {
 	width: 100%;
 	color: #fff;
 	background-color: #000;
-  border-radius: 6px;
-  font-size: 1.1rem;
+	border-radius: 6px;
+	font-size: 1.1rem;
 	-webkit-transition: 0.3s;
 	-o-transition: 0.3s;
 	transition: 0.3s;
@@ -479,17 +479,17 @@ footer {
 }
 
 .btn-gray-sm {
-  width: 100%;
-  cursor: default;
+	width: 100%;
+	cursor: default;
 	color: #000;
 	background-color: rgb(112, 112, 112);
-  border-radius: 6px;
-  font-size: 1.1rem;
+	border-radius: 6px;
+	font-size: 1.1rem;
 }
 
 .btn-gray-sm:hover {
-  cursor: default;
-  color: #000;
+	cursor: default;
+	color: #000;
 	background-color: rgb(112, 112, 112);
 }
 
