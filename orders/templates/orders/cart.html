@@ -2,9 +2,10 @@
 
 {% block content %}
 
-<!--Cart-->
 <section id="cart">
   <div class="container">
+
+    <!--Cart-->
     <div class="cart-container mt-5 ">
       <table class="nowrap table table-sm height-fix">
         <thead>
@@ -28,7 +29,9 @@
       </table>
     </div>
   </div>
+  <!--Cart end-->
 
+  <!--Additional costs-->
   <div class="container">
     <div class="cart-container my-4">
       <table class="nowrap table table-sm height-fix">
@@ -49,13 +52,13 @@
           </tr>
           <tr>
             <td class="pt-5"><a href="{% url 'orders:services' %}" class="btn btn-black-sm" role="button">Add services</a></td>
-            <td class="pt-5"><a href="{% url 'orders:checkout' %}" class="btn btn-black-sm" role="button">Checkout</a></td>
+            <td class="pt-5"><a href="{% url 'checkout:checkout' %}" class="btn btn-black-sm" role="button">Checkout</a></td>
           <tr>
         </tbody>
       </table>
     </div>
   </div>
 </section>
-<!--Cart end-->
+<!--Additional costs end-->
 
 {% endblock content %}

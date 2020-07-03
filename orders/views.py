@@ -9,13 +9,22 @@ from decimal import Decimal
 
 
 class ItemListView(ListView):
+    """
+    Shows all the available services/products
+    on 1 page.
+    """
     model = Item
     template_name = 'orders/services.html'
 
 
 class OrderSummaryView(LoginRequiredMixin, View):
+    """
+    A cart that shows the ordered services and
+    precalculates the totals, inclusing tax.
+    When cart is zero or no active order a warning
+    message will be shown to the user.
+    """
     def get(self, *args, **kwargs):
-
         try:
             order = Order.objects.get(user=self.request.user, ordered=False)
             tax = order.get_total() * Decimal(21 / 100)
