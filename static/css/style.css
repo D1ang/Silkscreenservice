@@ -63,7 +63,7 @@ h2 {
 
 /*-------------------Crispy forms overrides--------------------*/
 
-.input-group-text {
+#div_id_artwork .input-group-text {
   width: 115px;
 }
 
@@ -73,6 +73,10 @@ h2 {
 
 .flex-grow {
   display: none;
+}
+
+.custom-file-input {
+  cursor: pointer;
 }
 
 #id_comments {

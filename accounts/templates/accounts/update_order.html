@@ -3,6 +3,8 @@
 {% load crispy_forms_tags %}
 {% crispy form form.helper %}
 
+{% load static %}
+
 {% block content %}
 
 <section id="dashboard">
@@ -88,3 +90,8 @@
 </section>
 
 {% endblock content %}
+
+{% block postloadjs %}
+  {{ block.super }}
+  <script src="{% static 'js/crispy.js' %}"></script>
+{% endblock %}

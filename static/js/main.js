@@ -54,5 +54,5 @@ $(document).ready(function() {
 		paging: false,
 		bSort: false,
 		responsive: true
-	});
+  });
 });
