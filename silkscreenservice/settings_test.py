@@ -18,9 +18,11 @@ MEDIA_URL = '/media/'
 DEFAULT_FILE_STORAGE = "django.core.files.storage.FileSystemStorage"
 SECRET_KEY = "abc123"
 
+"""
 # test uses nose to get coverage
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 NOSE_ARGS = [
     '--with-coverage',
     '--cover-package=accounts,checkout,home',
 ]
+"""
