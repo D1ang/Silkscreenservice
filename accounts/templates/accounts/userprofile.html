@@ -4,79 +4,77 @@
 
 {% block content %}
 
-<!--Profile form-->
-<section id="cart">
-  <div class="container">
-    <div class="cart-container my-5">
-      <div class="row">
-        <div class="col p-4">
-          <form method="POST" action="" enctype="uniForm">
-            {% csrf_token %}
+<section id="dashboard">
+  <div class="container mt-4">
+    <div class="row mt-3">
+      <div class="col-12">
 
-            <h5>Profile information</h5>
-            <hr>
-
-            <div class="form-group mb-0">
-                {{ form.company_name|as_crispy_field }}
+        <!--Profile form-->
+        <div class="custom-card my-3">
+          <div class="row">
+            <div class="col p-4">
+              <form method="POST" action="" enctype="uniForm">
+                {% csrf_token %}
+                <h5>Profile information</h5>
+                <hr>
+                <div class="form-group mb-0">
+                  {{ form.company_name|as_crispy_field }}
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6 mb-0">
+                    {{ form.first_name|as_crispy_field }}
+                  </div>
+                  <div class="form-group col-md-6 mb-0">
+                    {{ form.last_name|as_crispy_field }}
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6 mb-0">
+                    {{ form.street_address|as_crispy_field }}
+                  </div>
+                  <div class="form-group col-md-6 mb-0">
+                    {{ form.address_line_2|as_crispy_field }}
+                  </div>
+                </div>
+                <div class="form-group mb-0">
+                  {{ form.country|as_crispy_field }}
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-5 mb-0">
+                    {{ form.city|as_crispy_field }}
+                  </div>
+                  <div class="form-group col-md-5 mb-0">
+                    {{ form.region|as_crispy_field }}
+                  </div>
+                  <div class="form-group col-md-2 mb-0">
+                    {{ form.postal|as_crispy_field }}
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6 mb-0">
+                    {{ form.email|as_crispy_field }}
+                  </div>
+                  <div class="form-group col-md-6 mb-0">
+                    {{ form.phone|as_crispy_field }}
+                  </div>
+                </div>
+                <div class="form-row justify-content-center mt-3">
+                  <div class="form-group col-md-3 mb-0">
+                    <a href="{% url 'accounts:customerpage' %}" class="btn btn-black-sm mb-3" role="button">View the dashboard</a>
+                  </div>
+                  <div class="form-group col-md-3 mb-0">
+                    <input class="btn btn-black-sm" type="submit" value="Update changes">
+                  </div>
+                </div>
+              </form>
             </div>
-            <div class="form-row">
-              <div class="form-group col-md-6 mb-0">
-                {{ form.first_name|as_crispy_field }}
-              </div>
-              <div class="form-group col-md-6 mb-0">
-                {{ form.last_name|as_crispy_field }}
-              </div>
-            </div>
-
-            <div class="form-row">
-              <div class="form-group col-md-6 mb-0">
-                {{ form.street_address|as_crispy_field }}
-              </div>
-              <div class="form-group col-md-6 mb-0">
-                {{ form.address_line_2|as_crispy_field }}
-              </div>
-            </div>
-
-            <div class="form-group mb-0">
-              {{ form.country|as_crispy_field }}
-            </div>
-
-            <div class="form-row">
-              <div class="form-group col-md-5 mb-0">
-                {{ form.city|as_crispy_field }}
-              </div>
-              <div class="form-group col-md-5 mb-0">
-                {{ form.region|as_crispy_field }}
-              </div>
-              <div class="form-group col-md-2 mb-0">
-                {{ form.postal|as_crispy_field }}
-              </div>
-            </div>
-
-            <div class="form-row">
-              <div class="form-group col-md-6 mb-0">
-                {{ form.email|as_crispy_field }}
-              </div>
-              <div class="form-group col-md-6 mb-0">
-                {{ form.phone|as_crispy_field }}
-              </div>
-            </div>
-
-            <div class="form-row justify-content-center mt-3">
-              <div class="form-group col-md-3 mb-0">
-                <a href="{% url 'accounts:customerpage' %}" class="btn btn-black-sm mb-3" role="button">View the dashboard</a>
-              </div>
-              <div class="form-group col-md-3 mb-0">
-                <input class="btn btn-black-sm" type="submit" value="Update changes">
-              </div>
-            </div>
-            
-          </form>
+          </div>
         </div>
+        <!--Profile form end-->
+
       </div>
     </div>
   </div>
 </section>
-<!--Profile form end-->
 
 {% endblock content %}
