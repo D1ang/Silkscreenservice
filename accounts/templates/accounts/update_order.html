@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% load crispy_forms_tags %}
+{% crispy form form.helper %}
 
 {% block content %}
 
@@ -22,7 +23,7 @@
         <h6>{{ order.date }}</h6>
       </div>
       <div class="col custom-card text-center p-3 m-3">
-        <h5>Current status</h5>
+        <h5>Status</h5>
         <h6>{{ order.status }}</h6>
       </div>
     </div>
@@ -30,30 +31,50 @@
 
     <div class="row mt-3">
       <div class="col-12">
-        <h6 class="text-uppercase pl-2">update order</h6>
+        <h5 class="text-uppercase pl-2">update order</h5>
         <hr class="dashboard m-0">
 
+        <!--Orderdetails-->
+        <div class="custom-card mt-3">
+          <table class="nowrap table table-sm height-fix">
+            <thead>
+              <tr>
+                <th>Services</th>
+                <th class="cart-align-right">Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for order_item in order.items.all %}
+                <tr>
+                  <td>{{ forloop.counter }}. {{ order_item.item.name }}</td>
+                  <td class="cart-align-right">{{ order_item.item.price }}€</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <!--Orderdetails end-->
+
         <!--Edit order-->
-        <div class="custom-card my-3 p-2">
+        <div class="custom-card my-4 p-2">
           <form method="POST" action="" class="uniForm" enctype="multipart/form-data">
             {% csrf_token %}
-
+            
             <div class="form-row">
-              <div class="form-group col-md-12 mb-0">
+              <div class="form-group col-md-6 mb-0">
+                {{ form.status|as_crispy_field }}
                 {{ form.artwork|as_crispy_field }}
               </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-12 mb-0">
-                {{ form.status|as_crispy_field }}
+              <div class="form-group col-md-6 mb-0">
+                {{ form.comments|as_crispy_field }}
               </div>
             </div>
 
             <div class="form-row justify-content-center mt-3">
-              <div class="form-group col-md-3 mb-0">
+              <div class="form-group col-md-6 mb-0">
                 <a href="{% url 'accounts:customerpage' %}" class="btn btn-black-sm mb-3" role="button">Return to dashboard</a>
               </div>
-              <div class="form-group col-md-3 mb-0">
+              <div class="form-group col-md-6 mb-0">
                 <input class="btn btn-black-sm" type="submit" value="Update order">
               </div>
             </div>
