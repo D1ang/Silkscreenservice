@@ -59,7 +59,6 @@ class CheckoutView(LoginRequiredMixin, View):
     the customer address info and prefered
     payment option.
     """
-
     def get(self, *args, **kwargs):
         try:
             order = Order.objects.get(user=self.request.user, ordered=False)
@@ -102,6 +101,7 @@ class CheckoutView(LoginRequiredMixin, View):
                 postal = form.cleaned_data.get('postal')
                 country = form.cleaned_data.get('country')
                 artwork = form.cleaned_data.get('artwork')
+                comments = form.cleaned_data.get('comments')
                 billing_address = BillingAddress(
                     user=self.request.user,
                     company_name=company_name,
@@ -117,6 +117,7 @@ class CheckoutView(LoginRequiredMixin, View):
                 billing_address.save()
                 order.billing_address = billing_address
                 order.artwork = artwork
+                order.comments = comments
                 order.save()
 
                 return redirect('orders:payment')
@@ -131,7 +132,6 @@ class PaymentView(LoginRequiredMixin, View):
     Load the payment view and loads the public
     Stripe key for the card field.
     """
-
     def get(self, *args, **kwargs):
         try:
             order = Order.objects.get(user=self.request.user, ordered=False)

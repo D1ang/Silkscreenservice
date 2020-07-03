@@ -93,6 +93,7 @@ class Order(models.Model):
     tax = models.FloatField(blank=True, null=True)
     artwork = models.FileField(
         upload_to='artwork/%Y/%m/%d', blank=True, null=True)
+    comments = models.TextField(max_length=250, blank=True, null=True)
     billing_address = models.ForeignKey(
         'BillingAddress', on_delete=models.SET_NULL, blank=True, null=True)
     payment = models.ForeignKey(
