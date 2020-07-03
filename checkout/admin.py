@@ -14,9 +14,6 @@ class BillingAddressAdmin(admin.ModelAdmin):
         'postal',
         'country'
     )
-    list_filter = (
-        'country',
-    )
     search_fields = (
         'user',
         'street_address',
