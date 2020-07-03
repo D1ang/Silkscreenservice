@@ -10,6 +10,7 @@
         <h2 class="text-center my-5">Available services</h2>
         <div class="row">
 
+          <!--Service items-->
           {% for item in object_list %}
             <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
               <div class="card w-100 fixed-card-height">
@@ -28,6 +29,7 @@
               </div>
             </div>
           {% endfor %}
+          <!--Service items end-->
 
         </div>
       </div>
@@ -37,4 +39,3 @@
 <!--Services end-->
 
 {% endblock content %}
-

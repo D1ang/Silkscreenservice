@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.db import models
 from django.shortcuts import reverse
-from django_countries.fields import CountryField
 
 
 class ItemTag(models.Model):
@@ -95,46 +94,18 @@ class Order(models.Model):
         upload_to='artwork/%Y/%m/%d', blank=True, null=True)
     comments = models.TextField(max_length=250, blank=True, null=True)
     billing_address = models.ForeignKey(
-        'BillingAddress', on_delete=models.SET_NULL, blank=True, null=True)
+        'checkout.BillingAddress',
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True)
     payment = models.ForeignKey(
-        'Payment', on_delete=models.SET_NULL, blank=True, null=True)
+        'checkout.Payment', on_delete=models.SET_NULL, blank=True, null=True)
 
     def get_total(self):
         total = 0
         for order_item in self.items.all():
             total += order_item.get_total_item_price()
         return total
-
-    def __str__(self):
-        return self.user.username
-
-
-class BillingAddress(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             on_delete=models.CASCADE)
-    company_name = models.CharField(max_length=25)
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    street_address = models.CharField(max_length=100)
-    address_line_2 = models.CharField(max_length=100, blank=True, null=True)
-    city = models.CharField(max_length=100)
-    region = models.CharField(max_length=100, blank=True, null=True)
-    postal = models.CharField(max_length=100)
-    country = CountryField(multiple=False)
-
-    def __str__(self):
-        return self.user.username
-
-    class Meta:
-        verbose_name_plural = 'Adresses'
-
-
-class Payment(models.Model):
-    stripe_charge_id = models.CharField(max_length=50)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             on_delete=models.SET_NULL, blank=True, null=True)
-    amount = models.FloatField()
-    timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.user.username

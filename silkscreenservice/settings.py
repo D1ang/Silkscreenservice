@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'home',
     'orders',
+    'checkout',
     'accounts',
 
     'allauth',

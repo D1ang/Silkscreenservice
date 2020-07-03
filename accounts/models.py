@@ -4,9 +4,12 @@ from django_countries.fields import CountryField
 
 
 class Customer(models.Model):
-    # a customer can only have 1 user & user only 1 customer
+    """
+    The customer model to create a
+    new customer connected to an User
+    A customer can only have 1 user & user only 1 customer
+    """
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
-
     company_name = models.CharField(max_length=25)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
