@@ -53,9 +53,9 @@ The navbar is available when needed and a footer is provided with contact inform
 ### Skeleton
 By using Figma the following wireframes were created:
 
-[Silkscreenservice wireframe](https://github.com/D1ang/EasyLedger/blob/master/mockups/wireframe.pdf)
+[Silkscreenservice wireframe](https://github.com/D1ang/Silkscreenservice/blob/master/mockups/wireframe.pdf)
 
-[Responsive phone wireframe](https://github.com/D1ang/EasyLedger/blob/master/mockups/wireframe-sm.pdf)
+[Responsive phone wireframe](https://github.com/D1ang/Silkscreenservice/blob/master/mockups/wireframe-sm.pdf)
 
 ### Surface
 The colours chosen are: yellow, red, black and blue.
