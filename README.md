@@ -145,3 +145,5 @@ Illustrations: https://illlustrations.co/
 - Django 3.0 documentation [link](https://docs.djangoproject.com/en/3.0/)
 - Django Admin Cookbook [link](https://books.agiliq.com/projects/django-admin-cookbook/en/latest/introduction.html)
 - SVG compressing [link](https://www.compresss.com/compress-svg.html)
+
+[![Build Status](https://travis-ci.org/D1ang/Silkscreenservice.svg?branch=master)](https://travis-ci.org/D1ang/Silkscreenservice)
