@@ -6,7 +6,7 @@ from django_countries.widgets import CountrySelectWidget  # noqa: F401
 class CheckoutForm(forms.Form):
     """
     A checkout form that collects the customer
-    Billing address and prefered payment option.
+    Billing address and artwork upload.
     """
     company_name = forms.CharField()
     first_name = forms.CharField()

@@ -4,9 +4,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect
 from django.views.generic import View
-from .forms import CheckoutForm
-from .models import Order, BillingAddress, Payment
+from orders.models import Order
 from accounts.models import Customer
+from .models import BillingAddress, Payment
+from .forms import CheckoutForm
 from decimal import Decimal
 import stripe
 import random
@@ -18,6 +19,10 @@ stripe_secret_key = settings.STRIPE_SECRET_KEY
 
 
 def create_id_code():
+    """
+    Using random to create an order ID
+    Random is based on 8 digits.
+    """
     return ''.join(
         random.choices(string.ascii_uppercase + string.digits, k=8)
     )
@@ -26,8 +31,8 @@ def create_id_code():
 class CheckoutView(LoginRequiredMixin, View):
     """
     Sends the checkout form if its valid with
-    the customer address info and prefered
-    payment option.
+    the customer address info. But if the cart is empty
+    it will redirect to the services page.
     """
     def get(self, *args, **kwargs):
         try:
@@ -51,12 +56,17 @@ class CheckoutView(LoginRequiredMixin, View):
                   'country': customer.country
                 })
                 context = {'form': form}
-                return render(self.request, 'orders/checkout.html', context)
+                return render(self.request, 'checkout/checkout.html', context)
         except ObjectDoesNotExist:
             messages.warning(self.request, 'There is no active order')
             return redirect('orders:services')
 
     def post(self, *args, **kwargs):
+        """
+        When POST user will be redirected to
+        the payment form and billing address
+        will be saved in the database including the artwork.
+        """
         form = CheckoutForm(self.request.POST, self.request.FILES or None)
         try:
             order = Order.objects.get(user=self.request.user, ordered=False)
@@ -90,11 +100,11 @@ class CheckoutView(LoginRequiredMixin, View):
                 order.comments = comments
                 order.save()
 
-                return redirect('orders:payment')
+                return redirect('checkout:payment')
 
         except ObjectDoesNotExist:
             messages.warning(self.request, 'There is no active order')
-            return redirect('orders:checkout')
+            return redirect('checkout:checkout')
 
 
 class PaymentView(LoginRequiredMixin, View):
@@ -115,7 +125,7 @@ class PaymentView(LoginRequiredMixin, View):
             if order.billing_address:
                 stripe.api_key = stripe_secret_key
 
-                template = 'orders/payment.html'
+                template = 'checkout/payment.html'
                 context = {
                     'order': order,
                     'stripe_public_key': stripe_public_key,
@@ -127,7 +137,7 @@ class PaymentView(LoginRequiredMixin, View):
             else:
                 messages.warning(
                     self.request, 'Billing address is missing')
-                return redirect('orders:checkout')
+                return redirect('checkout:checkout')
         except ObjectDoesNotExist:
             messages.warning(self.request, 'There is no active order')
             return redirect('orders:services')
