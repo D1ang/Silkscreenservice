@@ -64,23 +64,23 @@ h2 {
 /*-------------------Crispy forms overrides--------------------*/
 
 #div_id_artwork .input-group-text {
-  width: 115px;
+	width: 115px;
 }
 
 .custom-control {
-  display: none;
+	display: none;
 }
 
 .flex-grow {
-  display: none;
+	display: none;
 }
 
 .custom-file-input {
-  cursor: pointer;
+	cursor: pointer;
 }
 
 #id_comments {
-  height: 189px;
+	height: 189px;
 }
 
 /*-----------------------Home sections-------------------------*/
@@ -337,8 +337,8 @@ hr.dashboard {
 	background-image: url(/static/svg/error.svg);
 	background-repeat: no-repeat;
 	background-position: center bottom;
-  background-size: 30%;
-  border: 20px solid #06b3be;  /* Fake padding */
+	background-size: 30%;
+	border: 20px solid #06b3be; /* Fake padding */
 	background-color: #06b3be;
 	min-height: 100%;
 	padding-top: 60px;
@@ -569,4 +569,21 @@ table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th.dtr-control:b
 table.dataTable > tbody > tr.child ul.dtr-details > li {
 	border-style: none;
 	padding: 0;
+}
+
+/*----------------------File input Widget--------------------- */
+
+.btn-file {
+	position: relative;
+	overflow: hidden;
+}
+
+.btn-file input[type="file"] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  opacity: 0;
+  cursor: pointer;
 }

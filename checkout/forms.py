@@ -1,4 +1,5 @@
 from django import forms
+from .widgets import CustomClearableFileInput
 from django_countries.fields import CountryField
 from django_countries.widgets import CountrySelectWidget  # noqa: F401
 
@@ -25,7 +26,10 @@ class CheckoutForm(forms.Form):
     )
     postal = forms.CharField()
     country = CountryField(blank_label='Select country').formfield()
-    artwork = forms.FileField()
+    artwork = forms.FileField(
+        required=True,
+        widget=CustomClearableFileInput
+    )
     comments = forms.CharField(
         required=False,
         widget=forms.Textarea(attrs={'placeholder': 'max 250 characters'})
