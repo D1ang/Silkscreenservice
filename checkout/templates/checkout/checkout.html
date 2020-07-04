@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% load crispy_forms_tags %}
+{% crispy form form.helper %}
 
 {% block content %}
 
@@ -8,11 +9,12 @@
   <div class="container pt-3">
 
     <!--Checkoutform-->
-    <div class="cart-container mt-5">
+    <div class="cart-container mt-4">
       <div class="row">
         <div class="col p-4">
           <form method="POST" action="" class="uniForm" enctype="multipart/form-data">
             {% csrf_token %}
+            
             <h5>Billing address</h5>
             <hr>
              <div class="form-group">
@@ -62,7 +64,14 @@
           <div class="form-group">
             {{ form.artwork|as_crispy_field }}
           </div>
-          <button class="btn btn-black-sm" type="submit">Payment</button>
+        </div>
+      </div>
+      <div class="form-row justify-content-center">
+        <div class="form-group col-md-6 mb-0">
+          <a href="{% url 'orders:cart' %}" class="btn btn-black-sm mb-3" role="button">Return to cart</a>
+        </div>
+        <div class="form-group col-md-6 mb-0">
+          <input class="btn btn-black-sm" type="submit" value="Payment">
         </div>
       </div>
     </div>
