@@ -86,7 +86,7 @@
                   {% if request.user.is_superuser %}
                     <td class="pt-5"><button disabled class="btn btn-gray-sm">Artwork not available</button></td>
                   {% else %}
-                    <td class="pt-5"><a href="{% url 'orders:checkout' %}" class="btn btn-black-sm" role="button">Checkout</a></td>
+                    <td class="pt-5"><a href="{% url 'checkout:checkout' %}" class="btn btn-black-sm" role="button">Checkout</a></td>
                   {% endif %}
                 {% endif %}
               <tr>
