@@ -331,6 +331,19 @@ hr.dashboard {
 	text-align: right;
 }
 
+/*----------------------------Errors---------------------------*/
+
+#error {
+	background-image: url(/static/svg/error.svg);
+	background-repeat: no-repeat;
+	background-position: center bottom;
+  background-size: 30%;
+  border: 20px solid #06b3be;  /* Fake padding */
+	background-color: #06b3be;
+	min-height: 100%;
+	padding-top: 60px;
+}
+
 /*----------------------------Footer---------------------------*/
 
 footer {
