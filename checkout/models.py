@@ -7,13 +7,13 @@ class BillingAddress(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
     company_name = models.CharField(max_length=25)
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    street_address = models.CharField(max_length=100)
-    address_line_2 = models.CharField(max_length=100, blank=True, null=True)
-    city = models.CharField(max_length=100)
-    region = models.CharField(max_length=100, blank=True, null=True)
-    postal = models.CharField(max_length=100)
+    first_name = models.CharField(max_length=25)
+    last_name = models.CharField(max_length=25)
+    street_address = models.CharField(max_length=25)
+    address_line_2 = models.CharField(max_length=25, blank=True, null=True)
+    city = models.CharField(max_length=25)
+    region = models.CharField(max_length=25, blank=True, null=True)
+    postal = models.CharField(max_length=5)
     country = CountryField(multiple=False)
 
     def __str__(self):
