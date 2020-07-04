@@ -17,7 +17,7 @@ class Customer(models.Model):
     address_line_2 = models.CharField(max_length=25, blank=True, null=True)
     city = models.CharField(max_length=25)
     region = models.CharField(max_length=25, blank=True, null=True)
-    postal = models.CharField(max_length=5)
+    postal = models.CharField(max_length=6)
     country = CountryField(multiple=False)
     email = models.CharField(max_length=25)
     phone = models.IntegerField(null=True, blank=True)
