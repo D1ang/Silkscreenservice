@@ -26,3 +26,7 @@ class CheckoutForm(forms.Form):
     postal = forms.CharField()
     country = CountryField(blank_label='Select country').formfield()
     artwork = forms.FileField()
+    comments = forms.CharField(
+        required=False,
+        widget=forms.Textarea(attrs={'placeholder': 'max 250 characters'})
+    )

@@ -63,10 +63,11 @@
           <hr>
           <div class="form-group">
             {{ form.artwork|as_crispy_field }}
+            {{ form.comments|as_crispy_field }}
           </div>
         </div>
       </div>
-      <div class="form-row justify-content-center">
+      <div class="form-row justify-content-center px-2">
         <div class="form-group col-md-6 mb-0">
           <a href="{% url 'orders:cart' %}" class="btn btn-black-sm mb-3" role="button">Return to cart</a>
         </div>
