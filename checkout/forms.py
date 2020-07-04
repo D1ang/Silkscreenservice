@@ -32,5 +32,6 @@ class CheckoutForm(forms.Form):
     )
     comments = forms.CharField(
         required=False,
+        max_length=250,
         widget=forms.Textarea(attrs={'placeholder': 'max 250 characters'})
     )
