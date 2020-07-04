@@ -20,7 +20,7 @@ class Customer(models.Model):
     postal = models.CharField(max_length=5)
     country = CountryField(multiple=False)
     email = models.CharField(max_length=25)
-    phone = models.IntegerField(max_length=15, null=True, blank=True)
+    phone = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
         return self.company_name
