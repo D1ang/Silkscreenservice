@@ -109,6 +109,8 @@ xxxx
 
 ## Bugs
 
+CSS own written code is tested with the W3C CSS Validator as it does not give any errors the deployed version of the site does gives warnings and error comming from Bootstrap and the Font Awesome animations Library.
+
 XXXX
 
 The following tests have been used to ensure proper site functionality:
