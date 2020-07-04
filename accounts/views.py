@@ -9,6 +9,7 @@ from orders.forms import OrderForm
 from .models import Customer
 from .forms import CustomerForm
 from .filters import OrderFilter
+from decimal import Decimal
 
 
 @login_required
@@ -83,7 +84,7 @@ def orderdetails(request, pk_order):
 
     if admin.is_active and admin.is_superuser:
         order = Order.objects.get(id=pk_order)
-        tax = order.get_total() / 100 * 21
+        tax = order.get_total() * Decimal(21 / 100)
         total = order.get_total() + tax
 
         if total < 1:
@@ -99,7 +100,7 @@ def orderdetails(request, pk_order):
     else:
         try:
             order = Order.objects.get(id=pk_order, user=request.user)
-            tax = order.get_total() / 100 * 21
+            tax = order.get_total() * Decimal(21 / 100)
             total = order.get_total() + tax
 
             context = {
@@ -122,7 +123,7 @@ def update_order(request, pk_order):
     """
     order = Order.objects.get(id=pk_order)
     form = OrderForm(instance=order)
-    tax = order.get_total() / 100 * 21
+    tax = order.get_total() * Decimal(21 / 100)
     total = order.get_total() + tax
 
     if order.id_code:
