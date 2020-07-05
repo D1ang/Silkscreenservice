@@ -30,3 +30,5 @@ jobs:
         python manage.py test
     - name: Super-Linter
       uses: github/super-linter@v3.2.0
+      env:
+        VALIDATE_CSS:  true
