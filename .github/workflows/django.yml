@@ -30,6 +30,3 @@ jobs:
         python manage.py test
     - name: Super-Linter
       uses: docker://github/super-linter:v3.2.0
-      env:
-        VALIDATE_ALL_CODEBASE: false
-        VALIDATE_CSS: true
