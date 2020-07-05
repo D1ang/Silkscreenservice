@@ -85,7 +85,7 @@ The buttons are style in 2 versions full black or black outlined to fit the over
 3. DataTables - *Adds advanced interaction controls to HTML tables*
 
 ### Python & Django Plugins
-1. Pillow - *Python Imaging Library*
+1. pillow - *Python Imaging Library*
 2. stripe - *Creditcard payments end transaction security*
 3. django-allauth - *Authentication, registration & account management*
 4. django-countries - *Provides country choices for use with forms*
@@ -124,14 +124,93 @@ The following tests have been used to ensure proper site functionality:
 - [Visual Studio Code](https://code.visualstudio.com/): Using the built-in tools to test on proper code.
 
 ## Deployment
-The example of this code is hosted by using Heroku and Amazon, this code is deployed to GitHub directly from the master branch.
+The example of this code is hosted by using Heroku and Amazon S3, this code is deployed to GitHub directly from the master branch.
 The deployed site will update automatically upon new commits to the master branch.
+This code can be run locally or deployed to a live environment. Directions are based on deployment to Heroku.
 
-To run locally, you can clone this repository directly into the editor of your choice by entering
-`git clone https://github.com/D1ang/Silkscreenservice.git` into your terminal.
-To cut ties with this GitHub repository, type `git remote rm origin` into the terminal.
+### Deploy requirements
+ - [VScode](https://code.visualstudio.com/) *A tool to develop software*
+ - [python 3](https://www.python.org/) *A programming language*
+ - [PIP](https://pip.pypa.io/en/stable/installing/) *To get python installation packages*
+ - [Git](https://gist.github.com/) *Version control for code source*
+ - [AWS-S3](https://docs.aws.amazon.com/) *Webbased cloud storage service*
+ - [S3 Bucket](https://docs.aws.amazon.com/) *A cloud storage resource*
+ - [Stripe](https://stripe.com/) *To securely collect creditcard payments*
 
-*NOTE: Also deployment is a detailed description on how to clone and setup locally, and how to setup on remote (heroku etc)
+### Local deployment
+Save a copy of the github repository by clicking the "Code" button at the right top of the GitHub page and select "Download ZIP" in the submenu.
+Extract the zip file to a folder of choice on your system. If Git is installed on your system, you can clone the repository with the following command:
+  ```bash
+  git clone https://github.com/maliahavlicek/ms4_challenger.git
+  ```
+
+Open your preferred IDE (VScode) then open a terminal session in the unzip folder or browse to the correct location.
+Set up a virtual environment with this command in the terminal session:
+  ```bash
+  python3 manage.py
+  ```
+   > NOTE: Your command may differ, such as ```python -m .venv venv ...``` or ```py manage.py ...``` or ```.\manage.py ...```
+
+Activate the .venv with the command:
+  ```bash 
+  .venv\Scripts\activate
+  ```
+  > NOTE: This command may differ depending on your operating system, please check the Python documentation on creating an ENV.
+
+Install all required modules with the command:
+   ```bash
+   pip install -r requirements.txt
+   ```
+ 
+Create a new file at the base directory level called env.py:
+   ```python
+   touch env.py
+   ```
+
+Copy the following into the env.py file:
+    ```python
+    import os
+    
+
+    os.environ.setdefault( 'DEVELOPMENT', 'True')
+    os.environ.setdefault('SECRET_KEY', '<your_value>')
+    os.environ.setdefault('STRIPE_PUBLIC_KEY', '<your_value>')
+    os.environ.setdefault('STRIPE_SECRET_KEY', '<your_value>')
+    ```
+
+Replace <your_value> with the values from your own created accounts
+    - STRIPE_PUBLIC_KEY *Required from the developer's API on* (stripe dashboard)[https://dashboard.stripe.com/test/apikeys]
+    - STRIPE_SECRET_KEY *Required from the Developer's API on* (stripe dashboard)[https://dashboard.stripe.com/test/apikeys]
+    - SECRET_KEY *Required from an online key generator* (Djecrety)[https://djecrety.ir/]
+
+Set up the databases by running the following management command in your terminal:
+  ```bash
+  python manage.py migrate
+  ```
+
+Create a superuser so you can have access to the django admin by running the following command in your terminal:
+  ```bash
+  python manage.py createsuperuser
+  ```
+
+And finally start your server by running the following management command in your terminal:
+  ```bash
+  python manage.py runserver
+  ```
+
+When the server is running browse to the admin panel by using the url provided by your IDE;
+Most of the time this is *127.0.0.1:8000/admin*
+You can login by using the credentials used for creating the superuser.
+When logged in some records need to be created:
+```
+XXXX
+```
+
+
+
+
+
+
 
 ## Credits
 
