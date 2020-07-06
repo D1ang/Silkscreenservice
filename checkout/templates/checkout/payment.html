@@ -1,4 +1,3 @@
-
 {% extends "base.html" %}
 
 {% load static %}
@@ -18,12 +17,12 @@
           </tr>
         </thead>
         <tbody>
-              {% for order_item in order.items.all %}
-                <tr>
-                  <td>{{ forloop.counter }}. {{ order_item.item.name }}</td>
-                  <td class="cart-align-right">{{ order_item.item.price }}€</td>
-                </tr>
-              {% endfor %}
+          {% for order_item in order.items.all %}
+            <tr>
+              <td>{{ forloop.counter }}. {{ order_item.item.name }}</td>
+              <td class="cart-align-right">{{ order_item.item.price }}€</td>
+            </tr>
+          {% endfor %}
         </tbody>
       </table>
     </div>
@@ -60,14 +59,13 @@
         <div id="credit-card-errors" style="display: none;">
           <div class="alert-message block-message error" id="stripe-error-message"></div>
         </div>
-
         <div class="px-2">
           <div id="card-element">
             <!-- A Stripe Element will be inserted here. -->
           </div>
-
-          <!-- Used to display form errors. -->
-          <div id="card-errors" role="alert"></div>
+          <div id="card-errors" role="alert">
+            <!-- Used to display form errors. -->
+          </div>
         </div>
         <div class="my-4">
           <div class="form-row justify-content-center px-2">
