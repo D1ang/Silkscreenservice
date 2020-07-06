@@ -61,7 +61,7 @@ $(document).ready(function() {
    checkout form. This will provide the user with the needed feedback
    of an added file.*/
 $('#new-upload').change(function() {
-  var file = $('#new-upload')[0].files[0];
+  let file = $('#new-upload')[0].files[0];
   $('#filename').text(`Artwork uploaded!`);
   $("#filename").toggleClass('upload-success-text');
 });
