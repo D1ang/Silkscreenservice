@@ -13,7 +13,7 @@
           <div class="card-body d-flex flex-column">
             <h5 class="card-title text-center text-uppercase">account login</h5>
 
-            <form id="auth-form" method="POST" action="{% url 'account_login' %}" class="my-4">
+            <form id="auth-form" method="POST" action="{% url 'account_login' %}" class="my-4 px-5">
               {% csrf_token %}
 
               {% if redirect_field_value %}
