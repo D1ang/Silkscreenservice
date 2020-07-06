@@ -590,3 +590,7 @@ table.dataTable > tbody > tr.child ul.dtr-details > li {
   opacity: 0;
   cursor: pointer;
 }
+
+.upload-success-text {
+  color: #b20000;
+}

@@ -56,3 +56,12 @@ $(document).ready(function() {
 		responsive: true
   });
 });
+
+/* Changes the upload button text when a file is uploaded on the
+   checkout form. This will provide the user with the needed feedback
+   of an added file.*/
+$('#new-upload').change(function() {
+  var file = $('#new-upload')[0].files[0];
+  $('#filename').text(`Artwork uploaded!`);
+  $("#filename").toggleClass('upload-success-text');
+});

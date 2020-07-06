@@ -1,3 +1,6 @@
 <span class="btn btn-black-sm btn-file">
-    Upload artwork<input type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %}>
+    <span id="filename" class="mt-1">Upload artwork</span>
+    <input id="new-upload" type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %}>
 </span>
+
+<p id="filename" class="mt-1"></p>
