@@ -1,5 +1,5 @@
 from django import forms
-from .widgets import CustomClearableFileInput
+from .file_widgets import CustomClearableFileInput
 from django_countries.fields import CountryField
 from django_countries.widgets import CountrySelectWidget  # noqa: F401
 
