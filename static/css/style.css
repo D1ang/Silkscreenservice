@@ -198,7 +198,7 @@ h2 {
 /*------------------------Auth styling-------------------------*/
 
 #auth {
-  min-height: 900px;
+  min-height: 100%;
   padding-top: 60px;
 }
 
@@ -302,7 +302,7 @@ hr.dashboard {
   background-position: right bottom;
   background-size: 35%;
   background-color: #06b3be;
-  min-height: 850px;
+  min-height: 100%;
   padding-top: 60px;
 }
 
@@ -359,7 +359,7 @@ footer {
   padding-bottom: 2px;
 }
 
-@media screen and (max-width: 995px) {
+@media screen and (max-width: 1024px) {
   .footer-container h2 {
     font-family: 'Pacifico', cursive;
     font-weight: 100;
@@ -374,7 +374,7 @@ footer {
     font-family: 'Pacifico', cursive;
     font-weight: 100;
     font-size: 28px;
-    padding-top: 18px;
+    padding-top: 8px;
     padding-bottom: 10px;
   }
 }
