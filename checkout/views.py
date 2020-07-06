@@ -18,7 +18,7 @@ stripe_public_key = settings.STRIPE_PUBLIC_KEY
 stripe_secret_key = settings.STRIPE_SECRET_KEY
 
 
-def create_id_code():
+def generate_id_code():
     """
     Using random to create an order ID
     Random is based on 8 digits.
@@ -179,7 +179,7 @@ class PaymentView(LoginRequiredMixin, View):
         order.payment = payment
         order.total = total
         order.tax = tax
-        order.id_code = '920-' + create_id_code()
+        order.id_code = '920-' + generate_id_code()
         order.save()
 
         messages.success(self.request, 'Your order was successful!')

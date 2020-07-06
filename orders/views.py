@@ -64,9 +64,9 @@ def add_to_cart(request, slug):
             user=request.user,
             ordered=False,
         )
-        order_qs = Order.objects.filter(user=request.user, ordered=False)
-        if order_qs.exists():
-            order = order_qs[0]
+        order_querySet = Order.objects.filter(user=request.user, ordered=False)
+        if order_querySet.exists():
+            order = order_querySet[0]
 
             # check if the order item is in the order
             if order.items.filter(item__slug=item.slug).exists():
@@ -96,9 +96,9 @@ def remove_from_cart(request, slug):
     Removes 1 popularity click.
     """
     item = get_object_or_404(Item, slug=slug)
-    order_qs = Order.objects.filter(user=request.user, ordered=False)
-    if order_qs.exists():
-        order = order_qs[0]
+    order_querySet = Order.objects.filter(user=request.user, ordered=False)
+    if order_querySet.exists():
+        order = order_querySet[0]
 
         # check if the item is in the order
         if order.items.filter(item__slug=item.slug).exists():
