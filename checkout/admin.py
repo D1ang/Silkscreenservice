@@ -24,7 +24,8 @@ class BillingAddressAdmin(admin.ModelAdmin):
 class PaymentAdmin(admin.ModelAdmin):
     list_display = (
         'user',
-        'amount'
+        'amount',
+        'timestamp'
     )
 
 
