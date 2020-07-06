@@ -78,20 +78,24 @@
                   <td class="cart-align-right font-weight-bold"><strong>{{ total|floatformat:2 }}€</strong></td>
                 {% endif %}
               </tr>
-              <tr>
-                <td class="pt-5"><a href="{% url 'accounts:customerpage' %}" class="btn btn-black-sm">Return to overview</a></td>
-                {% if order.id_code %}
-                  <td class="pt-5"><a href="{{ order.artwork.url }}" target="_blank" class="btn btn-black-sm">Download artwork</a></td>
-                {% else %}
-                  {% if request.user.is_superuser %}
-                    <td class="pt-5"><button disabled class="btn btn-gray-sm">Artwork not available</button></td>
-                  {% else %}
-                    <td class="pt-5"><a href="{% url 'checkout:checkout' %}" class="btn btn-black-sm" role="button">Checkout</a></td>
-                  {% endif %}
-                {% endif %}
-              <tr>
             </tbody>
           </table>
+          <div class="form-row justify-content-center mt-3">
+            <div class="form-group col-md-6 mb-0">
+              <a href="{% url 'accounts:customerpage' %}" class="btn btn-black-sm mb-3" role="button">Return to dashboard</a>
+            </div>
+            <div class="form-group col-md-6 mb-0">
+              {% if order.id_code %}
+                <a href="{{ order.artwork.url }}" target="_blank" class="btn btn-black-sm">Download artwork</a>
+              {% else %}
+                {% if request.user.is_superuser %}
+                  <button disabled class="btn btn-gray-sm">Artwork not available</button>
+                {% else %}
+                  <a href="{% url 'checkout:checkout' %}" class="btn btn-black-sm" role="button">Checkout</a>
+                {% endif %}
+              {% endif %}
+            </div>
+          </div>
         </div>
         <!--Order costs end-->
         
