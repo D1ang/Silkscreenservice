@@ -7,7 +7,7 @@ class OrderFilter(filters.FilterSet):
     """
     Creating a filterset for the Order model.
     This will search through the Order model
-    and filter out the request profided by the admin.
+    and filter out the request provided by the admin.
     """
     company = filters.CharFilter(
         field_name='user__customer__company_name',
