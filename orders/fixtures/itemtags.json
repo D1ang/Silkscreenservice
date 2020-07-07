@@ -1,0 +1,26 @@
+[
+  {
+    "model": "orders.itemtag",
+    "pk": 1,
+    "fields": {
+      "name": "Services",
+      "colour": "info"
+    }
+  },
+  {
+    "model": "orders.itemtag",
+    "pk": 2,
+    "fields": {
+      "name": "Vectorise",
+      "colour": "danger"
+    }
+  },
+  {
+    "model": "orders.itemtag",
+    "pk": 3,
+    "fields": {
+      "name": "Advice",
+      "colour": "warning"
+    }
+  }
+]

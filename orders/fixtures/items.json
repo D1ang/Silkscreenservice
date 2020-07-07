@@ -1,0 +1,106 @@
+[
+  {
+    "model": "orders.item",
+    "pk": 1,
+    "fields": {
+      "name": "Simple vectorise",
+      "slug": "simplevectorise",
+      "description": "Simple logos, small artwork, little amount of text and symbols.",
+      "price": "4.20",
+      "image": "images/simple_vectorize.png",
+      "clicks": 10,
+      "tag": 2
+    }
+  },
+  {
+    "model": "orders.item",
+    "pk": 2,
+    "fields": {
+      "name": "Basic vectorise",
+      "slug": "basicvectorise",
+      "description": "Complex logo's, sketches, artwork, large amount of text and clipart.",
+      "price": "5.60",
+      "image": "images/basic_vectorize.png",
+      "clicks": 14,
+      "tag": 2
+    }
+  },
+  {
+    "model": "orders.item",
+    "pk": 3,
+    "fields": {
+      "name": "Complex vector",
+      "slug": "complexvectorise",
+      "description": "Photo's, complex sketches, big artwork, large maps, etc.",
+      "price": "7.45",
+      "image": "images/complex_vectorize.png",
+      "clicks": 10,
+      "tag": 2
+    }
+  },
+  {
+    "model": "orders.item",
+    "pk": 4,
+    "fields": {
+      "name": "Print preview",
+      "slug": "printpreview",
+      "description": "We check your files, provide you with a print preview.",
+      "price": "9.25",
+      "image": "images/printpreview.png",
+      "clicks": 16,
+      "tag": 1
+    }
+  },
+  {
+    "model": "orders.item",
+    "pk": 5,
+    "fields": {
+      "name": "Logo design",
+      "slug": "logodesign",
+      "description": "We will help you to create a quality logo to promote your business.",
+      "price": "39.20",
+      "image": "images/logo_design.png",
+      "clicks": 1,
+      "tag": 1
+    }
+  },
+  {
+    "model": "orders.item",
+    "pk": 6,
+    "fields": {
+      "name": "Fabric advise",
+      "slug": "fabric",
+      "description": "A successful professional advice for a proper choice.",
+      "price": "12.50",
+      "image": "images/fabric_advise.png",
+      "clicks": 1,
+      "tag": 3
+    }
+  },
+  {
+    "model": "orders.item",
+    "pk": 7,
+    "fields": {
+      "name": "Adjust design",
+      "slug": "adjust_design",
+      "description": "Adjusting of the design for digital print up to three times.",
+      "price": "8.23",
+      "image": "images/adjust_design.png",
+      "clicks": 4,
+      "tag": 1
+    }
+  },
+  {
+    "model": "orders.item",
+    "pk": 8,
+    "fields": {
+      "name": "Brand design",
+      "slug": "brand_design",
+      "description": "When it comes to branding, consistency is everything. We can help you!",
+      "price": "450.00",
+      "image": "images/brand_design.png",
+      "clicks": 3,
+      "tag": 3
+    }
+  }
+]

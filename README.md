@@ -135,6 +135,7 @@ The following tests have been used to ensure proper site functionality:
 - [Unicorn Revealer](https://chrome.google.com/webstore/detail/unicorn-revealer/lmlkphhdlngaicolpmaakfmhplagoaln?hl=en-GB): Inspecting on overflow errors.
 - [Autoprefixer CSS online](https://autoprefixer.github.io/): Autoprefixer is a PostCSS plugin which parses your CSS and adds vendor prefixes.
 - [JSHint](https://jshint.com/): A static code analysis tool for JavaScript.
+- [ES6 Syntax Check](https://www.piliapp.com/syntax-check/es6/): An online ECMAScript 6 Checker.
 - [Visual Studio Code](https://code.visualstudio.com/): Using the built-in tools to test on proper code and the flake8 linter.
 - [Travis](https://travis-ci.org/): Used halfway the project to test the code.
 
@@ -145,6 +146,7 @@ CSS written code is tested with the W3C CSS Validator as it does not give any er
 
 ### JavaScript
 All 3 JavaScripts passed the test only a couple of warning came up trough JSHint for example: using "let", "const" but none of them are bug worthy.
+By using "ES6 Syntax Check" all the Syntax checks passed.
 
 ### Admin login gave an 500 error
 When a customer logged in the system worked perfectly but for the admin account an 50 error came up.
@@ -229,9 +231,16 @@ And finally start your server by running the following management command in you
 When the server is running browse to the admin panel by using the url provided by your IDE;
 Most of the time this is *127.0.0.1:8000/admin*
 You can login by using the credentials used for creating the superuser.
+
 When logged in some records need to be created:
 ```
 XXXX
+
+python manage.py loaddata groups.json
+python manage.py loaddata customers.json
+python manage.py loaddata itemtags.json
+python manage.py loaddata items.json
+
 ```
 
 ### Heroku deployment
