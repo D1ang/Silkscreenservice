@@ -201,7 +201,6 @@ This code can be run locally or deployed to a live environment. Directions are b
     ```bash
     import os
 
-
     os.environ.setdefault( 'DEVELOPMENT', 'True')
     os.environ.setdefault('SECRET_KEY', 'your_value')
     os.environ.setdefault('STRIPE_PUBLIC_KEY', 'your_value')
@@ -209,9 +208,9 @@ This code can be run locally or deployed to a live environment. Directions are b
     ```
 
     Replace <your_value> with the values from your own created accounts:
-    - STRIPE_PUBLIC_KEY *Required from the developer's API on* (stripe dashboard)[https://dashboard.stripe.com/test/apikeys]
-    - STRIPE_SECRET_KEY *Required from the Developer's API on* (stripe dashboard)[https://dashboard.stripe.com/test/apikeys]
-    - SECRET_KEY *Required from an online key generator* (Djecrety)[https://djecrety.ir/]
+    - [STRIPE_PUBLIC_KEY](https://dashboard.stripe.com/test/apikeys) *Required from the developer's API on*
+    - [STRIPE_SECRET_KEY](https://dashboard.stripe.com/test/apikeys) *Required from the Developer's API on*
+    - [SECRET_KEY](https://djecrety.ir/) *Required from an online key generator*
 
 1.  Set up the databases by running the following management command in your terminal:
     ```bash
@@ -222,14 +221,13 @@ This code can be run locally or deployed to a live environment. Directions are b
     ```bash
     python manage.py createsuperuser
     ```
-   >Don't ever ever forget to create a superUser, this is the admin account and we gonna need it later on to.
 
 1.  finally start your server by running the following management command in the terminal:
     ```bash
     python manage.py runserver
     ```
     If everything went correctly the terminal will provide a message telling that the development serve ris running
-    at a provided URL (mostly: http://127.0.0.1:8000/)
+    at a provided URL mostly: (http://127.0.0.1:8000/)
 
 1.  Now that the server is running we need to add some data in some records need to be created in the following order:
     ```
