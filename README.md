@@ -72,32 +72,32 @@ As for the dashboard a lighter version of Poppins has been used as it looks very
 The buttons are style in 2 versions full black or black outlined to fit the overall design.
 
 ## Technologies
-1.  Figma - *To create a wireframe*
-2.  Lucidchart - *To create the Entity Relationship Diagram (ERD)*
-3.  HTML - *To create the basics*
-4.  CSS - *To improve placements and design*
-5.  JavaScript - *The engine to create user interaction*
-6.  Python - *Programming language*
-7.  Postgres - *Opensource database to save the transactions, profile and orders*
-8.  Django - *Web framework in python*
-9.  Bootstrap - *To make the design responsive*
-10. Font Awesome - *Easy icon access for the icons*
-11. Font Awesome animations - *additional animations for the Font Awesome icons*
+ - Figma - *To create a wireframe*
+ - Lucidchart - *To create the Entity Relationship Diagram (ERD)*
+ - HTML - *To create the basics*
+ - CSS - *To improve placements and design*
+ - JavaScript - *The engine to create user interaction*
+ - Python - *Programming language*
+ - Postgres - *Opensource database to save the transactions, profile and orders*
+ - Django - *Web framework in python*
+ - Bootstrap - *To make the design responsive*
+ - Font Awesome - *Easy icon access for the icons*
+ - Font Awesome animations - *additional animations for the Font Awesome icons*
 
 ### JavaScript Libraries
-1. jQuery - *To improve input field feedback*
-2. flatpickr - *lightweight, powerful JavaScript datetimepicker with no dependencies*
-3. DataTables - *Adds advanced interaction controls to HTML tables*
-4. Stripe - *For creditcard transactions*
+ - jQuery - *To improve input field feedback*
+ - flatpickr - *lightweight, powerful JavaScript datetimepicker with no dependencies*
+ - DataTables - *Adds advanced interaction controls to HTML tables*
+ - Stripe - *For creditcard transactions*
 
 ### Python & Django Plugins
-1. pillow - *Python Imaging Library*
-2. Stripe - *Creditcard payments end transaction security*
-3. boto3 - *To connect to AWS*
-4. django-allauth - *Authentication, registration & account management*
-5. django-countries - *Provides country choices for use with forms*
-6. django-crispy-forms - *Controls the rendering behavior of Django forms*
-7. django-filter - *Easy searching and filtering querysets*
+ - pillow - *Python Imaging Library*
+ - Stripe - *Creditcard payments end transaction security*
+ - boto3 - *To connect to AWS*
+ - django-allauth - *Authentication, registration & account management*
+ - django-countries - *Provides country choices for use with forms*
+ - django-crispy-forms - *Controls the rendering behavior of Django forms*
+ - django-filter - *Easy searching and filtering querysets*
 
 ## Features
 This system is an e-commerse based website with a simplistic but easy to understand build-up.
@@ -168,77 +168,76 @@ This code can be run locally or deployed to a live environment. Directions are b
  - [Stripe](https://stripe.com/) *To securely collect creditcard payments*
 
 ### Local deployment
-1. Download a copy of the Github repository by clicking the "Code" button at the top right of the GitHub page and in the submenu select "Download ZIP".
-   Extract the zip file to a folder of choice on your system. If Git is installed on your system, you can clone the repository with the following command:
-   ```bash
-   git clone https://github.com/D1ang/Silkscreenservice.git
-   ```
+1.  Download a copy of the Github repository by clicking the "Code" button at the top right of the GitHub page and in the submenu select "Download ZIP".
+    Extract the zip file to a folder of choice on your system. If Git is installed on your system, you can clone the repository with the following command:
+    ```bash
+    git clone https://github.com/D1ang/Silkscreenservice.git
+    ```
 
-2. Open your preferred IDE (in this example we are using VScode)
-   Open up a terminal session and set up a virtual environment with these commands in the terminal session:
-   ```bash
-   pip install virtualenv
-   ```
-  > NOTE: If you already have virtualenv installed from a different project, then this step is not needed.
-  > NOTE: the pip command my differ per system this can be pip or pip3.
+1.  Open your preferred IDE (in this example we are using VScode)
+    Open up a terminal session and set up a virtual environment with these commands in the terminal session:
+    ```bash
+    pip install virtualenv
+    ```
+    >If you already have virtualenv installed from a different project, then this step is not needed. The pip command my differ per system this can be pip or pip3.
 
-  ```bash
-  virtualenv env
-  ```
-  > NOTE: Your command may differ to the IDE you are using, such as ```python -m .venv venv ...``` or ```py manage.py ...```
+    ```bash
+    virtualenv env
+    ```
+    >Your command may differ to the IDE you are using, such as ```python -m .venv venv ...``` or ```py manage.py ...```
   
-  Activate the .env with the command:
-  ```bash 
-  env\Scripts\activate
-  ```
-  > NOTE: This command may differ depending on your operating system, please check the Python documentation on creating an ENV.
+    Activate the .env with the command:
+    ```bash 
+    env\Scripts\activate
+    ```
+    >This command may differ depending on your operating system, please check the Python documentation on creating an ENV.
 
-3. Install all required django modules with the command:
-   ```bash
-   pip install -r requirements.txt
-   ```
+1.  Install all required django modules with the command:
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-4. Create a new file at the base directory level called env.py and copy the following into the created env.py file:
-   ```python
-  import os
+1.  Create a new file at the base directory level called env.py and copy the following into the created env.py file:
+    ```bash
+    import os
 
 
-   os.environ.setdefault( 'DEVELOPMENT', 'True')
-   os.environ.setdefault('SECRET_KEY', 'your_value')
-   os.environ.setdefault('STRIPE_PUBLIC_KEY', 'your_value')
-   os.environ.setdefault('STRIPE_SECRET_KEY', 'your_value')
-   ```
+    os.environ.setdefault( 'DEVELOPMENT', 'True')
+    os.environ.setdefault('SECRET_KEY', 'your_value')
+    os.environ.setdefault('STRIPE_PUBLIC_KEY', 'your_value')
+    os.environ.setdefault('STRIPE_SECRET_KEY', 'your_value')
+    ```
 
-   Replace <your_value> with the values from your own created accounts:
-   - STRIPE_PUBLIC_KEY *Required from the developer's API on* (stripe dashboard)[https://dashboard.stripe.com/test/apikeys]
-   - STRIPE_SECRET_KEY *Required from the Developer's API on* (stripe dashboard)[https://dashboard.stripe.com/test/apikeys]
-   - SECRET_KEY *Required from an online key generator* (Djecrety)[https://djecrety.ir/]
+    Replace <your_value> with the values from your own created accounts:
+    - STRIPE_PUBLIC_KEY *Required from the developer's API on* (stripe dashboard)[https://dashboard.stripe.com/test/apikeys]
+    - STRIPE_SECRET_KEY *Required from the Developer's API on* (stripe dashboard)[https://dashboard.stripe.com/test/apikeys]
+    - SECRET_KEY *Required from an online key generator* (Djecrety)[https://djecrety.ir/]
 
-5. Set up the databases by running the following management command in your terminal:
-   ```bash
-   python manage.py migrate
-   ```
+1.  Set up the databases by running the following management command in your terminal:
+    ```bash
+    python manage.py migrate
+    ```
 
-6. Create a superuser so you can have access to the django admin by running the following command in your terminal:
-   ```bash
-   python manage.py createsuperuser
-   ```
-   > NOTE: Don't ever ever forget to create a superUser, this is the admin account and we gonna need it later on to.
+1. Create a superuser so you can have access to the django admin by running the following command in your terminal:
+    ```bash
+    python manage.py createsuperuser
+    ```
+   >Don't ever ever forget to create a superUser, this is the admin account and we gonna need it later on to.
 
-7. finally start your server by running the following management command in the terminal:
-   ```bash
-   python manage.py runserver
-   ```
-   If everything went correctly the terminal will provide a message telling that the development serve ris running
-   at a provided URL (mostly: http://127.0.0.1:8000/)
+1.  finally start your server by running the following management command in the terminal:
+    ```bash
+    python manage.py runserver
+    ```
+    If everything went correctly the terminal will provide a message telling that the development serve ris running
+    at a provided URL (mostly: http://127.0.0.1:8000/)
 
-8. Now that the server is running we need to add some data in some records need to be created in the following order:
-   ```
-   python manage.py loaddata groups.json
-   python manage.py loaddata customers.json
-   python manage.py loaddata itemtags.json
-   python manage.py loaddata items.json
-   ```
+1.  Now that the server is running we need to add some data in some records need to be created in the following order:
+    ```
+    python manage.py loaddata groups.json
+    python manage.py loaddata customers.json
+    python manage.py loaddata itemtags.json
+    python manage.py loaddata items.json
+    ```
 
 ### Heroku deployment
 To run this application in a cloud based environment, you can deploy the code to Heroku.
