@@ -54,15 +54,13 @@ that should be easy to understand and gives the customer a straight away no-nons
 The navbar is available when needed and a footer is provided with contact information below the page.
 
 ### Skeleton
-By using Figma the following wireframes were created:
+By using Figma and LucidChart the following wireframes were created:
 
 [Silkscreenservice wireframe](https://github.com/D1ang/Silkscreenservice/blob/master/mockups/wireframe.pdf)
 
 [Responsive phone wireframe](https://github.com/D1ang/Silkscreenservice/blob/master/mockups/wireframe-sm.pdf)
 
-With Lucidchart the following Entity Relationship Diagram has been made:
-![ERD](https://github.com/D1ang/Silkscreenservice/blob/master/mockups/model_diagram.png)
-
+[ERD wireframe](https://github.com/D1ang/Silkscreenservice/blob/master/mockups/model_diagram.png)
 
 ### Surface
 The colours chosen are: yellow, red, black and blue.
