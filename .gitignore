@@ -2,7 +2,6 @@
 *.sqlite3
 *.pyc
 __pycache__
-__init__.py
 
 # Exclude VScode created def folders
 .vscode
