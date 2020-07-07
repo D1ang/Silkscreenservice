@@ -155,12 +155,21 @@ def userprofile(request):
     customer = request.user.customer
     form = CustomerForm(instance=customer)
 
+    order_list = request.user.order_set.all()
+    total_orders = order_list.count()
+
     if request.method == 'POST':
         form = CustomerForm(request.POST, instance=customer)
         if form.is_valid():
             form.save()
+
             messages.info(request, 'Profile update successfully')
-            return redirect('accounts:customerpage')
+
+            # New users will be redirected to the services to start ordering.
+            if total_orders < 1:
+                return redirect('orders:services')
+            else:
+                return redirect('accounts:customerpage')
     else:
         context = {'form': form}
         return render(request, 'accounts/userprofile.html', context)
