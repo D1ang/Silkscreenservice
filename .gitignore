@@ -12,6 +12,3 @@ env
 
 # Exclude media folder
 media
-
-# Exclude tests
-tests_forms.py
