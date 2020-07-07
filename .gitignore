@@ -1,5 +1,4 @@
 # Exclude Django created local def folders
-*/migrations/*
 *.sqlite3
 *.pyc
 __pycache__
