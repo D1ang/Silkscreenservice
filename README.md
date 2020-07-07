@@ -156,7 +156,7 @@ Seems the fille din email was 28 characters and when in an earlier build was set
 ## Deployment
 The example of this code is hosted by using Heroku and Amazon S3, this code is deployed to GitHub directly from the master branch.
 The deployed site will update automatically upon new commits to the master branch.
-This code can be run locally or deployed to a live environment. Directions are based on deployment to Heroku.
+This code can be run locally or deployed to a live environment. Directions are based on deployment locally and to Heroku.
 
 ### Deploy requirements
  - [VScode](https://code.visualstudio.com/) *A tool to develop software*
@@ -168,85 +168,81 @@ This code can be run locally or deployed to a live environment. Directions are b
  - [Stripe](https://stripe.com/) *To securely collect creditcard payments*
 
 ### Local deployment
-Save a copy of the github repository by clicking the "Code" button at the right top of the GitHub page and select "Download ZIP" in the submenu.
-Extract the zip file to a folder of choice on your system. If Git is installed on your system, you can clone the repository with the following command:
-  ```bash
-  git clone https://github.com/maliahavlicek/ms4_challenger.git
-  ```
+1. Download a copy of the Github repository by clicking the "Code" button at the top right of the GitHub page and in the submenu select "Download ZIP".
+   Extract the zip file to a folder of choice on your system. If Git is installed on your system, you can clone the repository with the following command:
+   ```bash
+   git clone https://github.com/D1ang/Silkscreenservice.git
+   ```
 
-Open your preferred IDE (VScode) then open a terminal session in the unzip folder or browse to the correct location.
-Set up a virtual environment with this command in the terminal session:
-  ```bash
-  python3 manage.py
-  ```
-   > NOTE: Your command may differ, such as ```python -m .venv venv ...``` or ```py manage.py ...``` or ```.\manage.py ...```
+2. Open your preferred IDE (in this example we are using VScode)
+   Open up a terminal session and set up a virtual environment with these commands in the terminal session:
+   ```bash
+   pip install virtualenv
+   ```
+  > NOTE: If you already have virtualenv installed from a different project, then this step is not needed.
+  > NOTE: the pip command my differ per system this can be pip or pip3.
 
-Activate the .venv with the command:
+  ```bash
+  virtualenv env
+  ```
+  > NOTE: Your command may differ to the IDE you are using, such as ```python -m .venv venv ...``` or ```py manage.py ...```
+  
+  Activate the .env with the command:
   ```bash 
-  .venv\Scripts\activate
+  env\Scripts\activate
   ```
   > NOTE: This command may differ depending on your operating system, please check the Python documentation on creating an ENV.
 
-Install all required modules with the command:
+3. Install all required django modules with the command:
    ```bash
    pip install -r requirements.txt
    ```
- 
-Create a new file at the base directory level called env.py:
+
+4. Create a new file at the base directory level called env.py and copy the following into the created env.py file:
    ```python
-   touch env.py
+  import os
+
+
+   os.environ.setdefault( 'DEVELOPMENT', 'True')
+   os.environ.setdefault('SECRET_KEY', 'your_value')
+   os.environ.setdefault('STRIPE_PUBLIC_KEY', 'your_value')
+   os.environ.setdefault('STRIPE_SECRET_KEY', 'your_value')
    ```
 
-Copy the following into the env.py file:
-    ```python
-    import os
-    
+   Replace <your_value> with the values from your own created accounts:
+   - STRIPE_PUBLIC_KEY *Required from the developer's API on* (stripe dashboard)[https://dashboard.stripe.com/test/apikeys]
+   - STRIPE_SECRET_KEY *Required from the Developer's API on* (stripe dashboard)[https://dashboard.stripe.com/test/apikeys]
+   - SECRET_KEY *Required from an online key generator* (Djecrety)[https://djecrety.ir/]
 
-    os.environ.setdefault( 'DEVELOPMENT', 'True')
-    os.environ.setdefault('SECRET_KEY', '<your_value>')
-    os.environ.setdefault('STRIPE_PUBLIC_KEY', '<your_value>')
-    os.environ.setdefault('STRIPE_SECRET_KEY', '<your_value>')
-    ```
+5. Set up the databases by running the following management command in your terminal:
+   ```bash
+   python manage.py migrate
+   ```
 
-Replace <your_value> with the values from your own created accounts
-    - STRIPE_PUBLIC_KEY *Required from the developer's API on* (stripe dashboard)[https://dashboard.stripe.com/test/apikeys]
-    - STRIPE_SECRET_KEY *Required from the Developer's API on* (stripe dashboard)[https://dashboard.stripe.com/test/apikeys]
-    - SECRET_KEY *Required from an online key generator* (Djecrety)[https://djecrety.ir/]
+6. Create a superuser so you can have access to the django admin by running the following command in your terminal:
+   ```bash
+   python manage.py createsuperuser
+   ```
+   > NOTE: Don't ever ever forget to create a superUser, this is the admin account and we gonna need it later on to.
 
-Set up the databases by running the following management command in your terminal:
-  ```bash
-  python manage.py migrate
-  ```
+7. finally start your server by running the following management command in the terminal:
+   ```bash
+   python manage.py runserver
+   ```
+   If everything went correctly the terminal will provide a message telling that the development serve ris running
+   at a provided URL (mostly: http://127.0.0.1:8000/)
 
-Create a superuser so you can have access to the django admin by running the following command in your terminal:
-  ```bash
-  python manage.py createsuperuser
-  ```
-
-And finally start your server by running the following management command in your terminal:
-  ```bash
-  python manage.py runserver
-  ```
-
-When the server is running browse to the admin panel by using the url provided by your IDE;
-Most of the time this is *127.0.0.1:8000/admin*
-You can login by using the credentials used for creating the superuser.
-
-When logged in some records need to be created:
-```
-XXXX
-
-python manage.py loaddata groups.json
-python manage.py loaddata customers.json
-python manage.py loaddata itemtags.json
-python manage.py loaddata items.json
-
-```
+8. Now that the server is running we need to add some data in some records need to be created in the following order:
+   ```
+   python manage.py loaddata groups.json
+   python manage.py loaddata customers.json
+   python manage.py loaddata itemtags.json
+   python manage.py loaddata items.json
+   ```
 
 ### Heroku deployment
 To run this application in a cloud based environment, you can deploy the code to Heroku.
 This section assumes you have succeeded at running the application in your local environment first, as described above.
-
 
 1. Login to Heroku and set up a new app with a unique name (NOTE: silkscreenservice is already taken)
 2. On the Resources tab, in the Add-ons field type ``` Heroku Postgres``` select the Hobby Dev then click the Provision button:
