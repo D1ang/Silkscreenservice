@@ -8,9 +8,6 @@ __pycache__
 env.py
 env
 
-# Exclude media folder
-media
-
 # Testing
 htmlcov
 .coverage
