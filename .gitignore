@@ -2,6 +2,7 @@
 *.sqlite3
 *.pyc
 __pycache__
+artwork
 
 # Exclude VScode created def folders
 .vscode
