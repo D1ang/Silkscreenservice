@@ -26,13 +26,32 @@
     </div>
     <!--Orderstatus end-->
 
-    <div class="row mt-3">
+    <!--Billing address-->
+    <div class="row mt-5">
       <div class="col-12">
-        <h5 class="text-uppercase pl-2">order details</h5>
+
+        <h5 class="text-uppercase pl-2">order details: {{ order.billing_address.company_name }}</h5>
         <hr class="dashboard m-0">
 
+        <div class="row">
+          <div class="col-lg col-md col-sm-12 custom-card p-3 m-3">
+            {{ order.billing_address.first_name }} {{ order.billing_address.last_name }}<br>
+            {{ order.billing_address.street_address }}<br>
+            {{ order.billing_address.postal }} {{ order.billing_address.city }} - {{ order.billing_address.country }}
+          </div>
+          <div class="col-8 custom-card p-3 m-3">
+            <span class="font-weight-bold">Comment:</span> {{ order.comments}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Billing address end-->  
+
+    <div class="row">
+      <div class="col-12">
+
         <!--Orderdetails-->
-        <div class="custom-card mt-3">
+        <div class="custom-card mt-2">
           <table class="nowrap table table-sm height-fix">
             <thead>
               <tr>
