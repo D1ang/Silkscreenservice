@@ -1,7 +1,9 @@
 $(document).ready(function() {
-	/* Add smooth scrolling to all links, 
-     	   while keeping cross-browser compatibility.
-     	   https://www.w3schools.com/howto/howto_css_smooth_scroll.asp */
+	/*
+  Add smooth scrolling to all links, 
+  while keeping cross-browser compatibility.
+  https://www.w3schools.com/howto/howto_css_smooth_scroll.asp
+  */
 	$('a').on('click', function(event) {
 		if (this.hash !== '') {
 			event.preventDefault();
@@ -20,9 +22,11 @@ $(document).ready(function() {
 		}
 	});
 
-	/* When the user scrolls down, hide the navbar and
-     	   when the user scrolls up, show the navbar.
-     	   https://www.w3schools.com/howto/howto_js_navbar_hide_scroll.asp */
+	/*
+  When the user scrolls down, hide the navbar and
+  when the user scrolls up, show the navbar.
+  https://www.w3schools.com/howto/howto_js_navbar_hide_scroll.asp
+  */
 	let prevScrollpos = window.pageYOffset;
 	window.onscroll = function() {
 		let currentScrollPos = window.pageYOffset;
@@ -34,9 +38,11 @@ $(document).ready(function() {
 		prevScrollpos = currentScrollPos;
 	};
 
-	/* Finds all the inputfields of the account signup form
-     	   & adds proper Bootstrap class styling
-     	   code is based on the following: https://stackoverflow.com/a/41909370 */
+	/*
+  Finds all the inputfields of the account signup form & adds
+  proper Bootstrap class styling
+  code is based on the following: https://stackoverflow.com/a/41909370
+  */
 	$('#auth-form').find(':input').each(function(index, element) {
 		$(element).addClass('form-control');
 	});
@@ -54,14 +60,16 @@ $(document).ready(function() {
 		paging: false,
 		bSort: false,
 		responsive: true
-  });
+	});
 });
 
-/* Changes the upload button text when a file is uploaded on the
-   checkout form. This will provide the user with the needed feedback
-   of an added file.*/
+/*
+Changes the upload button text when a file is uploaded on the
+checkout form. This will provide the user with the needed feedback
+of an added file.
+*/
 $('#new-upload').change(function() {
-  let file = $('#new-upload')[0].files[0];
-  $('#filename').text(`Artwork uploaded!`);
-  $("#filename").toggleClass('upload-success-text');
+	let file = $('#new-upload')[0].files[0];
+	$('#filename').text(`Artwork uploaded!`);
+	$('#filename').toggleClass('upload-success-text');
 });
