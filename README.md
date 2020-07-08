@@ -3,14 +3,14 @@
 
 [![Build Status](https://travis-ci.org/D1ang/Silkscreenservice.svg?branch=master)](https://travis-ci.org/D1ang/Silkscreenservice)
 
-For a silkscreen-press company a need for a services order system has been requested. 
-The main goal of the system is to make the job of our studio employees easier and more efficient. 
-For the customer we would like to provide an easy to understand and easy to use system so, 
+For a silkscreen-press company a need for an order system has been requested.
+The main goal of the system is to make the job of our studio employees easier and more efficient.
+For the customer we would like to provide an easy to understand and easy to use system so,
 they will be able to make their service requests easier.
 
 In short:
-- A system for employees to be more efficient.
-- A easy to understand system for B2B customers to remove some workload from the studio employees.
+ - A system for employees to be more efficient.
+ - An easy to understand system for B2B customers to remove some workload from the studio employees.
 
 ## Demo
 A live demo version can be found **[here](https://silkscreenservice.herokuapp.com/)**
@@ -18,32 +18,32 @@ A live demo version can be found **[here](https://silkscreenservice.herokuapp.co
 ![Design](https://github.com/D1ang/Silkscreenservice/blob/master/mockups/presentation.png)
 
 ## UX
-To make the system as clear as possible to the end-user a basic but very clean design has been chosen.
+To make the system as clear as possible to the end-user, a basic but very clean design has been chosen.
 Options are minimalistic and the end-user will not be overloaded with options to choose from.
-The navigation bar, buttons, cart system and dashboard have been built with this in mind and have an easy to understand logic.
+The navigation bar, buttons, cart system and dashboard have been built and have an easy to understand logic.
 
 ## User stories
 With years of field experience, we have built a well-known form and work ethic in creating designs.
 We asked our customers from day to day what they would like to see in a sample and came up with the following points:
 
- - As a user, I want to easily fill in the forms for a service request (**services**)
- - As a user, I want to upload my artwork fast and easy in the same system (**checkout form**)
- - As a user, I want a secured overview of my order history (**dashboard**)
- - As a user, I want to the system to remember my cart for if I want to make changes later on (**cart**)
- - As a user, I don't want to fill in my details everytime, but do want to change them if needed (**profile**)
- - As an employee, I want to know which service are required per order (**order**)
- - As an employee, I want to change the status of an order (**admin list actions**)
- - As an employee, I would like to download the artwork (**order details**)
- - As an employee, I would like to upload and overwrite the artwork (**order details**)
- - As an employee, I want to search and filter the orders (**search & filter**)
+ - As a user, I want to easily fill in the forms for a service request (services)
+ - As a user, I want to upload my artwork fast and easy in the same system (checkout form)
+ - As a user, I want a secured overview of my order history (dashboard)
+ - As a user, I want the system to remember my cart, for if I want to make changes later (cart)
+ - As a user, I do not want to fill in my details every time, but do want to change them if needed (profile)
+ - As an employee, I want to know which service are required per order (order)
+ - As an employee, I want to change the status of an order (admin list actions)
+ - As an employee, I would like to download the artwork (order details)
+ - As an employee, I would like to upload and overwrite the artwork (order details)
+ - As an employee, I want to search and filter the orders (search & filter)
 
 ### Strategy
-The goal of the tool is to make it as easy as possible to access, short and informative,
-while striving for a minimalist and user-friendly design as possible.
+The goal of the system is to make it as easy as possible to access, short and informative, 
+while striving for a minimalist and user-friendly design.
 
 ### Scope
 For customers, we wanted to provide them with an easy to understand (first-view-use) system.
-This way, they would be able to request services: faster, easier and on their own,
+This way, they would be able to request services: faster, easier and on their own, 
 so our studio employees have more free time for other job-related tasks and be able to do
 their service tasks more efficient.
 
@@ -51,7 +51,7 @@ their service tasks more efficient.
 The system is structured to get the right information as quickly as possible.
 The order of the options provided are placed in a logic workflow while the design provided will use a messages bar
 that should be easy to understand and gives the customer a straight away no-nonsense feedback.
-The navbar is available when needed and a footer is provided with contact information below the page.
+The navbar is available when needed and a footer is provided with contact-information below the page.
 
 ### Skeleton
 By using Figma and LucidChart the following wireframes were created:
@@ -63,22 +63,22 @@ By using Figma and LucidChart the following wireframes were created:
 [ERD wireframe](https://github.com/D1ang/Silkscreenservice/blob/master/mockups/model_diagram.png)
 
 ### Surface
-The colours chosen are: yellow, red, black and blue.
-Blue is the most used colour most commonly associated with harmony, faithfulness, confidence, and imagination.
-A very clean, abstract and an almost childish design has been chosen to force the attention to the provide design.
-Users won't be afraid to use the system by this easy to understand design.
+The colours chosen are yellow, red, black, and blue.
+Blue is the most used colour most associated with harmony, faithfulness, confidence, and imagination.
+A very clean, abstract and an almost childish design has been chosen to force the attention to the systems functionality.
+Users will not be afraid to use the system by this easy to understand design.
 The font Poppins had been chosen because of its look that fits perfectly to the buttons and graphics on the homepage.
 As for the dashboard a lighter version of Poppins has been used as it looks very clean and is easy to read.
-The buttons are style in 2 versions full black or black outlined to fit the overall design.
+The buttons are styled in 2 versions; full black or black outlined, to fit the overall design.
 
 ## Technologies
  - Figma - *To create a wireframe*
- - Lucidchart - *To create the Entity Relationship Diagram (ERD)*
+ - Lucid Chart - *To create the Entity Relationship Diagram (ERD)*
  - HTML - *To create the basics*
  - CSS - *To improve placements and design*
  - JavaScript - *The engine to create user interaction*
  - Python - *Programming language*
- - Postgres - *Opensource database to save the transactions, profile and orders*
+ - Postgres - *Opensource database to save the transactions, profile, and orders*
  - Django - *Web framework in python*
  - Bootstrap - *To make the design responsive*
  - Font Awesome - *Easy icon access for the icons*
@@ -88,44 +88,44 @@ The buttons are style in 2 versions full black or black outlined to fit the over
  - jQuery - *To improve input field feedback*
  - flatpickr - *lightweight, powerful JavaScript datetimepicker with no dependencies*
  - DataTables - *Adds advanced interaction controls to HTML tables*
- - Stripe - *For creditcard transactions*
+ - Stripe - *For credit card transactions*
 
 ### Python & Django Plugins
  - pillow - *Python Imaging Library*
- - Stripe - *Creditcard payments end transaction security*
+ - Stripe - *Credit card payments and transaction security*
  - boto3 - *To connect to AWS*
  - django-allauth - *Authentication, registration & account management*
  - django-countries - *Provides country choices for use with forms*
- - django-crispy-forms - *Controls the rendering behavior of Django forms*
- - django-filter - *Easy searching and filtering querysets*
+ - django-crispy-forms - *Controls the rendering behaviour of Django forms*
+ - django-filter - *Easy searching and filtering query sets*
 
 ## Features
-This system is an e-commerse based website with a simplistic but easy to understand build-up.
-Provideing the user with 2 call-to-action buttons and a "read more" button a choice can be made in seconds.
-The navbar is sticky but reacts on the users scrolling behaviour. will scrolling down the bar dissapears to keep a clean screen astate.
-But when scrolling up the bar we reappear.
-The frequently used services are created by to most clicked products for the card in the backend.
+This system is an e-commerce-based website with a simplistic but easy to understand build-up.
+Providing the user with 2 call-to-action buttons and a "read more" button, a choice can be made in seconds.
+The navbar is sticky but reacts on the users scrolling behaviour. While scrolling down the bar disappears to keep a clean screen estate,
+but when scrolling up, the bar will re-appear.
+The frequently used services are created by the most clicked products for the cart in the backend.
 The 3 services with the most clicks will be sorted on popularity and shown here.
-The services page will show all the avaialbe services that can be ordered.
-To order a service the user need to be logged in. To provide the user with some extra feedback a handy message bar will drop down from the navbar.
-This bar will scroll up again after a few seconds.
-As a user will create a account or login a dasboard will be available for a nice table-based overview of the placed services.
-A admin account is available for employees to update service request and download the by customer uploaded artwork.
-As the main function of the syustem is the order/cart system. users can add or delete services to their cart with will be save din the backend right away.
-As a user logouts the cart will be remembered in the system to be finished later on.
-When the customer checkout the cart a secured payment can be made with creditcard and artwork can be uploaded to be downloaded by the employees.
+The services page will show all the available services that can be ordered.
+To order a service the user needs to be logged in. To provide the user with some extra feedback a handy message bar will drop down from the navbar.
+This bar will scroll up again after a few seconds. 
+When an user will create an account or login, a dashboard will be available for a nice table-based overview of the placed services.
+An admin account is available for employees to, update service request and download the by customer uploaded artwork.
+Users can add or delete services to their cart which will be saved in the backend right away.
+As a user logs out the cart will be remembered in the system to be finished later. 
+When the customer checkout, a secured payment can be made with credit card and artwork can be uploaded, to be downloaded by the employees.
 
 ### Features Left to Implement
-In later released I would like to add models for a comments/grade system, so customers can add comments or grade the provided services.
-Visitors would be able to read those.
-I would also like to add a function for admin to remove a customer. As of european law this should be posssible.
-This can be done through the standard django admin, but it would be nicer and easier if this function is available trough the custom made dashboard.
+In later releases I would like to add models for a comments/grade system, so customers can add comments or grade the provided services.
+Visitors would be able to read those. I would also like to add a function for admin to remove a customer.
+As of European law this should be possible.
+This can be done through the standard django admin, but it would be nicer and easier if this function is available through the custom-made dashboard.
 
 ## Testing
-This site was tested across multiple screen sizes on Chrome, Safari, and Internet Explorer.
+This system was tested across multiple screen sizes on Chrome, Safari, and Internet Explorer.
 To ensure compatibility and responsiveness it is also tested on an android based mobile device (OnePlus5)
 and an older tablet device (Samsung Galaxy Tab2).
-The site has been bug field-tested by customers and employees.
+The system has been field-tested by customers and employees.
 
 The following tests have been used to ensure proper site functionality:
 
@@ -136,25 +136,27 @@ The following tests have been used to ensure proper site functionality:
 - [Autoprefixer CSS online](https://autoprefixer.github.io/): Autoprefixer is a PostCSS plugin which parses your CSS and adds vendor prefixes.
 - [JSHint](https://jshint.com/): A static code analysis tool for JavaScript.
 - [ES6 Syntax Check](https://www.piliapp.com/syntax-check/es6/): An online ECMAScript 6 Checker.
-- [Visual Studio Code](https://code.visualstudio.com/): Using the built-in tools to test on proper code and the flake8 linter.
+- [Visual Studio Code](https://code.visualstudio.com/): Using the built-in tools to test on proper code, like flake8 linter.
 - [Travis](https://travis-ci.org/): Used halfway the project to test the code.
 
 ## Bugs
 
 ### CSS
-CSS written code is tested with the W3C CSS Validator as it does not give any errors the deployed version of the site does gives a couple of warnings and error comming from Bootstrap and the Font Awesome animations Library.
+CSS written code is tested with the W3C CSS Validator.
+As it does not give any problems, the deployed version of the site does gives a couple of warnings and errors coming
+from Bootstrap and the Font Awesome animations Library.
 
 ### JavaScript
-All 3 JavaScripts passed the test only a couple of warning came up trough JSHint for example: using "let", "const" but none of them are bug worthy.
+All 3 JavaScript’s in this system passed the test, only a couple of warnings came up through JSHint, for example: using "let", "const" but none of them are bug worthy.
 By using "ES6 Syntax Check" all the Syntax checks passed.
 
-### Admin login gave an 500 error
-When a customer logged in the system worked perfectly but for the admin account an 50 error came up.
-This bug was fixed after making migrations and changed the max filed characters to 50 chars.
-Seems the fille din email was 28 characters and when in an earlier build was set to 25 this error came up.
+### Admin login gave a 500 error
+When a customer logged in, the system worked perfectly. But for the admin account a 500 error came up.
+This bug was fixed after making migrations and changed the max field characters to 50 chars.
+Seems that the admin entered email was 28 characters and when in an earlier build was set to 25, this error came up.
 
 ## Deployment
-The example of this code is hosted by using Heroku and Amazon S3, this code is deployed to GitHub directly from the master branch.
+The code of this system is hosted by using Heroku and Amazon S3, this code is deployed to GitHub directly from the master branch.
 The deployed site will update automatically upon new commits to the master branch.
 This code can be run locally or deployed to a live environment. Directions are based on deployment locally and to Heroku.
 
@@ -163,9 +165,9 @@ This code can be run locally or deployed to a live environment. Directions are b
  - [python 3](https://www.python.org/) *A programming language*
  - [PIP](https://pip.pypa.io/en/stable/installing/) *To get python installation packages*
  - [Git](https://github.com/) *Version control for code source*
- - [AWS-S3](https://docs.aws.amazon.com/) *Webbased cloud storage service*
+ - [AWS-S3](https://docs.aws.amazon.com/) *Web based cloud storage service*
  - [S3 Bucket](https://docs.aws.amazon.com/) *A cloud storage resource*
- - [Stripe](https://stripe.com/) *To securely collect creditcard payments*
+ - [Stripe](https://stripe.com/) *To securely collect credit card payments*
 
 ### Local deployment
 1.  Download a copy of the Github repository by clicking the "Code" button at the top right of the GitHub page and in the submenu select "Download ZIP".
