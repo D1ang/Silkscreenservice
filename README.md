@@ -170,7 +170,7 @@ This code can be run locally or deployed to a live environment. Directions are b
  - [Stripe](https://stripe.com/) *To securely collect credit card payments*
 
 ### Local deployment
-1.  Download a copy of the Github repository by clicking the "Code" button at the top right of the GitHub page and in the submenu select "Download ZIP".
+1.  Download a copy of the GitHub repository by clicking the "Code" button at the top right of the GitHub page and in the submenu select "Download ZIP".
     Extract the zip file to a folder of choice on your system. If Git is installed on your system, you can clone the repository with the following command:
     ```bash
     git clone https://github.com/D1ang/Silkscreenservice.git
@@ -219,19 +219,19 @@ This code can be run locally or deployed to a live environment. Directions are b
     python manage.py migrate
     ```
 
-1. Create a superuser so you can have access to the django admin by running the following command in your terminal:
+1.  Create a superuser so you can have access to the django admin by running the following command in your terminal:
     ```bash
     python manage.py createsuperuser
     ```
 
-1.  finally start your server by running the following management command in the terminal:
+1.  Finally start your server by running the following management command in the terminal:
     ```bash
     python manage.py runserver
     ```
-    If everything went correctly the terminal will provide a message telling that the development serve ris running
-    at a provided URL mostly: (http://127.0.0.1:8000/)
+    If everything went correctly the terminal will provide a message telling that the development server is running
+    at a provided URL mostly:  (http://127.0.0.1:8000/)
 
-1.  Now that the server is running we need to add some data in some records need to be created in the following order:
+1.  Now that the server is running, we need to add some data in some records need to be created in the following order:
     ```
     python manage.py loaddata groups.json
     python manage.py loaddata customers.json
