@@ -17,6 +17,34 @@ A live demo version can be found **[here](https://silkscreenservice.herokuapp.co
 
 ![Design](https://github.com/D1ang/Silkscreenservice/blob/master/mockups/presentation.png)
 
+- [Silkscreenservice](#silkscreenservice)
+  * [Demo](#demo)
+  * [UX](#ux)
+  * [User stories](#user-stories)
+    + [Strategy](#strategy)
+    + [Scope](#scope)
+    + [Structure](#structure)
+    + [Skeleton](#skeleton)
+    + [Surface](#surface)
+  * [Technologies](#technologies)
+    + [JavaScript Libraries](#javascript-libraries)
+    + [Python & Django Plugins](#python---django-plugins)
+  * [Features](#features)
+    + [Features Left to Implement](#features-left-to-implement)
+  * [Testing](#testing)
+  * [Bugs](#bugs)
+    + [CSS](#css)
+    + [JavaScript](#javascript)
+    + [Admin login gave a 500 error](#admin-login-gave-a-500-error)
+  * [Deployment](#deployment)
+    + [Deploy requirements](#deploy-requirements)
+    + [Local deployment](#local-deployment)
+    + [Heroku deployment](#heroku-deployment)
+  * [Credits](#credits)
+    + [Content](#content)
+    + [Media](#media)
+    + [Acknowledgements](#acknowledgements)
+
 ## UX
 To make the system as clear as possible to the end-user, a basic but very clean design has been chosen.
 Options are minimalistic and the end-user will not be overloaded with options to choose from.
@@ -82,7 +110,8 @@ The buttons are styled in 2 versions; full black or black outlined, to fit the o
  - Django - *Web framework in python*
  - Bootstrap - *To make the design responsive*
  - Font Awesome - *Easy icon access for the icons*
- - Font Awesome animations - *additional animations for the Font Awesome icons*
+ - Font Awesome animations - *Additional animations for the Font Awesome icons*
+ - GitHub Wiki TOC generator - *Generates a MarkDown TOC online*
 
 ### JavaScript Libraries
  - jQuery - *To improve input field feedback*
@@ -317,4 +346,4 @@ Illustrations: https://illlustrations.co/
 - W3schools.com [link](https://www.w3schools.com/)
 - Django 3.0 documentation [link](https://docs.djangoproject.com/en/3.0/)
 - Django Admin Cookbook [link](https://books.agiliq.com/projects/django-admin-cookbook/en/latest/introduction.html)
-- SVG compressing [link](https://www.compresss.com/compress-svg.html)
+- SVG compressing [link](https://www.compresss.com/compress-svg.htm
