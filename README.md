@@ -176,12 +176,12 @@ This code can be run locally or deployed to a live environment. Directions are b
     git clone https://github.com/D1ang/Silkscreenservice.git
     ```
 
-1.  Open your preferred IDE (in this example we are using VScode)
+1.  Open the unzipped folder in your preferred IDE (in this example we are using VScode)
     Open up a terminal session and set up a virtual environment with these commands in the terminal session:
     ```bash
     pip install virtualenv
     ```
-    >If you already have virtualenv installed from a different project, then this step is not needed. The pip command my differ per system this can be pip or pip3.
+    >If you already have virtualenv installed from a different project, then this step is not needed. The pip command may differ per system this can be pip or pip3.
 
     ```bash
     virtualenv env
@@ -224,14 +224,7 @@ This code can be run locally or deployed to a live environment. Directions are b
     python manage.py createsuperuser
     ```
 
-1.  Finally start your server by running the following management command in the terminal:
-    ```bash
-    python manage.py runserver
-    ```
-    If everything went correctly the terminal will provide a message telling that the development server is running
-    at a provided URL mostly:  (http://127.0.0.1:8000/)
-
-1.  Now that the server is running, we need to add some data in some records need to be created in the following order:
+1.  Now that the server is running, we need to add the required data into the database in the following order:
     ```
     python manage.py loaddata groups.json
     python manage.py loaddata customers.json
@@ -239,65 +232,75 @@ This code can be run locally or deployed to a live environment. Directions are b
     python manage.py loaddata items.json
     ```
 
+1.  Finally start your server by running the following management command in the terminal:
+    ```bash
+    python manage.py runserver
+    ```
+    If everything went correctly the terminal will provide a message telling that the development server is running
+    at a provided URL mostly:  (http://127.0.0.1:8000/admin)
+
+1.  Open the URL provided by the terminal including (/admin/accounts/customer/1/change/)
+    Connect the customer to an user (it's the first inputfield)
+    Provide the company information for all the required fields and press the "SAVE" button on the bottom right.
+
 ### Heroku deployment
 To run this application in a cloud based environment, you can deploy the code to Heroku.
 This section assumes you have succeeded at running the application in your local environment first, as described above.
 
-1. Login to Heroku and set up a new app with a unique name (NOTE: silkscreenservice is already taken)
-2. On the Resources tab, in the Add-ons field type ``` Heroku Postgres``` select the Hobby Dev then click the Provision button:
-3. Go to the Settings tab, click Reveal Config Vars and copy the DATABASE_URL value into your local memory.
-1. In heroku for your newly created app, go back to the Settings tab, and click Reveal Config Vars. This time you will be copying the values from your env.py file into heroku. Make sure you load following:
+1. Login to Heroku and set up a new app with an unique name (NOTE: silkscreenservice is already taken)
+1. On the Resources tab, in the Add-ons field type ```Heroku Postgres``` select the Hobby Dev then click the Provision button.
+1. After setting the Postgress database go back to the Settings tab, and click Reveal Config Vars.
+   Copy the values from your env.py file into heroku. Make sure you load the following:
     
     |           Key           |      Value     |
     |:-----------------------:|:--------------:|
-    | HOSTNAME                | < your value > |
-    | STRIPE_PUBLISHABLE      | < your value > |
-    | STRIPE_SECRET           | < your value > |
-    | SECRET_KEY              | < your value > |
-    | AWS_STORAGE_BUCKET_NAME | < your value > |
-    | AWS_S3_REGION_NAME      | < your value > |
-    | AWS_ACCESS_KEY_ID       | < your value > |
-    | AWS_SECRET_ACCESS_KEY   | < your value > |
-    | EMAIL_USER              | < your value > |
-    | EMAIL_PASS              | < your value > |
-    | DATABASE_URL            | < your value > |
-    | DISABLE_COLLECTSTATIC   | 1              |
+    | AWS_ACCESS_KEY_ID       |  <your_value>  |
+    | AWS_SECRET_ACCESS_KEY   |  <your_value>  |
+    | DATABASE_URL            |  <your_value>  |
+    | SECRET_KEY              |  <your_value>  |
+    | STRIPE_PUBLIC_KEY       |  <your_value>  |
+    | STRIPE_SECRET_KEY       |  <your_value>  |
+    | USE_AWS                 |  <your_value>  |
 
-1. Because this is a new database, you will to set up the databases by running the following management command in your terminal:
+1. Because this is a new database, the migrate command has to be executed with the proper command in your terminal:
     ```bash
     python manage.py migrate
     ```
-   > If you restarted your machine to activate your environment variables, do not forget to reactivate your virtual environment with the command used at step 4.
-1. Create the superuser for the postgres database so you can have access to the django admin, follow the steps necessary to set up the username, email and password by running the following management command in your terminal:
+   >Do not forget to reactivate your virtual environment if the system or IDE is rebooted.
+
+1. Create the superuser for the postgres database so you can have access to the django admin.
     ```bash
     python manage.py createsuperuser
     ```
-1. Preload products and tags. To match starter projects and user profile tags to the original concept, run the following commands from your IDE's terminal:
-    ```bash
-    python manage.py loaddata servicelevel.json
-    python manage.py loaddata tag.json
+
+1.  Now we need to add the required data into the database in the following order:
+    ```
+    python manage.py loaddata groups.json
+    python manage.py loaddata customers.json
+    python manage.py loaddata itemtags.json
+    python manage.py loaddata items.json
     ```
 
-1. In the event packages have been updated, it's best to re-create the requirements.txt file using the terminal command prompt: 
+1. With everything set push to code to a GitHub account of yourself:
     ```bash
-    pip freeze > requirements.txt
-    ```
-1. Create a Procfile:
-    ```bash
-    echo web: gunicorn ms4_challenger.wsgi:application > Procfile
-    ```
-1. Add the files if they changed and push to git hub:
-    ```bash
-   git commit add Procfile
-   git commit add requirements.txt
-   git commit-m 'getting ready to deploy to heroku'
+   git init
+   git commit -m 'getting ready to deploy to Heroku'
    git push -u origin
    ``` 
-1. From the heroku dashboard of your newly created application, click on the "Deploy" tab, then scroll down to the "Deployment method" section and select GitHub.
-1. Use the github linking and type in the name of the repository ex:) ms4_challenger and click the search button. Then connect the heroku app to the desired GitHub repository.
+
+1. From the Heroku dashboard of your newly created application, click on the "Deploy" tab, then scroll down to the "Deployment method" section and select GitHub.
+
+1. Use the github linking and type in the name of the repository and click the search button. Then connect the Heroku app to the desired GitHub repository.
+
 1. On the Deployment Tab, scroll a bit further down to the "Manual Deploy" section, select the master branch then click "Deploy Branch".
-1. If you have errors, look at the logs for your application, most common errors are forgetting to add the hostname and  disabling collectstatic.
+
 1. Once your application is running, you may want to update the Deployment method from Manual to Automatic.
+
+1. From the Heroku dashboard select the Open app button on the top right.
+   Add the following begin the url in the address bar (/admin/accounts/customer/1/change/) and login with the created superuser credentials.
+   Connect the customer to an user (it's the first inputfield)
+   Provide the company information for all the required fields and press the "SAVE" button on the bottom right.
+   The deployed project is now ready to be used.
 
 ## Credits
 
