@@ -5,14 +5,14 @@
     "fields": {
       "user": 1,
       "company_name": "Silkscreenservice",
-      "first_name": "Django",
-      "last_name": "Heimgartner",
-      "street_address": "Groot Mijdrechtstraat 24",
+      "first_name": "John",
+      "last_name": "Doe",
+      "street_address": "",
       "address_line_2": null,
-      "city": "Mijdrecht",
-      "region": "Utrecht",
-      "postal": "3641RW",
-      "country": "NL",
+      "city": "",
+      "region": "",
+      "postal": "",
+      "country": "",
       "email": "info@silkscreenservice.com",
       "phone": 297286884
     }
