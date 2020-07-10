@@ -155,6 +155,8 @@ This system was tested across multiple screen sizes on Chrome, Safari, and Inter
 To ensure compatibility and responsiveness it is also tested on an android based mobile device (OnePlus5)
 and an older tablet device (Samsung Galaxy Tab2).
 The system has been field-tested by customers and employees.
+Some basic unit testing has been done with Travis and own written testcodes on the home and accounts app.
+Unit testing does not go as deep as the field tests, but does show that the bare basic functions are working correctly. 
 
 For testing the admin interface an admin test account has been created on the deployed version to Heroku.
 The logins are:
