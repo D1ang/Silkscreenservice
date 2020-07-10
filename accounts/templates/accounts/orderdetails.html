@@ -34,14 +34,21 @@
         <hr class="dashboard m-0">
 
         <div class="row">
+
+          {% if order.billing_address.company_name %}
           <div class="col-lg col-md col-sm-12 custom-card p-3 m-3">
             {{ order.billing_address.first_name }} {{ order.billing_address.last_name }}<br>
             {{ order.billing_address.street_address }}<br>
             {{ order.billing_address.postal }} {{ order.billing_address.city }} - {{ order.billing_address.country }}
           </div>
+          {% endif %}
+
+          {% if order.comments %}
           <div class="col-lg-8 col-md col-sm-12 custom-card p-3 m-3">
             <span class="font-weight-bold">Comment:</span><br> {{ order.comments}}
           </div>
+          {% endif %}
+
         </div>
       </div>
     </div>
