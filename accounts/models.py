@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django_countries.fields import CountryField
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Customer(models.Model):
@@ -20,7 +21,7 @@ class Customer(models.Model):
     postal = models.CharField(max_length=6)
     country = CountryField(multiple=False)
     email = models.CharField(max_length=50)
-    phone = models.IntegerField(null=True, blank=True)
+    phone = PhoneNumberField(null=True, blank=True)
 
     def __str__(self):
         return self.company_name
