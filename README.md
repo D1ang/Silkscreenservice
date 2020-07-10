@@ -118,12 +118,13 @@ The buttons are styled in 2 versions; full black or black outlined, to fit the o
  - DataTables - *Adds advanced interaction controls to HTML tables*
  - Stripe - *For credit card transactions*
 
-### Python & Django Plugins
+### Python & Django Libraries
  - pillow - *Python Imaging Library*
  - Stripe - *Credit card payments and transaction security*
  - boto3 - *To connect to AWS*
  - django-allauth - *Authentication, registration & account management*
  - django-countries - *Provides country choices for use with forms*
+ - django-phonenumber-field - *A Django library which interfaces with python-phonenumbers to validate*
  - django-crispy-forms - *Controls the rendering behaviour of Django forms*
  - django-filter - *Easy searching and filtering query sets*
 
