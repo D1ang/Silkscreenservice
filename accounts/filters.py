@@ -22,7 +22,7 @@ class OrderFilter(filters.FilterSet):
         field_name='date',
         label='Date',
         lookup_expr='gte',
-        widget=TextInput(attrs={'placeholder': 'Date'})
+        widget=TextInput(attrs={'placeholder': 'Date from to today'})
     )
 
     class Meta:
