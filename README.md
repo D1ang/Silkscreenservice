@@ -118,12 +118,13 @@ The buttons are styled in 2 versions; full black or black outlined, to fit the o
  - DataTables - *Adds advanced interaction controls to HTML tables*
  - Stripe - *For credit card transactions*
 
-### Python & Django Plugins
+### Python & Django Libraries
  - pillow - *Python Imaging Library*
  - Stripe - *Credit card payments and transaction security*
  - boto3 - *To connect to AWS*
  - django-allauth - *Authentication, registration & account management*
  - django-countries - *Provides country choices for use with forms*
+ - django-phonenumber-field - *A Django library which interfaces with python-phonenumbers to validate*
  - django-crispy-forms - *Controls the rendering behaviour of Django forms*
  - django-filter - *Easy searching and filtering query sets*
 
@@ -154,6 +155,14 @@ This system was tested across multiple screen sizes on Chrome, Safari, and Inter
 To ensure compatibility and responsiveness it is also tested on an android based mobile device (OnePlus5)
 and an older tablet device (Samsung Galaxy Tab2).
 The system has been field-tested by customers and employees.
+Some basic unit testing has been done with Travis and own written testcodes on the home and accounts app.
+Unit testing does not go as deep as the field tests, but does show that the bare basic functions are working correctly. 
+
+For testing the admin interface an admin test account has been created on the deployed version to Heroku.
+The logins are:
+
+ - Username: Admin
+ - Password: Admin_1234
 
 The following tests have been used to ensure proper site functionality:
 

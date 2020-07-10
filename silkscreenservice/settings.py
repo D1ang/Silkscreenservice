@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'django_filters',
     'crispy_forms',
     'django_countries',
+    'phonenumber_field',
     'storages',
 ]
 
