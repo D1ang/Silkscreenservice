@@ -3,7 +3,9 @@ from accounts.forms import CustomerForm
 
 
 class TestItemForm(TestCase):
-
+    """
+    Test to see if the company name is indeed required.
+    """
     def test_company_name_is_required(self):
         form = CustomerForm({'company_name': ''})
         self.assertFalse(form.is_valid())
