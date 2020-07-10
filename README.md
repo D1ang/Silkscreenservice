@@ -155,6 +155,12 @@ To ensure compatibility and responsiveness it is also tested on an android based
 and an older tablet device (Samsung Galaxy Tab2).
 The system has been field-tested by customers and employees.
 
+For testing the admin interface an admin test account has been created on the deployed version to Heroku.
+The logins are:
+
+ - Username: Admin
+ - Password: Admin_1234
+
 The following tests have been used to ensure proper site functionality:
 
 - [GTmetrix](https://gtmetrix.com/): To test on website loading times.
