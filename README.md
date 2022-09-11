@@ -12,9 +12,6 @@ In short:
  - A system for employees to be more efficient.
  - An easy to understand system for B2B customers to remove some workload from the studio employees.
 
-## Demo
-A live demo version can be found **[here](https://silkscreenservice.herokuapp.com/)**
-
 ![Design](https://github.com/D1ang/Silkscreenservice/blob/master/mockups/presentation.png)
 
 ## Table of Contents
@@ -158,12 +155,6 @@ The system has been field-tested by customers and employees.
 Some basic unit testing has been done with Travis and own written testcodes on the home and accounts app.
 Unit testing does not go as deep as the field tests, but does show that the bare basic functions are working correctly. 
 
-For testing the admin interface an admin test account has been created on the deployed version to Heroku.
-The logins are:
-
- - Username: Admin
- - Password: Admin_1234
-
 The following tests have been used to ensure proper site functionality:
 
 - [GTmetrix](https://gtmetrix.com/): To test on website loading times.
@@ -193,7 +184,7 @@ This bug was fixed after making migrations and changed the max field characters 
 Seems that the admin entered email was 28 characters and when in an earlier build was set to 25, this error came up.
 
 ## Deployment
-The code of this system is hosted by using Heroku and Amazon S3, this code is deployed to GitHub directly from the master branch.
+This code is deployed to GitHub directly from the master branch.
 The deployed site will update automatically upon new commits to the master branch.
 This code can be run locally or deployed to a live environment. Directions are based on deployment locally and to Heroku.
 
