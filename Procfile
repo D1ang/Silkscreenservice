@@ -1,1 +1,0 @@
-web: gunicorn silkscreenservice.wsgi:application
