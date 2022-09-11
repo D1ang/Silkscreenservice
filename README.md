@@ -35,7 +35,6 @@ In short:
   * [Deployment](#deployment)
     + [Deploy requirements](#deploy-requirements)
     + [Local deployment](#local-deployment)
-    + [Heroku deployment](#heroku-deployment)
   * [Credits](#credits)
     + [Content](#content)
     + [Media](#media)
